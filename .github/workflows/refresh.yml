@@ -1,0 +1,39 @@
+name: Refresh BGG Collections
+
+on:
+  schedule:
+    - cron: "0 4 * * 0"   # Every Sunday at 04:00 UTC
+  workflow_dispatch:        # Manual trigger from Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Fetch BGG collections
+        env:
+          BGG_USERNAME: ${{ secrets.BGG_USERNAME }}
+          BGG_PASSWORD: ${{ secrets.BGG_PASSWORD }}
+        run: python scripts/fetch_collections.py
+
+      - name: Commit updated collection data
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/collection.json
+          git diff --cached --quiet || git commit -m "chore: refresh BGG collections [$(date -u '+%Y-%m-%d')]"
+          git push

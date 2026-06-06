@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Collection</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Design tokens ─────────────────────────────────────────────── */
+    :root {
+      --bg:          #0c1510;
+      --surface:     #121e18;
+      --surface-2:   #182620;
+      --surface-3:   #1f3028;
+      --border:      #263d30;
+      --border-2:    #2e4a3a;
+      --accent:      #d4922a;
+      --accent-dim:  #a06e1a;
+      --accent-glow: rgba(212, 146, 42, 0.15);
+      --text:        #eae8e0;
+      --text-2:      #9aaa9a;
+      --text-3:      #607060;
+      --owned:       #4a9e6a;
+      --owned-dim:   rgba(74, 158, 106, 0.15);
+      --radius:      6px;
+      --radius-lg:   10px;
+      --font-ui:     'Josefin Sans', sans-serif;
+      --font-title:  'Cormorant Garamond', serif;
+    }
+
+    /* ── Reset & base ──────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 14px; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-ui);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    button { cursor: pointer; font-family: var(--font-ui); }
+
+    /* ── Password gate ─────────────────────────────────────────────── */
+    #gate {
+      position: fixed; inset: 0;
+      background: var(--bg);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 1000;
+      transition: opacity 0.4s ease;
+    }
+    #gate.fade-out { opacity: 0; pointer-events: none; }
+
+    .gate-box {
+      background: var(--surface);
+      border: 1px solid var(--border-2);
+      border-radius: var(--radius-lg);
+      padding: 48px 52px;
+      width: 360px;
+      text-align: center;
+    }
+    .gate-icon {
+      font-size: 2.4rem;
+      margin-bottom: 16px;
+    }
+    .gate-title {
+      font-family: var(--font-title);
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .gate-subtitle {
+      color: var(--text-2);
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+    .gate-input {
+      width: 100%;
+      padding: 12px 16px;
+      background: var(--surface-3);
+      border: 1px solid var(--border-2);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-family: var(--font-ui);
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      text-align: center;
+      outline: none;
+      transition: border-color 0.2s;
+      margin-bottom: 12px;
+    }
+    .gate-input:focus { border-color: var(--accent); }
+    .gate-input.error { border-color: #c0392b; animation: shake 0.35s; }
+    .gate-btn {
+      width: 100%;
+      padding: 12px;
+      background: var(--accent);
+      color: #0c1510;
+      border: none;
+      border-radius: var(--radius);
+      font-family: var(--font-ui);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: background 0.2s;
+    }
+    .gate-btn:hover { background: #e8a83a; }
+    .gate-error {
+      color: #c0392b;
+      font-size: 0.8rem;
+      margin-top: 10px;
+      min-height: 18px;
+    }
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      25%      { transform: translateX(-6px); }
+      75%      { transform: translateX(6px); }
+    }
+
+    /* ── App shell ─────────────────────────────────────────────────── */
+    #app { display: none; min-height: 100vh; }
+    #app.visible { display: flex; flex-direction: column; }
+
+    /* ── Top bar ───────────────────────────────────────────────────── */
+    .topbar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .topbar-left { display: flex; align-items: center; gap: 18px; }
+    .site-title {
+      font-family: var(--font-title);
+      font-size: 1.65rem;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: 0.01em;
+    }
+    .site-title span { color: var(--accent); }
+    .topbar-stats {
+      display: flex; gap: 20px;
+    }
+    .stat-pill {
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-2);
+    }
+    .stat-pill strong { color: var(--accent); font-weight: 600; }
+    .meta-date {
+      font-size: 0.72rem;
+      color: var(--text-3);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── Layout ────────────────────────────────────────────────────── */
+    .layout {
+      display: flex;
+      flex: 1;
+      min-height: 0;
+    }
+
+    /* ── Sidebar ───────────────────────────────────────────────────── */
+    .sidebar {
+      width: 252px;
+      flex-shrink: 0;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      overflow-y: auto;
+      position: sticky;
+      top: 60px;
+      height: calc(100vh - 60px);
+      padding: 20px 0 40px;
+    }
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 2px; }
+
+    .filter-section {
+      padding: 0 18px 18px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 2px;
+    }
+    .filter-section:last-child { border-bottom: none; }
+
+    .filter-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      font-weight: 700;
+      padding: 16px 0 10px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .filter-label .icon { font-size: 0.9rem; }
+
+    /* Search */
+    .search-input {
+      width: 100%;
+      padding: 9px 12px;
+      background: var(--surface-3);
+      border: 1px solid var(--border-2);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-family: var(--font-ui);
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .search-input:focus { border-color: var(--accent); }
+    .search-input::placeholder { color: var(--text-3); }
+
+    /* Game night toggles */
+    .collector-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+    .collector-btn {
+      padding: 4px 9px;
+      border-radius: 20px;
+      border: 1px solid var(--border-2);
+      background: transparent;
+      color: var(--text-2);
+      font-size: 0.72rem;
+      letter-spacing: 0.03em;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+    .collector-btn:hover {
+      border-color: var(--text-2);
+      color: var(--text);
+    }
+    .collector-btn.active {
+      background: var(--owned-dim);
+      border-color: var(--owned);
+      color: var(--owned);
+      font-weight: 600;
+    }
+    .game-night-mode {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .toggle-switch {
+      position: relative;
+      width: 34px; height: 18px;
+      flex-shrink: 0;
+    }
+    .toggle-switch input { opacity: 0; width: 0; height: 0; }
+    .toggle-slider {
+      position: absolute; inset: 0;
+      background: var(--surface-3);
+      border: 1px solid var(--border-2);
+      border-radius: 9px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .toggle-slider::before {
+      content: '';
+      position: absolute;
+      width: 12px; height: 12px;
+      left: 2px; top: 2px;
+      background: var(--text-3);
+      border-radius: 50%;
+      transition: all 0.2s;
+    }
+    .toggle-switch input:checked + .toggle-slider { background: var(--owned-dim); border-color: var(--owned); }
+    .toggle-switch input:checked + .toggle-slider::before { transform: translateX(16px); background: var(--owned); }
+    .toggle-label { font-size: 0.78rem; color: var(--text-2); }
+
+    /* Range controls */
+    .range-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .range-label { font-size: 0.72rem; color: var(--text-3); width: 30px; }
+    .range-input {
+      flex: 1;
+      -webkit-appearance: none;
+      appearance: none;
+      height: 3px;
+      background: var(--surface-3);
+      border-radius: 2px;
+      outline: none;
+      cursor: pointer;
+    }
+    .range-input::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: var(--accent);
+      cursor: pointer;
+    }
+    .range-value {
+      font-size: 0.75rem;
+      color: var(--accent);
+      font-weight: 600;
+      width: 36px;
+      text-align: right;
+    }
+
+    .num-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .num-input {
+      width: 54px;
+      padding: 7px 8px;
+      background: var(--surface-3);
+      border: 1px solid var(--border-2);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-family: var(--font-ui);
+      font-size: 0.85rem;
+      text-align: center;
+      outline: none;
+    }
+    .num-input:focus { border-color: var(--accent); }
+    .num-sep { color: var(--text-3); font-size: 0.8rem; }
+
+    /* Sort select */
+    .sort-select {
+      width: 100%;
+      padding: 9px 12px;
+      background: var(--surface-3);
+      border: 1px solid var(--border-2);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-family: var(--font-ui);
+      font-size: 0.85rem;
+      outline: none;
+      cursor: pointer;
+    }
+    .sort-select option { background: var(--surface-3); }
+
+    /* Reset button */
+    .reset-btn {
+      width: 100%;
+      padding: 9px;
+      background: transparent;
+      border: 1px solid var(--border-2);
+      border-radius: var(--radius);
+      color: var(--text-3);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: all 0.15s;
+      margin-top: 4px;
+    }
+    .reset-btn:hover { border-color: var(--accent-dim); color: var(--accent); }
+
+    /* ── Main content ──────────────────────────────────────────────── */
+    .main {
+      flex: 1;
+      overflow: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .table-header {
+      padding: 16px 24px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      z-index: 10;
+    }
+    .results-count {
+      font-size: 0.78rem;
+      color: var(--text-2);
+      letter-spacing: 0.04em;
+    }
+    .results-count strong { color: var(--text); }
+    .page-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .page-btn {
+      padding: 5px 12px;
+      background: var(--surface-2);
+      border: 1px solid var(--border-2);
+      border-radius: var(--radius);
+      color: var(--text-2);
+      font-size: 0.78rem;
+      transition: all 0.15s;
+    }
+    .page-btn:hover:not(:disabled) { background: var(--surface-3); color: var(--text); }
+    .page-btn:disabled { opacity: 0.35; cursor: default; }
+    .page-info { font-size: 0.75rem; color: var(--text-3); }
+
+    /* ── Table ─────────────────────────────────────────────────────── */
+    .table-wrap {
+      flex: 1;
+      overflow: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+    thead {
+      position: sticky; top: 0; z-index: 5;
+    }
+    thead tr {
+      background: var(--surface-2);
+    }
+    th {
+      padding: 11px 12px;
+      text-align: left;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      font-weight: 700;
+      white-space: nowrap;
+      border-bottom: 1px solid var(--border-2);
+      cursor: pointer;
+      user-select: none;
+      transition: color 0.15s;
+    }
+    th:hover { color: var(--text-2); }
+    th.sorted { color: var(--accent); }
+    th .sort-arrow { margin-left: 4px; opacity: 0.5; }
+    th.sorted .sort-arrow { opacity: 1; }
+
+    /* Column widths */
+    .col-name     { width: auto; min-width: 200px; }
+    .col-year     { width: 62px; }
+    .col-players  { width: 78px; }
+    .col-time     { width: 90px; }
+    .col-rating   { width: 70px; }
+    .col-weight   { width: 68px; }
+    .col-owners   { width: 220px; }
+    .col-count    { width: 46px; text-align: center; }
+
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.1s;
+    }
+    tbody tr:hover { background: var(--surface); }
+
+    td {
+      padding: 9px 12px;
+      font-size: 0.85rem;
+      vertical-align: middle;
+    }
+
+    .game-name {
+      font-family: var(--font-title);
+      font-size: 0.96rem;
+      color: var(--text);
+    }
+    .game-name a { color: var(--text); transition: color 0.15s; }
+    .game-name a:hover { color: var(--accent); text-decoration: none; }
+
+    .cell-muted { color: var(--text-2); }
+    .cell-dim   { color: var(--text-3); font-size: 0.78rem; }
+
+    .rating-val { color: var(--accent); font-weight: 600; }
+    .rating-na  { color: var(--text-3); font-size: 0.78rem; }
+
+    .weight-dots {
+      display: flex;
+      gap: 2px;
+      align-items: center;
+    }
+    .dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--border-2);
+    }
+    .dot.filled { background: var(--accent); }
+
+    .owner-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3px;
+    }
+    .owner-pill {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      white-space: nowrap;
+    }
+
+    .count-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: var(--surface-3);
+      border: 1px solid var(--border-2);
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--text-2);
+      margin: 0 auto;
+    }
+    .count-badge.high { background: var(--owned-dim); border-color: var(--owned); color: var(--owned); }
+
+    /* Loading / empty states */
+    .state-msg {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 24px;
+      gap: 12px;
+      color: var(--text-3);
+    }
+    .state-msg .icon { font-size: 2.5rem; opacity: 0.4; }
+    .state-msg p { font-size: 0.85rem; letter-spacing: 0.04em; }
+
+    /* ── Scrollbar ─────────────────────────────────────────────────── */
+    .table-wrap::-webkit-scrollbar { width: 6px; height: 6px; }
+    .table-wrap::-webkit-scrollbar-track { background: var(--bg); }
+    .table-wrap::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 3px; }
+
+    /* ── Responsive ────────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .sidebar { display: none; }
+      .col-owners { width: 160px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Password gate ──────────────────────────────────────────────── -->
+<div id="gate">
+  <div class="gate-box">
+    <div class="gate-icon">♟</div>
+    <div class="gate-title">The Collection</div>
+    <div class="gate-subtitle">Members only</div>
+    <input
+      id="gate-input"
+      type="password"
+      class="gate-input"
+      placeholder="Password"
+      autocomplete="current-password"
+    />
+    <button class="gate-btn" onclick="checkPassword()">Enter</button>
+    <div class="gate-error" id="gate-error"></div>
+  </div>
+</div>
+
+<!-- ── App ───────────────────────────────────────────────────────── -->
+<div id="app">
+
+  <header class="topbar">
+    <div class="topbar-left">
+      <div class="site-title">The <span>Collection</span></div>
+      <div class="topbar-stats">
+        <span class="stat-pill"><strong id="stat-games">—</strong> games</span>
+        <span class="stat-pill"><strong id="stat-collectors">—</strong> collectors</span>
+      </div>
+    </div>
+    <div class="meta-date" id="meta-date">—</div>
+  </header>
+
+  <div class="layout">
+
+    <!-- ── Sidebar ──────────────────────────────────────────────────── -->
+    <aside class="sidebar">
+
+      <div class="filter-section">
+        <div class="filter-label"><span class="icon">🔍</span>Search</div>
+        <input
+          id="search"
+          type="text"
+          class="search-input"
+          placeholder="Game name…"
+          oninput="scheduleFilter()"
+        />
+      </div>
+
+      <div class="filter-section">
+        <div class="filter-label"><span class="icon">🌙</span>Game Night</div>
+        <div class="game-night-mode">
+          <label class="toggle-switch">
+            <input type="checkbox" id="gn-toggle" onchange="scheduleFilter()" />
+            <span class="toggle-slider"></span>
+          </label>
+          <span class="toggle-label">Only show games someone present owns</span>
+        </div>
+        <div class="collector-grid" id="collector-toggles"></div>
+      </div>
+
+      <div class="filter-section">
+        <div class="filter-label"><span class="icon">👥</span>Player Count</div>
+        <div class="num-row">
+          <input id="players-min" type="number" class="num-input" placeholder="min" min="1" max="20" oninput="scheduleFilter()" />
+          <span class="num-sep">to</span>
+          <input id="players-max" type="number" class="num-input" placeholder="max" min="1" max="20" oninput="scheduleFilter()" />
+          <span class="num-sep">players</span>
+        </div>
+      </div>
+
+      <div class="filter-section">
+        <div class="filter-label"><span class="icon">⏱</span>Playtime (min)</div>
+        <div class="num-row">
+          <input id="time-min" type="number" class="num-input" placeholder="min" min="0" oninput="scheduleFilter()" />
+          <span class="num-sep">to</span>
+          <input id="time-max" type="number" class="num-input" placeholder="max" min="0" oninput="scheduleFilter()" />
+          <span class="num-sep">min</span>
+        </div>
+      </div>
+
+      <div class="filter-section">
+        <div class="filter-label"><span class="icon">⭐</span>BGG Rating</div>
+        <div class="range-row">
+          <span class="range-label">Min</span>
+          <input id="rating-min" type="range" class="range-input" min="0" max="10" step="0.1" value="0" oninput="updateRangeDisplay(this,'rating-min-val'); scheduleFilter()" />
+          <span class="range-value" id="rating-min-val">Any</span>
+        </div>
+      </div>
+
+      <div class="filter-section">
+        <div class="filter-label"><span class="icon">🎲</span>Complexity</div>
+        <div class="range-row">
+          <span class="range-label">Min</span>
+          <input id="weight-min" type="range" class="range-input" min="1" max="5" step="0.1" value="1" oninput="updateRangeDisplay(this,'weight-min-val'); scheduleFilter()" />
+          <span class="range-value" id="weight-min-val">Any</span>
+        </div>
+        <div class="range-row">
+          <span class="range-label">Max</span>
+          <input id="weight-max" type="range" class="range-input" min="1" max="5" step="0.1" value="5" oninput="updateRangeDisplay(this,'weight-max-val'); scheduleFilter()" />
+          <span class="range-value" id="weight-max-val">Any</span>
+        </div>
+      </div>
+
+      <div class="filter-section">
+        <div class="filter-label"><span class="icon">↕</span>Sort By</div>
+        <select id="sort-by" class="sort-select" onchange="scheduleFilter()">
+          <option value="name-asc">Name A → Z</option>
+          <option value="name-desc">Name Z → A</option>
+          <option value="rating-desc">Rating (high → low)</option>
+          <option value="rating-asc">Rating (low → high)</option>
+          <option value="year-desc">Year (newest first)</option>
+          <option value="year-asc">Year (oldest first)</option>
+          <option value="weight-desc">Complexity (high → low)</option>
+          <option value="weight-asc">Complexity (low → high)</option>
+          <option value="count-desc">Most owned</option>
+        </select>
+      </div>
+
+      <div class="filter-section">
+        <button class="reset-btn" onclick="resetFilters()">↺ Reset all filters</button>
+      </div>
+
+    </aside>
+
+    <!-- ── Main ─────────────────────────────────────────────────────── -->
+    <div class="main">
+
+      <div class="table-header">
+        <div class="results-count" id="results-count">Loading…</div>
+        <div class="page-controls">
+          <button class="page-btn" id="prev-btn" onclick="changePage(-1)" disabled>← Prev</button>
+          <span class="page-info" id="page-info">—</span>
+          <button class="page-btn" id="next-btn" onclick="changePage(1)" disabled>Next →</button>
+        </div>
+      </div>
+
+      <div class="table-wrap" id="table-wrap">
+        <div class="state-msg" id="loading-msg">
+          <span class="icon">⏳</span>
+          <p>Loading collection…</p>
+        </div>
+        <table id="game-table" style="display:none">
+          <thead>
+            <tr>
+              <th class="col-name sorted" data-sort="name-asc" onclick="setSort('name')">
+                Game <span class="sort-arrow" id="arrow-name">↑</span>
+              </th>
+              <th class="col-year" data-sort="year-desc" onclick="setSort('year')">
+                Year <span class="sort-arrow" id="arrow-year"></span>
+              </th>
+              <th class="col-players" onclick="setSort('players')">
+                Players <span class="sort-arrow" id="arrow-players"></span>
+              </th>
+              <th class="col-time" onclick="setSort('time')">
+                Time <span class="sort-arrow" id="arrow-time"></span>
+              </th>
+              <th class="col-rating" onclick="setSort('rating')">
+                Rating <span class="sort-arrow" id="arrow-rating"></span>
+              </th>
+              <th class="col-weight" onclick="setSort('weight')">
+                Weight <span class="sort-arrow" id="arrow-weight"></span>
+              </th>
+              <th class="col-owners">Owners</th>
+              <th class="col-count" onclick="setSort('count')">
+                # <span class="sort-arrow" id="arrow-count"></span>
+              </th>
+            </tr>
+          </thead>
+          <tbody id="game-tbody"></tbody>
+        </table>
+        <div class="state-msg" id="empty-msg" style="display:none">
+          <span class="icon">🎲</span>
+          <p>No games match your filters.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+// ─────────────────────────────────────────────────────────────────────────────
+// CONFIGURATION
+// ─────────────────────────────────────────────────────────────────────────────
+
+// SHA-256 hash of the access password.
+// Default password is: boardgames
+// To change it, run: python scripts/generate_password_hash.py
+const PASSWORD_HASH = "44712ade717dbac9088af264742bf234fa4770b5ab5bda797be725be14d2d1c3";
+
+const PAGE_SIZE = 75;
+const SESSION_KEY = "bgg_auth";
+
+// ─────────────────────────────────────────────────────────────────────────────
+// OWNER COLOURS  (one per collector, cycling through a set of warm/natural hues)
+// ─────────────────────────────────────────────────────────────────────────────
+const OWNER_COLOURS = [
+  ["#d4922a","#3a2610"], ["#4a9e6a","#0e2418"], ["#5b8dd9","#0e1e38"],
+  ["#c0605a","#2e1010"], ["#a07ad0","#1e1030"], ["#60b09a","#0c2420"],
+  ["#d4a44a","#2e2010"], ["#7090d0","#102038"], ["#c07860","#2e1810"],
+  ["#80b050","#162010"], ["#c06080","#2e1020"], ["#50a0c0","#0e2028"],
+  ["#d06040","#2e1408"], ["#60c0a0","#0e2820"], ["#b060c0","#201028"],
+  ["#98b048","#1a2008"], ["#e09050","#2e1e08"], ["#6070d0","#101830"],
+  ["#50b870","#0c2414"],
+];
+
+// ─────────────────────────────────────────────────────────────────────────────
+// STATE
+// ─────────────────────────────────────────────────────────────────────────────
+let allGames     = [];
+let collectors   = [];
+let filteredGames = [];
+let currentPage  = 1;
+let totalPages   = 1;
+let filterTimer  = null;
+let ownerColMap  = {};
+
+let sortKey = "name";
+let sortDir = "asc";
+
+// ─────────────────────────────────────────────────────────────────────────────
+// PASSWORD GATE
+// ─────────────────────────────────────────────────────────────────────────────
+async function sha256(str) {
+  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, "0")).join("");
+}
+
+async function checkPassword() {
+  const input = document.getElementById("gate-input");
+  const errorEl = document.getElementById("gate-error");
+  const hash = await sha256(input.value);
+  if (hash === PASSWORD_HASH) {
+    sessionStorage.setItem(SESSION_KEY, "1");
+    const gate = document.getElementById("gate");
+    gate.classList.add("fade-out");
+    setTimeout(() => {
+      gate.style.display = "none";
+      showApp();
+    }, 400);
+  } else {
+    input.classList.add("error");
+    errorEl.textContent = "Incorrect password.";
+    setTimeout(() => input.classList.remove("error"), 400);
+    input.value = "";
+  }
+}
+
+document.getElementById("gate-input").addEventListener("keydown", e => {
+  if (e.key === "Enter") checkPassword();
+});
+
+function showApp() {
+  const app = document.getElementById("app");
+  app.style.display = "flex";
+  app.style.flexDirection = "column";
+  app.classList.add("visible");
+  loadData();
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// BOOT — check session on load
+// ─────────────────────────────────────────────────────────────────────────────
+window.addEventListener("DOMContentLoaded", () => {
+  if (sessionStorage.getItem(SESSION_KEY) === "1") {
+    document.getElementById("gate").style.display = "none";
+    showApp();
+  }
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// DATA LOADING
+// ─────────────────────────────────────────────────────────────────────────────
+async function loadData() {
+  try {
+    const res = await fetch("data/collection.json");
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+
+    allGames   = data.games || [];
+    collectors = data.meta?.users || [];
+
+    // Build owner → colour map
+    collectors.forEach((u, i) => {
+      ownerColMap[u] = OWNER_COLOURS[i % OWNER_COLOURS.length];
+    });
+
+    // Update topbar stats
+    document.getElementById("stat-games").textContent = allGames.length.toLocaleString();
+    document.getElementById("stat-collectors").textContent = collectors.length;
+
+    // Updated date
+    if (data.meta?.generated_at) {
+      const d = new Date(data.meta.generated_at);
+      document.getElementById("meta-date").textContent =
+        "Updated " + d.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+    }
+
+    // Build collector toggles
+    const grid = document.getElementById("collector-toggles");
+    collectors.forEach(u => {
+      const btn = document.createElement("button");
+      btn.className = "collector-btn";
+      btn.textContent = u;
+      btn.dataset.user = u;
+      btn.onclick = () => { btn.classList.toggle("active"); scheduleFilter(); };
+      grid.appendChild(btn);
+    });
+
+    document.getElementById("loading-msg").style.display = "none";
+    document.getElementById("game-table").style.display = "";
+
+    applyFilters();
+
+  } catch (err) {
+    document.getElementById("loading-msg").innerHTML =
+      `<span class="icon">⚠️</span><p>Failed to load collection.json — ${err.message}</p>`;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// FILTERING
+// ─────────────────────────────────────────────────────────────────────────────
+function scheduleFilter() {
+  clearTimeout(filterTimer);
+  filterTimer = setTimeout(applyFilters, 80);
+}
+
+function applyFilters() {
+  const search     = document.getElementById("search").value.trim().toLowerCase();
+  const playersMin = parseInt(document.getElementById("players-min").value) || null;
+  const playersMax = parseInt(document.getElementById("players-max").value) || null;
+  const timeMin    = parseInt(document.getElementById("time-min").value)    || null;
+  const timeMax    = parseInt(document.getElementById("time-max").value)    || null;
+  const ratingMin  = parseFloat(document.getElementById("rating-min").value) || 0;
+  const weightMin  = parseFloat(document.getElementById("weight-min").value) || 1;
+  const weightMax  = parseFloat(document.getElementById("weight-max").value) || 5;
+  const gnActive   = document.getElementById("gn-toggle").checked;
+  const activeUsers = [...document.querySelectorAll(".collector-btn.active")]
+                        .map(b => b.dataset.user);
+
+  filteredGames = allGames.filter(g => {
+    if (search && !g.name.toLowerCase().includes(search)) return false;
+
+    if (playersMin !== null && g.maxplayers !== null && g.maxplayers < playersMin) return false;
+    if (playersMax !== null && g.minplayers !== null && g.minplayers > playersMax) return false;
+
+    if (timeMin !== null && g.maxplaytime !== null && g.maxplaytime < timeMin) return false;
+    if (timeMax !== null && g.minplaytime !== null && g.minplaytime > timeMax) return false;
+
+    if (ratingMin > 0 && (g.bgg_rating === null || g.bgg_rating < ratingMin)) return false;
+
+    if (g.complexity !== null) {
+      if (g.complexity < weightMin || g.complexity > weightMax) return false;
+    }
+
+    if (gnActive && activeUsers.length > 0) {
+      if (!activeUsers.some(u => g.owners.includes(u))) return false;
+    }
+
+    return true;
+  });
+
+  // Sort
+  const sortFns = {
+    name:    (a, b) => a.name.localeCompare(b.name),
+    rating:  (a, b) => (b.bgg_rating || 0) - (a.bgg_rating || 0),
+    year:    (a, b) => (b.year || 0) - (a.year || 0),
+    weight:  (a, b) => (b.complexity || 0) - (a.complexity || 0),
+    count:   (a, b) => b.owner_count - a.owner_count,
+    players: (a, b) => (a.minplayers || 99) - (b.minplayers || 99),
+    time:    (a, b) => (a.minplaytime || 9999) - (b.minplaytime || 9999),
+  };
+
+  const fn = sortFns[sortKey] || sortFns.name;
+  filteredGames.sort((a, b) => sortDir === "asc" ? fn(a, b) : -fn(a, b));
+
+  currentPage = 1;
+  totalPages  = Math.max(1, Math.ceil(filteredGames.length / PAGE_SIZE));
+  renderPage();
+  updateResultsCount();
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// RENDERING
+// ─────────────────────────────────────────────────────────────────────────────
+function renderPage() {
+  const tbody = document.getElementById("game-tbody");
+  const emptyMsg = document.getElementById("empty-msg");
+  const table = document.getElementById("game-table");
+
+  const start = (currentPage - 1) * PAGE_SIZE;
+  const slice = filteredGames.slice(start, start + PAGE_SIZE);
+
+  if (filteredGames.length === 0) {
+    table.style.display = "none";
+    emptyMsg.style.display = "flex";
+    updatePageControls();
+    return;
+  }
+
+  table.style.display = "";
+  emptyMsg.style.display = "none";
+
+  const rows = slice.map(g => {
+    const players = formatPlayers(g.minplayers, g.maxplayers);
+    const time    = formatTime(g.minplaytime, g.maxplaytime);
+    const rating  = g.bgg_rating ? `<span class="rating-val">${g.bgg_rating.toFixed(1)}</span>` : `<span class="rating-na">—</span>`;
+    const weight  = g.complexity ? renderDots(g.complexity) : `<span class="cell-dim">—</span>`;
+    const pills   = g.owners.map(u => {
+      const [fg, bg] = ownerColMap[u] || ["#888","#222"];
+      return `<span class="owner-pill" style="color:${fg};background:${bg}">${u}</span>`;
+    }).join("");
+    const countClass = g.owner_count >= 4 ? "count-badge high" : "count-badge";
+
+    return `<tr>
+      <td class="game-name"><a href="${g.bgg_url}" target="_blank" rel="noopener">${escHtml(g.name)}</a></td>
+      <td class="cell-muted">${g.year || '<span class="cell-dim">—</span>'}</td>
+      <td class="cell-muted">${players}</td>
+      <td class="cell-muted">${time}</td>
+      <td>${rating}</td>
+      <td>${weight}</td>
+      <td><div class="owner-pills">${pills}</div></td>
+      <td><div class="${countClass}">${g.owner_count}</div></td>
+    </tr>`;
+  });
+
+  tbody.innerHTML = rows.join("");
+  updatePageControls();
+}
+
+function formatPlayers(min, max) {
+  if (!min && !max) return '<span class="cell-dim">—</span>';
+  if (min === max || !max) return `<span>${min}</span>`;
+  return `<span>${min}–${max}</span>`;
+}
+
+function formatTime(min, max) {
+  if (!min && !max) return '<span class="cell-dim">—</span>';
+  if (min === max || !max) return `${min} min`;
+  return `${min}–${max} min`;
+}
+
+function renderDots(weight) {
+  const filled = Math.round(weight);
+  const dots = Array.from({length: 5}, (_, i) =>
+    `<span class="dot${i < filled ? ' filled' : ''}"></span>`
+  ).join("");
+  return `<div class="weight-dots" title="${weight.toFixed(1)}">${dots}</div>`;
+}
+
+function escHtml(str) {
+  return str.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+}
+
+function updateResultsCount() {
+  const el = document.getElementById("results-count");
+  const total = allGames.length;
+  const shown = filteredGames.length;
+  el.innerHTML = shown === total
+    ? `Showing all <strong>${total.toLocaleString()}</strong> games`
+    : `<strong>${shown.toLocaleString()}</strong> of ${total.toLocaleString()} games`;
+}
+
+function updatePageControls() {
+  const prevBtn = document.getElementById("prev-btn");
+  const nextBtn = document.getElementById("next-btn");
+  const info    = document.getElementById("page-info");
+  prevBtn.disabled = currentPage <= 1;
+  nextBtn.disabled = currentPage >= totalPages;
+  info.textContent = totalPages > 1 ? `Page ${currentPage} / ${totalPages}` : "";
+}
+
+function changePage(delta) {
+  currentPage = Math.max(1, Math.min(totalPages, currentPage + delta));
+  renderPage();
+  document.getElementById("table-wrap").scrollTop = 0;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SORT
+// ─────────────────────────────────────────────────────────────────────────────
+const SORT_KEYS = { name:"name", year:"year", players:"players", time:"time", rating:"rating", weight:"weight", count:"count" };
+const DEFAULT_DIR = { name:"asc", year:"desc", players:"asc", time:"asc", rating:"desc", weight:"desc", count:"desc" };
+
+function setSort(key) {
+  if (sortKey === key) {
+    sortDir = sortDir === "asc" ? "desc" : "asc";
+  } else {
+    sortKey = key;
+    sortDir = DEFAULT_DIR[key] || "asc";
+  }
+  updateSortHeaders();
+  applyFilters();
+}
+
+function updateSortHeaders() {
+  document.querySelectorAll("th").forEach(th => th.classList.remove("sorted"));
+  document.querySelectorAll(".sort-arrow").forEach(a => a.textContent = "");
+  const arrowEl = document.getElementById(`arrow-${sortKey}`);
+  if (arrowEl) {
+    arrowEl.closest("th").classList.add("sorted");
+    arrowEl.textContent = sortDir === "asc" ? "↑" : "↓";
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// RANGE DISPLAY
+// ─────────────────────────────────────────────────────────────────────────────
+function updateRangeDisplay(el, labelId) {
+  const val = parseFloat(el.value);
+  const label = document.getElementById(labelId);
+  const isRating = el.id === "rating-min";
+  const isWeightMin = el.id === "weight-min";
+  const isWeightMax = el.id === "weight-max";
+
+  if (isRating && val === 0) { label.textContent = "Any"; return; }
+  if (isWeightMin && val === 1) { label.textContent = "Any"; return; }
+  if (isWeightMax && val === 5) { label.textContent = "Any"; return; }
+
+  label.textContent = val.toFixed(1);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// RESET
+// ─────────────────────────────────────────────────────────────────────────────
+function resetFilters() {
+  document.getElementById("search").value = "";
+  document.getElementById("players-min").value = "";
+  document.getElementById("players-max").value = "";
+  document.getElementById("time-min").value = "";
+  document.getElementById("time-max").value = "";
+  document.getElementById("rating-min").value = "0";
+  document.getElementById("weight-min").value = "1";
+  document.getElementById("weight-max").value = "5";
+  document.getElementById("gn-toggle").checked = false;
+  document.querySelectorAll(".collector-btn.active").forEach(b => b.classList.remove("active"));
+  document.getElementById("rating-min-val").textContent = "Any";
+  document.getElementById("weight-min-val").textContent = "Any";
+  document.getElementById("weight-max-val").textContent = "Any";
+  sortKey = "name"; sortDir = "asc";
+  updateSortHeaders();
+  applyFilters();
+}
+</script>
+
+</body>
+</html>
