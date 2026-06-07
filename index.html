@@ -126,7 +126,7 @@
 
     /* ── App shell ─────────────────────────────────────────────────── */
     #app { display: none; min-height: 100vh; }
-    #app.visible { display: flex; flex-direction: column; }
+    #app.visible { display: flex !important; flex-direction: column; min-height: 100vh; }
 
     /* ── Top bar ───────────────────────────────────────────────────── */
     .topbar {
@@ -519,6 +519,149 @@
       .sidebar { display: none; }
       .col-owners { width: 160px; }
     }
+
+    /* ── Tab navigation ────────────────────────────────────────────── */
+    .tab-nav {
+      display: flex;
+      gap: 4px;
+      background: var(--surface-3);
+      border-radius: var(--radius);
+      padding: 3px;
+    }
+    .tab-btn {
+      padding: 6px 18px;
+      border: none;
+      border-radius: 4px;
+      background: transparent;
+      color: var(--text-2);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      transition: all 0.15s;
+    }
+    .tab-btn:hover { color: var(--text); }
+    .tab-btn.active { background: var(--surface); color: var(--accent); }
+
+    /* ── Top games view ────────────────────────────────────────────── */
+    #tab-top {
+      flex: 1;
+      overflow-y: auto;
+      padding: 28px 36px 60px;
+    }
+    .top-controls {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+    .top-controls-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      font-weight: 700;
+    }
+    .threshold-btns {
+      display: flex;
+      gap: 4px;
+    }
+    .threshold-btn {
+      padding: 5px 13px;
+      border-radius: 20px;
+      border: 1px solid var(--border-2);
+      background: transparent;
+      color: var(--text-2);
+      font-size: 0.78rem;
+      font-weight: 600;
+      transition: all 0.15s;
+    }
+    .threshold-btn:hover { border-color: var(--text-2); color: var(--text); }
+    .threshold-btn.active {
+      background: var(--accent-glow);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .top-as-of {
+      margin-left: auto;
+      font-size: 0.72rem;
+      color: var(--text-3);
+      letter-spacing: 0.04em;
+    }
+    .count-group {
+      margin-bottom: 32px;
+    }
+    .count-group-header {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border-2);
+    }
+    .count-group-number {
+      font-family: var(--font-title);
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .count-group-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      font-weight: 700;
+    }
+    .count-group-games {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+    .top-game-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 9px 12px;
+      border-radius: var(--radius);
+      transition: background 0.1s;
+    }
+    .top-game-row:hover { background: var(--surface); }
+    .top-game-name {
+      font-family: var(--font-title);
+      font-size: 1.05rem;
+      min-width: 0;
+      flex: 1;
+    }
+    .top-game-name a { color: var(--text); transition: color 0.15s; }
+    .top-game-name a:hover { color: var(--accent); text-decoration: none; }
+    .top-game-year {
+      font-size: 0.75rem;
+      color: var(--text-3);
+      white-space: nowrap;
+    }
+    .top-game-rating {
+      font-size: 0.82rem;
+      color: var(--accent);
+      font-weight: 600;
+      white-space: nowrap;
+      width: 36px;
+      text-align: right;
+    }
+    .top-game-owners {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3px;
+      justify-content: flex-end;
+      max-width: 340px;
+    }
+    .top-empty {
+      color: var(--text-3);
+      font-size: 0.85rem;
+      padding: 40px 0;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -552,10 +695,15 @@
         <span class="stat-pill"><strong id="stat-collectors">—</strong> collectors</span>
       </div>
     </div>
+    <nav class="tab-nav">
+      <button class="tab-btn active" id="tab-btn-collection" onclick="switchTab('collection')">Collection</button>
+      <button class="tab-btn" id="tab-btn-top" onclick="switchTab('top')">Top Games</button>
+    </nav>
     <div class="meta-date" id="meta-date">—</div>
   </header>
 
-  <div class="layout">
+  <div id="tab-collection" style="display:flex;flex:1;min-height:0;overflow:hidden">
+  <div class="layout" style="flex:1">
 
     <!-- ── Sidebar ──────────────────────────────────────────────────── -->
     <aside class="sidebar">
@@ -695,6 +843,27 @@
 
     </div>
   </div>
+  </div><!-- /tab-collection -->
+
+  <!-- ── Top Games tab ──────────────────────────────────────────────── -->
+  <div id="tab-top" style="display:none">
+    <div class="top-controls">
+      <span class="top-controls-label">Min. collectors</span>
+      <div class="threshold-btns" id="threshold-btns">
+        <button class="threshold-btn" onclick="setThreshold(3)">3+</button>
+        <button class="threshold-btn" onclick="setThreshold(4)">4+</button>
+        <button class="threshold-btn active" onclick="setThreshold(5)">5+</button>
+        <button class="threshold-btn" onclick="setThreshold(6)">6+</button>
+        <button class="threshold-btn" onclick="setThreshold(7)">7+</button>
+        <button class="threshold-btn" onclick="setThreshold(8)">8+</button>
+        <button class="threshold-btn" onclick="setThreshold(9)">9+</button>
+        <button class="threshold-btn" onclick="setThreshold(10)">10+</button>
+      </div>
+      <span class="top-as-of" id="top-as-of"></span>
+    </div>
+    <div id="top-list"></div>
+  </div>
+
 </div>
 
 <script>
@@ -1059,6 +1228,87 @@ function resetFilters() {
   updateSortHeaders();
   applyFilters();
 }
+// ─────────────────────────────────────────────────────────────────────────────
+// TAB SWITCHING
+// ─────────────────────────────────────────────────────────────────────────────
+let currentTab = 'collection';
+
+function switchTab(tab) {
+  currentTab = tab;
+  document.getElementById('tab-collection').style.display = tab === 'collection' ? 'flex' : 'none';
+  document.getElementById('tab-top').style.display        = tab === 'top'        ? 'block' : 'none';
+  document.getElementById('tab-btn-collection').classList.toggle('active', tab === 'collection');
+  document.getElementById('tab-btn-top').classList.toggle('active', tab === 'top');
+  if (tab === 'top') renderTopGames();
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// TOP GAMES
+// ─────────────────────────────────────────────────────────────────────────────
+let topThreshold = 5;
+
+function setThreshold(n) {
+  topThreshold = n;
+  document.querySelectorAll('.threshold-btn').forEach(b => {
+    b.classList.toggle('active', parseInt(b.textContent) === n);
+  });
+  renderTopGames();
+}
+
+function renderTopGames() {
+  const container = document.getElementById('top-list');
+  if (!allGames.length) { container.innerHTML = '<div class="top-empty">Loading…</div>'; return; }
+
+  // Update "as of" date
+  const asOf = document.getElementById('top-as-of');
+  const dateEl = document.getElementById('meta-date');
+  asOf.textContent = dateEl.textContent;
+
+  // Filter and group by owner count
+  const qualifying = allGames.filter(g => g.owner_count >= topThreshold);
+
+  if (!qualifying.length) {
+    container.innerHTML = '<div class="top-empty">No games with ' + topThreshold + '+ collectors.</div>';
+    return;
+  }
+
+  // Get distinct counts, sorted descending
+  const counts = [...new Set(qualifying.map(g => g.owner_count))].sort((a, b) => b - a);
+
+  const html = counts.map(count => {
+    const games = qualifying
+      .filter(g => g.owner_count === count)
+      .sort((a, b) => a.name.localeCompare(b.name));
+
+    const rows = games.map(g => {
+      const pills = g.owners.map(u => {
+        const [fg, bg] = ownerColMap[u] || ['#888','#222'];
+        return `<span class="owner-pill" style="color:${fg};background:${bg}">${u}</span>`;
+      }).join('');
+
+      const rating = g.bgg_rating ? `<span class="top-game-rating">★ ${g.bgg_rating.toFixed(1)}</span>` : `<span class="top-game-rating" style="color:var(--text-3)">—</span>`;
+
+      return `<div class="top-game-row">
+        <div class="top-game-name"><a href="${g.bgg_url}" target="_blank" rel="noopener">${escHtml(g.name)}</a></div>
+        <div class="top-game-year">${g.year || ''}</div>
+        ${rating}
+        <div class="top-game-owners">${pills}</div>
+      </div>`;
+    }).join('');
+
+    const label = count === 1 ? 'collector' : 'collectors';
+    return `<div class="count-group">
+      <div class="count-group-header">
+        <span class="count-group-number">${count}</span>
+        <span class="count-group-label">${label}</span>
+      </div>
+      <div class="count-group-games">${rows}</div>
+    </div>`;
+  }).join('');
+
+  container.innerHTML = html;
+}
+
 </script>
 
 </body>
