@@ -1,1 +1,1028 @@
-{"entries": []}
+{
+  "entries": [
+    {
+      "id": "20260607190521-csv",
+      "date": "2026-06-07T19:05:21.299900+00:00",
+      "label": "Google Sheets 2026-02",
+      "source": "csv",
+      "stats": {
+        "collectors_changed": 16,
+        "games_added": 142,
+        "games_removed": 85
+      },
+      "changes": [
+        {
+          "collector": "asaarto",
+          "added": [
+            {
+              "objectid": "402676",
+              "name": "Cities"
+            },
+            {
+              "objectid": "40765",
+              "name": "Clash of Cultures"
+            },
+            {
+              "objectid": "386405",
+              "name": "Come Sail Away!"
+            },
+            {
+              "objectid": "322616",
+              "name": "Comic Hunters"
+            },
+            {
+              "objectid": "334986",
+              "name": "Daybreak"
+            },
+            {
+              "objectid": "370210",
+              "name": "Diatoms"
+            },
+            {
+              "objectid": "437245",
+              "name": "Kingdom Crossing"
+            },
+            {
+              "objectid": "438",
+              "name": "Scotland Yard"
+            },
+            {
+              "objectid": "162286",
+              "name": "Super Motherload"
+            },
+            {
+              "objectid": "178570",
+              "name": "Unusual Suspects"
+            }
+          ],
+          "removed": [
+            {
+              "objectid": "204516",
+              "name": "878 Vikings: Invasions of England"
+            },
+            {
+              "objectid": "236457",
+              "name": "Architects of the West Kingdom"
+            },
+            {
+              "objectid": "430",
+              "name": "Asterix: Das Kartenspiel"
+            },
+            {
+              "objectid": "158982",
+              "name": "Blue Max: World War I Air Combat"
+            },
+            {
+              "objectid": "224037",
+              "name": "Codenames: Duet"
+            },
+            {
+              "objectid": "280480",
+              "name": "Crystal Palace"
+            },
+            {
+              "objectid": "75165",
+              "name": "De Vulgari Eloquentia"
+            },
+            {
+              "objectid": "443306",
+              "name": "Deckers"
+            },
+            {
+              "objectid": "40793",
+              "name": "Dice Town"
+            },
+            {
+              "objectid": "361788",
+              "name": "First in Flight"
+            },
+            {
+              "objectid": "8964",
+              "name": "Funny Bunny"
+            },
+            {
+              "objectid": "83195",
+              "name": "Ghost Blitz"
+            },
+            {
+              "objectid": "6351",
+              "name": "Gulo Gulo"
+            },
+            {
+              "objectid": "41860",
+              "name": "Kangaroo"
+            },
+            {
+              "objectid": "235465",
+              "name": "Karuba: The Card Game"
+            },
+            {
+              "objectid": "198190",
+              "name": "Kepler-3042"
+            },
+            {
+              "objectid": "328555",
+              "name": "Kingdom Rush: Elemental Uprising"
+            },
+            {
+              "objectid": "142084",
+              "name": "Kings of Israel"
+            },
+            {
+              "objectid": "2853",
+              "name": "Liftoff!"
+            },
+            {
+              "objectid": "199",
+              "name": "Manhattan"
+            },
+            {
+              "objectid": "2280",
+              "name": "Marco Polo"
+            },
+            {
+              "objectid": "174093",
+              "name": "Maze Racers"
+            },
+            {
+              "objectid": "423401",
+              "name": "Minos: Dawn of the Bronze Age"
+            },
+            {
+              "objectid": "2363",
+              "name": "Orient Express"
+            },
+            {
+              "objectid": "131287",
+              "name": "Panamax"
+            },
+            {
+              "objectid": "293708",
+              "name": "Panic in the Air"
+            },
+            {
+              "objectid": "163412",
+              "name": "Patchwork"
+            },
+            {
+              "objectid": "5633",
+              "name": "Perry Mason Game: Case of the Missing Suspect"
+            },
+            {
+              "objectid": "98229",
+              "name": "Pictomania"
+            },
+            {
+              "objectid": "415054",
+              "name": "Piña Coladice"
+            },
+            {
+              "objectid": "36637",
+              "name": "Soccero"
+            },
+            {
+              "objectid": "367771",
+              "name": "Stomp the Plank"
+            },
+            {
+              "objectid": "315021",
+              "name": "Strawberry Sunset"
+            },
+            {
+              "objectid": "247135",
+              "name": "The Villagers"
+            },
+            {
+              "objectid": "392193",
+              "name": "Unlock!: Short Adventures – Schrödinger's Cat"
+            },
+            {
+              "objectid": "182694",
+              "name": "Watson & Holmes"
+            }
+          ]
+        },
+        {
+          "collector": "EemilVeemil",
+          "added": [
+            {
+              "objectid": "431157",
+              "name": "Battle of Finland 1944"
+            },
+            {
+              "objectid": "430401",
+              "name": "Battles for Quebec"
+            },
+            {
+              "objectid": "358107",
+              "name": "Cuius Regio: The Thirty Years War"
+            },
+            {
+              "objectid": "450276",
+              "name": "Danger Forward: The Battle of Gela, July 1943"
+            },
+            {
+              "objectid": "415308",
+              "name": "Imperial Elegy: The Road to the Great War 1850-1920"
+            },
+            {
+              "objectid": "435809",
+              "name": "Inflection Point: The Battle for Kalach and the Battle of Chir"
+            },
+            {
+              "objectid": "431230",
+              "name": "Korea: The Fight Across the 38th"
+            },
+            {
+              "objectid": "397096",
+              "name": "La Defensa: El Asedio de Cádiz 1625"
+            },
+            {
+              "objectid": "17536",
+              "name": "Lobositz: First Battle of the Seven Years War"
+            },
+            {
+              "objectid": "11269",
+              "name": "Roads to Leningrad: Battles of Soltsy and Staraya Russa, 1941"
+            },
+            {
+              "objectid": "441744",
+              "name": "Stalingrad Relief: December 1942"
+            },
+            {
+              "objectid": "1513",
+              "name": "The Republic of Rome"
+            }
+          ],
+          "removed": [
+            {
+              "objectid": "265947",
+              "name": "Battle of Issy, 1815"
+            },
+            {
+              "objectid": "238025",
+              "name": "Blitzkrieg to Moscow 2"
+            },
+            {
+              "objectid": "6226",
+              "name": "Eastern Front Tank Leader"
+            }
+          ]
+        },
+        {
+          "collector": "EssEss",
+          "added": [
+            {
+              "objectid": "383607",
+              "name": "Barcelona"
+            },
+            {
+              "objectid": "348220",
+              "name": "Deep Rock Galactic: The Board Game"
+            },
+            {
+              "objectid": "411894",
+              "name": "Kinfire Council"
+            },
+            {
+              "objectid": "255692",
+              "name": "New Frontiers"
+            },
+            {
+              "objectid": "418858",
+              "name": "Resafa"
+            },
+            {
+              "objectid": "299371",
+              "name": "The Emerald Flame"
+            }
+          ],
+          "removed": [
+            {
+              "objectid": "359871",
+              "name": "Arcs"
+            },
+            {
+              "objectid": "54998",
+              "name": "Cyclades"
+            },
+            {
+              "objectid": "28023",
+              "name": "Jamaica"
+            },
+            {
+              "objectid": "35677",
+              "name": "Le Havre"
+            },
+            {
+              "objectid": "331190",
+              "name": "Meeples & Monsters: Kickstarter Edition"
+            },
+            {
+              "objectid": "338460",
+              "name": "The Isle of Cats: Explore & Draw"
+            },
+            {
+              "objectid": "279537",
+              "name": "The Search for Planet X"
+            },
+            {
+              "objectid": "257769",
+              "name": "Walking in Burano"
+            },
+            {
+              "objectid": "196340",
+              "name": "Yokohama"
+            }
+          ]
+        },
+        {
+          "collector": "jutapo",
+          "added": [
+            {
+              "objectid": "253499",
+              "name": "A War of Whispers"
+            },
+            {
+              "objectid": "344554",
+              "name": "Décorum"
+            },
+            {
+              "objectid": "304510",
+              "name": "Pampero"
+            },
+            {
+              "objectid": "146508",
+              "name": "T.I.M.E Stories"
+            },
+            {
+              "objectid": "391497",
+              "name": "Tangram City"
+            },
+            {
+              "objectid": "188920",
+              "name": "This War of Mine: The Board Game"
+            }
+          ],
+          "removed": []
+        },
+        {
+          "collector": "Luonto",
+          "added": [],
+          "removed": [
+            {
+              "objectid": "143741",
+              "name": "BANG! The Dice Game"
+            },
+            {
+              "objectid": "300085",
+              "name": "Cupcake Academy"
+            },
+            {
+              "objectid": "381308",
+              "name": "Dixit: Disney Edition"
+            },
+            {
+              "objectid": "172",
+              "name": "For Sale"
+            },
+            {
+              "objectid": "136063",
+              "name": "Forbidden Desert"
+            },
+            {
+              "objectid": "354324",
+              "name": "Fresh Fruits"
+            },
+            {
+              "objectid": "11634",
+              "name": "Mexican Train"
+            },
+            {
+              "objectid": "269603",
+              "name": "Minecraft: Builders & Biomes"
+            },
+            {
+              "objectid": "260927",
+              "name": "Mississippi Queen"
+            },
+            {
+              "objectid": "153507",
+              "name": "Terra"
+            },
+            {
+              "objectid": "269175",
+              "name": "Wooly Whammoth"
+            }
+          ]
+        },
+        {
+          "collector": "Maradrus",
+          "added": [
+            {
+              "objectid": "398",
+              "name": "Botswana"
+            },
+            {
+              "objectid": "141423",
+              "name": "Dead Men Tell No Tales"
+            },
+            {
+              "objectid": "216849",
+              "name": "Dominion (Second Edition) Big Box"
+            },
+            {
+              "objectid": "271601",
+              "name": "Feed the Kraken"
+            },
+            {
+              "objectid": "4143",
+              "name": "Guess Who?"
+            },
+            {
+              "objectid": "220",
+              "name": "High Society"
+            },
+            {
+              "objectid": "437139",
+              "name": "Ouija Manor"
+            },
+            {
+              "objectid": "56692",
+              "name": "Parade"
+            },
+            {
+              "objectid": "73538",
+              "name": "Pirate Fluxx"
+            },
+            {
+              "objectid": "188834",
+              "name": "Secret Hitler"
+            },
+            {
+              "objectid": "268620",
+              "name": "Similo"
+            },
+            {
+              "objectid": "471417",
+              "name": "Smart10: Lord of the Rings"
+            },
+            {
+              "objectid": "455101",
+              "name": "Unlock!: Enchanted Adventures"
+            },
+            {
+              "objectid": "294612",
+              "name": "Unlock!: Epic Adventures"
+            },
+            {
+              "objectid": "254226",
+              "name": "Unlock!: Exotic Adventures"
+            },
+            {
+              "objectid": "350636",
+              "name": "Unlock!: Game Adventures"
+            },
+            {
+              "objectid": "266121",
+              "name": "Unlock!: Heroic Adventures"
+            },
+            {
+              "objectid": "330084",
+              "name": "Unlock!: Legendary Adventures"
+            },
+            {
+              "objectid": "228867",
+              "name": "Unlock!: Mystery Adventures"
+            },
+            {
+              "objectid": "302425",
+              "name": "Unlock!: Mythic Adventures"
+            },
+            {
+              "objectid": "425433",
+              "name": "Unlock!: Risky Adventures"
+            },
+            {
+              "objectid": "391995",
+              "name": "Unlock!: Short Adventures – Red Mask"
+            },
+            {
+              "objectid": "368037",
+              "name": "Unlock!: Short Adventures – The Awakening of the Mummy"
+            },
+            {
+              "objectid": "402373",
+              "name": "Unlock!: Supernatural Adventures"
+            },
+            {
+              "objectid": "279613",
+              "name": "Unlock!: Timeless Adventures"
+            },
+            {
+              "objectid": "340910",
+              "name": "We're Sinking!"
+            }
+          ],
+          "removed": []
+        },
+        {
+          "collector": "Marttapa",
+          "added": [
+            {
+              "objectid": "256226",
+              "name": "Azul: Stained Glass of Sintra"
+            },
+            {
+              "objectid": "433283",
+              "name": "Daydream"
+            },
+            {
+              "objectid": "396989",
+              "name": "Evenfall"
+            },
+            {
+              "objectid": "409693",
+              "name": "Flatiron"
+            },
+            {
+              "objectid": "329873",
+              "name": "Grove: 9 card solitaire game"
+            },
+            {
+              "objectid": "446497",
+              "name": "Hot Streak"
+            },
+            {
+              "objectid": "176494",
+              "name": "Isle of Skye: From Chieftain to King"
+            },
+            {
+              "objectid": "406174",
+              "name": "Kinfire Delve: Callous' Lab"
+            },
+            {
+              "objectid": "404538",
+              "name": "Kinfire Delve: Scorn's Stockade"
+            },
+            {
+              "objectid": "277085",
+              "name": "Love Letter"
+            },
+            {
+              "objectid": "423401",
+              "name": "Minos: Dawn of the Bronze Age"
+            },
+            {
+              "objectid": "396790",
+              "name": "Nucleum"
+            },
+            {
+              "objectid": "184267",
+              "name": "On Mars"
+            },
+            {
+              "objectid": "28143",
+              "name": "Race for the Galaxy"
+            },
+            {
+              "objectid": "418858",
+              "name": "Resafa"
+            },
+            {
+              "objectid": "291453",
+              "name": "SCOUT"
+            },
+            {
+              "objectid": "393179",
+              "name": "Shipyard (Second Edition)"
+            },
+            {
+              "objectid": "451305",
+              "name": "TEDOKU"
+            },
+            {
+              "objectid": "448271",
+              "name": "The Lord of the Rings: The Two Towers – Trick-Taking Game"
+            },
+            {
+              "objectid": "329500",
+              "name": "Unconscious Mind"
+            },
+            {
+              "objectid": "196340",
+              "name": "Yokohama"
+            }
+          ],
+          "removed": [
+            {
+              "objectid": "386405",
+              "name": "Come Sail Away!"
+            },
+            {
+              "objectid": "431305",
+              "name": "Great Western Trail: El Paso"
+            },
+            {
+              "objectid": "284742",
+              "name": "Honey Buzz"
+            },
+            {
+              "objectid": "235488",
+              "name": "Istanbul: The Dice Game"
+            },
+            {
+              "objectid": "49",
+              "name": "Mamma Mia!"
+            },
+            {
+              "objectid": "229220",
+              "name": "Santa Maria"
+            },
+            {
+              "objectid": "269207",
+              "name": "The Taverns of Tiefenthal"
+            }
+          ]
+        },
+        {
+          "collector": "Matthijsjbadmiraal",
+          "added": [
+            {
+              "objectid": "424507",
+              "name": "Aspens"
+            },
+            {
+              "objectid": "379761",
+              "name": "Natera: New Beginning"
+            },
+            {
+              "objectid": "415843",
+              "name": "Puerto Rico 1897: Special Edition"
+            },
+            {
+              "objectid": "418062",
+              "name": "Railroad Tiles"
+            },
+            {
+              "objectid": "386166",
+              "name": "Santorini: Pantheon Edition"
+            },
+            {
+              "objectid": "375459",
+              "name": "Speakeasy"
+            }
+          ],
+          "removed": []
+        },
+        {
+          "collector": "okram",
+          "added": [
+            {
+              "objectid": "236457",
+              "name": "Architects of the West Kingdom"
+            },
+            {
+              "objectid": "244331",
+              "name": "Blue Lagoon"
+            },
+            {
+              "objectid": "41",
+              "name": "Can't Stop"
+            },
+            {
+              "objectid": "456440",
+              "name": "Cozy Stickerville"
+            },
+            {
+              "objectid": "169124",
+              "name": "Flick 'em Up!"
+            },
+            {
+              "objectid": "172",
+              "name": "For Sale"
+            },
+            {
+              "objectid": "408547",
+              "name": "Things in Rings"
+            },
+            {
+              "objectid": "262543",
+              "name": "Wavelength"
+            }
+          ],
+          "removed": []
+        },
+        {
+          "collector": "Rauhis",
+          "added": [
+            {
+              "objectid": "195856",
+              "name": "Bloodborne: The Card Game"
+            },
+            {
+              "objectid": "244331",
+              "name": "Blue Lagoon"
+            },
+            {
+              "objectid": "822",
+              "name": "Carcassonne"
+            },
+            {
+              "objectid": "336986",
+              "name": "Flamecraft"
+            },
+            {
+              "objectid": "374455",
+              "name": "Mutant Year Zero: Zone Wars"
+            }
+          ],
+          "removed": [
+            {
+              "objectid": "174430",
+              "name": "Gloomhaven"
+            }
+          ]
+        },
+        {
+          "collector": "Stannum8",
+          "added": [
+            {
+              "objectid": "409693",
+              "name": "Flatiron"
+            },
+            {
+              "objectid": "421006",
+              "name": "The Lord of the Rings: Duel for Middle-earth"
+            }
+          ],
+          "removed": []
+        },
+        {
+          "collector": "StoneDog",
+          "added": [
+            {
+              "objectid": "388838",
+              "name": "Black Friday"
+            },
+            {
+              "objectid": "338957",
+              "name": "Caesar!: Seize Rome in 20 Minutes!"
+            },
+            {
+              "objectid": "443306",
+              "name": "Deckers"
+            },
+            {
+              "objectid": "397931",
+              "name": "Deep Regrets"
+            },
+            {
+              "objectid": "463441",
+              "name": "Flip 7: With A Vengeance"
+            },
+            {
+              "objectid": "292013",
+              "name": "Fresco: Card & Dice Game"
+            },
+            {
+              "objectid": "431305",
+              "name": "Great Western Trail: El Paso"
+            },
+            {
+              "objectid": "414317",
+              "name": "Harmonies"
+            },
+            {
+              "objectid": "146886",
+              "name": "La Granja"
+            },
+            {
+              "objectid": "440136",
+              "name": "Labyrinth: Chronicles"
+            },
+            {
+              "objectid": "425549",
+              "name": "Moon Colony Bloodbath"
+            },
+            {
+              "objectid": "443186",
+              "name": "Pandora's Legacy"
+            },
+            {
+              "objectid": "446493",
+              "name": "Recall"
+            },
+            {
+              "objectid": "392492",
+              "name": "Stupor Mundi"
+            },
+            {
+              "objectid": "401636",
+              "name": "Tacta"
+            },
+            {
+              "objectid": "407233",
+              "name": "Tenby"
+            }
+          ],
+          "removed": []
+        },
+        {
+          "collector": "Taateli",
+          "added": [
+            {
+              "objectid": "298635",
+              "name": "Alice's Garden"
+            },
+            {
+              "objectid": "451034",
+              "name": "Bordeaux"
+            },
+            {
+              "objectid": "426330",
+              "name": "Chartered: Building Amsterdam"
+            },
+            {
+              "objectid": "366310",
+              "name": "Dice Throne: Santa v. Krampus"
+            },
+            {
+              "objectid": "266966",
+              "name": "Dice Throne: Season Two – Gunslinger v. Samurai"
+            },
+            {
+              "objectid": "425765",
+              "name": "Ministry of Lost Things: Case 1 – Lint Condition"
+            },
+            {
+              "objectid": "429446",
+              "name": "Moirai"
+            },
+            {
+              "objectid": "314745",
+              "name": "Now or Never"
+            },
+            {
+              "objectid": "280136",
+              "name": "Paranormal Detectives"
+            },
+            {
+              "objectid": "418062",
+              "name": "Railroad Tiles"
+            },
+            {
+              "objectid": "223855",
+              "name": "Sentient"
+            },
+            {
+              "objectid": "24480",
+              "name": "Taivaan pilarit"
+            },
+            {
+              "objectid": "448271",
+              "name": "The Lord of the Rings: The Two Towers – Trick-Taking Game"
+            }
+          ],
+          "removed": [
+            {
+              "objectid": "192457",
+              "name": "Cry Havoc"
+            },
+            {
+              "objectid": "184170",
+              "name": "DiceWar: Light of Dragons"
+            },
+            {
+              "objectid": "291457",
+              "name": "Gloomhaven: Jaws of the Lion"
+            },
+            {
+              "objectid": "324157",
+              "name": "Hidden Games Crime Scene: Green Poison"
+            },
+            {
+              "objectid": "336929",
+              "name": "Land vs Sea"
+            },
+            {
+              "objectid": "276498",
+              "name": "Paris: La Cité de la Lumière"
+            },
+            {
+              "objectid": "4587",
+              "name": "Roller Coaster Hippo"
+            },
+            {
+              "objectid": "369751",
+              "name": "Sagrada Artisans"
+            },
+            {
+              "objectid": "66214",
+              "name": "Samarkand: Routes to Riches"
+            },
+            {
+              "objectid": "1597",
+              "name": "Streetcar"
+            },
+            {
+              "objectid": "555",
+              "name": "The Princes of Florence"
+            },
+            {
+              "objectid": "255907",
+              "name": "Trogdor!!: The Board Game"
+            },
+            {
+              "objectid": "318559",
+              "name": "Twinkle"
+            },
+            {
+              "objectid": "190082",
+              "name": "Whitehall Mystery"
+            }
+          ]
+        },
+        {
+          "collector": "Tatunen",
+          "added": [
+            {
+              "objectid": "220",
+              "name": "High Society"
+            },
+            {
+              "objectid": "446497",
+              "name": "Hot Streak"
+            },
+            {
+              "objectid": "327",
+              "name": "Loopin' Louie"
+            },
+            {
+              "objectid": "187645",
+              "name": "Star Wars: Rebellion"
+            },
+            {
+              "objectid": "375651",
+              "name": "That's Not a Hat"
+            },
+            {
+              "objectid": "408547",
+              "name": "Things in Rings"
+            }
+          ],
+          "removed": []
+        },
+        {
+          "collector": "_wjr_",
+          "added": [
+            {
+              "objectid": "822",
+              "name": "Carcassonne"
+            },
+            {
+              "objectid": "448271",
+              "name": "The Lord of the Rings: The Two Towers – Trick-Taking Game"
+            },
+            {
+              "objectid": "378983",
+              "name": "Tipperary"
+            }
+          ],
+          "removed": [
+            {
+              "objectid": "358661",
+              "name": "Andromeda's Edge"
+            },
+            {
+              "objectid": "17329",
+              "name": "Animal Upon Animal"
+            },
+            {
+              "objectid": "65244",
+              "name": "Forbidden Island"
+            },
+            {
+              "objectid": "429293",
+              "name": "The Lord of the Rings: The Fellowship of the Ring – Trick-Taking Game"
+            }
+          ]
+        },
+        {
+          "collector": "XoDaRi",
+          "added": [
+            {
+              "objectid": "436126",
+              "name": "Finspan"
+            },
+            {
+              "objectid": "183394",
+              "name": "Viticulture Essential Edition"
+            }
+          ],
+          "removed": []
+        }
+      ]
+    }
+  ]
+}
