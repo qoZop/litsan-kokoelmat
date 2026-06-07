@@ -187,7 +187,7 @@ def parse_item(item: ET.Element, username: str) -> dict:
     return {
         "objectid":    object_id,
         "name":        text("name"),
-        "year":        int_attr("yearpublished", "value"),
+        "year":        int(text("yearpublished")) if text("yearpublished").isdigit() else None,
         "minplayers":  int_attr("stats", "minplayers"),
         "maxplayers":  int_attr("stats", "maxplayers"),
         "minplaytime": int_attr("stats", "minplaytime"),
