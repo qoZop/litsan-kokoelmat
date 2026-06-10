@@ -2290,7 +2290,7 @@ function renderChallengeTable() {
     const badge   = `<span class="chal-badge ${played?'played':'unplayed'}">${played?'✓':'○'}</span>`;
     const dateStr = date ? new Date(date+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}) : '—';
     const dateClass = played ? 'played-date-cell' : 'played-date-cell empty';
-    const editAttr  = chalAdminMode ? ` class="${dateClass} editable" onclick="openDateEdit('${g.objectid}','${escHtml(g.name)}',this)"` : ` class="${dateClass}"`;
+    const editAttr  = chalAdminMode ? ` class="${dateClass} editable" data-oid="${g.objectid}" data-name="${escHtml(g.name)}" onclick="openDateEdit(this.dataset.oid,this.dataset.name,this)"` : ` class="${dateClass}"`;
 
     // Owner pills from collection data
     const collGame = allGames.find(ag => ag.objectid === g.objectid);
