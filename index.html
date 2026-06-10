@@ -340,6 +340,47 @@
     }
     .reset-btn:hover { border-color: var(--accent-dim); color: var(--accent); }
 
+    /* ── Mobile sidebar drawer ─────────────────────────────────────── */
+    .sidebar-close {
+      display: none;
+      width: 100%;
+      padding: 14px 18px;
+      background: none;
+      border: none;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-2);
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+      transition: color 0.15s;
+    }
+    .sidebar-close:hover { color: var(--text); }
+
+    .filter-toggle-btn {
+      display: none;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      background: var(--surface-2);
+      border: 1px solid var(--border-2);
+      border-radius: var(--radius);
+      color: var(--text-2);
+      font-size: 0.78rem;
+      transition: all 0.15s;
+    }
+    .filter-toggle-btn:hover { background: var(--surface-3); color: var(--text); }
+
+    #sidebar-backdrop {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 199;
+    }
+    #sidebar-backdrop.open { display: block; }
+
     /* ── Main content ──────────────────────────────────────────────── */
     .main {
       flex: 1;
@@ -516,7 +557,19 @@
 
     /* ── Responsive ────────────────────────────────────────────────── */
     @media (max-width: 900px) {
-      .sidebar { display: none; }
+      .sidebar {
+        position: fixed;
+        left: 0; top: 0;
+        height: 100vh;
+        width: 280px;
+        z-index: 200;
+        transform: translateX(-100%);
+        transition: transform 0.25s ease;
+        box-shadow: 4px 0 32px rgba(0,0,0,0.6);
+      }
+      .sidebar.open { transform: translateX(0); }
+      .filter-toggle-btn { display: flex; }
+      .sidebar-close { display: flex; }
       .col-owners { width: 160px; }
     }
 
@@ -558,12 +611,15 @@
 
       /* Table: horizontal scroll, hide least useful columns */
       .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-      table { min-width: 420px; }
-      .col-weight { display: none; }
-      .col-time   { display: none; }
-      .col-owners { width: 120px; }
-      .col-year   { width: 52px; }
-      .col-rating { width: 58px; }
+      table { min-width: 320px; }
+      .col-weight  { display: none; }
+      .col-time    { display: none; }
+      .col-year    { display: none; }
+      .col-players { width: 60px; }
+      .col-rating  { width: 50px; }
+      .col-owners  { width: 88px; }
+      .col-count   { width: 34px; }
+      #game-table .game-name { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-width: 0; }
       td, th { padding: 8px 8px; }
 
       /* Top games & changelog padding */
@@ -1206,10 +1262,13 @@
   </div>
 
   <div id="tab-collection" style="display:flex;flex:1;min-height:0;overflow:hidden">
+  <div id="sidebar-backdrop" onclick="closeSidebar()"></div>
   <div class="layout" style="flex:1">
 
     <!-- ── Sidebar ──────────────────────────────────────────────────── -->
     <aside class="sidebar">
+
+      <button class="sidebar-close" onclick="closeSidebar()">✕ Close filters</button>
 
       <div class="filter-section">
         <div class="filter-label"><span class="icon">🔍</span>Search</div>
@@ -1305,6 +1364,7 @@
 
       <div class="table-header">
         <div class="results-count" id="results-count">Loading…</div>
+        <button class="filter-toggle-btn" onclick="openSidebar()">⊟ Filters</button>
         <div class="page-controls">
           <button class="page-btn" id="prev-btn" onclick="changePage(-1)" disabled>← Prev</button>
           <span class="page-info" id="page-info">—</span>
@@ -1841,6 +1901,7 @@ let currentTab = 'collection';
 
 function switchTab(tab) {
   currentTab = tab;
+  closeSidebar();
   document.getElementById('tab-collection').style.display = tab === 'collection' ? 'flex' : 'none';
   document.getElementById('tab-top').style.display        = tab === 'top'        ? 'block' : 'none';
   document.getElementById('tab-challenge').style.display  = tab === 'challenge'  ? 'block' : 'none';
@@ -2411,6 +2472,16 @@ function setChallengeColFilter(mode) {
   document.getElementById('chal-filter-all').classList.toggle('active', mode === 'all');
   document.getElementById('chal-filter-only').classList.toggle('active', mode === 'only');
   scheduleFilter();
+}
+
+// ── Mobile sidebar drawer ──────────────────────────────────────────────────
+function openSidebar() {
+  document.querySelector('.sidebar').classList.add('open');
+  document.getElementById('sidebar-backdrop').classList.add('open');
+}
+function closeSidebar() {
+  document.querySelector('.sidebar').classList.remove('open');
+  document.getElementById('sidebar-backdrop').classList.remove('open');
 }
 
 // ── PIN modal helper ───────────────────────────────────────────────────────
