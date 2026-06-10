@@ -1,0 +1,1017 @@
+{
+  "year": 2026,
+  "title": "Satunnaishaaste 2026",
+  "target": 201,
+  "tiers": {
+    "bronze": 75,
+    "silver": 100,
+    "gold": 125
+  },
+  "games": [
+    {
+      "objectid": "8702",
+      "name": "1807: The Eagles Turn East",
+      "played_date": null
+    },
+    {
+      "objectid": "4854",
+      "name": "7th Fleet: Modern Naval Combat in the Far East",
+      "played_date": null
+    },
+    {
+      "objectid": "5",
+      "name": "Acquire",
+      "played_date": null
+    },
+    {
+      "objectid": "8790",
+      "name": "Time's Up",
+      "played_date": null
+    },
+    {
+      "objectid": "15126",
+      "name": "Advanced Squad Leader: Starter Kit #2",
+      "played_date": null
+    },
+    {
+      "objectid": "90419",
+      "name": "Airlines Europe",
+      "played_date": null
+    },
+    {
+      "objectid": "39636",
+      "name": "Aku Ankka",
+      "played_date": null
+    },
+    {
+      "objectid": "13464",
+      "name": "Alfapet",
+      "played_date": null
+    },
+    {
+      "objectid": "6249",
+      "name": "Alhambra",
+      "played_date": null
+    },
+    {
+      "objectid": "360471",
+      "name": "Aquamarine",
+      "played_date": null
+    },
+    {
+      "objectid": "159508",
+      "name": "AquaSphere",
+      "played_date": null
+    },
+    {
+      "objectid": "283393",
+      "name": "Aquatica",
+      "played_date": null
+    },
+    {
+      "objectid": "256390",
+      "name": "Architectura",
+      "played_date": null
+    },
+    {
+      "objectid": "12005",
+      "name": "Around the World in 80 Days",
+      "played_date": null
+    },
+    {
+      "objectid": "10642",
+      "name": "Barbarossa: Army Group North, 1941",
+      "played_date": null
+    },
+    {
+      "objectid": "760",
+      "name": "Battle Line",
+      "played_date": null
+    },
+    {
+      "objectid": "235992",
+      "name": "Battle of Changsha: Sept. 1941 - Jan. 1942",
+      "played_date": null
+    },
+    {
+      "objectid": "3510",
+      "name": "Battle of the Sexes",
+      "played_date": null
+    },
+    {
+      "objectid": "37111",
+      "name": "Battlestar Galactica: The Board Game",
+      "played_date": null
+    },
+    {
+      "objectid": "238025",
+      "name": "[Unknown — ID 238025]",
+      "played_date": null
+    },
+    {
+      "objectid": "16395",
+      "name": "Blokus Duo",
+      "played_date": null
+    },
+    {
+      "objectid": "195373",
+      "name": "BOO",
+      "played_date": null
+    },
+    {
+      "objectid": "249277",
+      "name": "Brazil: Imperial",
+      "played_date": null
+    },
+    {
+      "objectid": "192343",
+      "name": "Bubblee Pop",
+      "played_date": null
+    },
+    {
+      "objectid": "231027",
+      "name": "Bye-Bye Black Sheep",
+      "played_date": null
+    },
+    {
+      "objectid": "199383",
+      "name": "Calimala",
+      "played_date": null
+    },
+    {
+      "objectid": "217547",
+      "name": "Can't Stop Express",
+      "played_date": null
+    },
+    {
+      "objectid": "3727",
+      "name": "Nopea veto",
+      "played_date": null
+    },
+    {
+      "objectid": "345972",
+      "name": "Cat in the Box: Deluxe Edition",
+      "played_date": null
+    },
+    {
+      "objectid": "25234",
+      "name": "Taistelu Roomasta",
+      "played_date": null
+    },
+    {
+      "objectid": "29903",
+      "name": "Chang Cheng",
+      "played_date": null
+    },
+    {
+      "objectid": "133940",
+      "name": "Circle of Fire: The Siege of Cholm, 1942",
+      "played_date": null
+    },
+    {
+      "objectid": "131682",
+      "name": "City of Gears",
+      "played_date": null
+    },
+    {
+      "objectid": "4636",
+      "name": "Clans",
+      "played_date": null
+    },
+    {
+      "objectid": "308500",
+      "name": "Clash of Deck",
+      "played_date": null
+    },
+    {
+      "objectid": "313963",
+      "name": "Cloud City",
+      "played_date": null
+    },
+    {
+      "objectid": "2217",
+      "name": "Columbus",
+      "played_date": null
+    },
+    {
+      "objectid": "3370",
+      "name": "Connections",
+      "played_date": null
+    },
+    {
+      "objectid": "119",
+      "name": "Cosmolancer",
+      "played_date": null
+    },
+    {
+      "objectid": "41833",
+      "name": "Creationary",
+      "played_date": null
+    },
+    {
+      "objectid": "170624",
+      "name": "Crusaders: Thy Will Be Done",
+      "played_date": null
+    },
+    {
+      "objectid": "192457",
+      "name": "Cry Havoc",
+      "played_date": null
+    },
+    {
+      "objectid": "179303",
+      "name": "Cthulhu Realms",
+      "played_date": null
+    },
+    {
+      "objectid": "251551",
+      "name": "Dale of Merchants Collection",
+      "played_date": null
+    },
+    {
+      "objectid": "334986",
+      "name": "Daybreak",
+      "played_date": null
+    },
+    {
+      "objectid": "427866",
+      "name": "Deep Sea Adventure Boost",
+      "played_date": null
+    },
+    {
+      "objectid": "94373",
+      "name": "Dien Bien Phu: The Final Gamble",
+      "played_date": null
+    },
+    {
+      "objectid": "369646",
+      "name": "Disney Lorcana",
+      "played_date": null
+    },
+    {
+      "objectid": "262941",
+      "name": "Dominant Species: Marine",
+      "played_date": null
+    },
+    {
+      "objectid": "2394",
+      "name": "Domino",
+      "played_date": null
+    },
+    {
+      "objectid": "262547",
+      "name": "Don't Get Got!",
+      "played_date": null
+    },
+    {
+      "objectid": "246701",
+      "name": "DOS",
+      "played_date": null
+    },
+    {
+      "objectid": "207338",
+      "name": "Dungeon Rush",
+      "played_date": null
+    },
+    {
+      "objectid": "91872",
+      "name": "Dungeons & Dragons: The Legend of Drizzt Board Game",
+      "played_date": null
+    },
+    {
+      "objectid": "58421",
+      "name": "Egizia",
+      "played_date": null
+    },
+    {
+      "objectid": "163968",
+      "name": "Elysium",
+      "played_date": null
+    },
+    {
+      "objectid": "356952",
+      "name": "Empire's End",
+      "played_date": null
+    },
+    {
+      "objectid": "341164",
+      "name": "Exploding Minions",
+      "played_date": null
+    },
+    {
+      "objectid": "419074",
+      "name": "Fairy Ring",
+      "played_date": null
+    },
+    {
+      "objectid": "288775",
+      "name": "Fairy Trails",
+      "played_date": null
+    },
+    {
+      "objectid": "385761",
+      "name": "Faraway",
+      "played_date": null
+    },
+    {
+      "objectid": "144189",
+      "name": "Fire in the Lake",
+      "played_date": null
+    },
+    {
+      "objectid": "419195",
+      "name": "Fishing",
+      "played_date": null
+    },
+    {
+      "objectid": "168679",
+      "name": "Flip City",
+      "played_date": null
+    },
+    {
+      "objectid": "390094",
+      "name": "FTW?!",
+      "played_date": null
+    },
+    {
+      "objectid": "144228",
+      "name": "FUBA",
+      "played_date": null
+    },
+    {
+      "objectid": "318084",
+      "name": "Furnace",
+      "played_date": null
+    },
+    {
+      "objectid": "300944",
+      "name": "Gates of Mara",
+      "played_date": null
+    },
+    {
+      "objectid": "527",
+      "name": "GIPF",
+      "played_date": null
+    },
+    {
+      "objectid": "174430",
+      "name": "[Unknown — ID 174430]",
+      "played_date": null
+    },
+    {
+      "objectid": "188",
+      "name": "Go",
+      "played_date": null
+    },
+    {
+      "objectid": "298383",
+      "name": "Golem",
+      "played_date": null
+    },
+    {
+      "objectid": "193738",
+      "name": "Great Western Trail",
+      "played_date": null
+    },
+    {
+      "objectid": "256159",
+      "name": "Guardians",
+      "played_date": null
+    },
+    {
+      "objectid": "37628",
+      "name": "Haggis",
+      "played_date": null
+    },
+    {
+      "objectid": "38778",
+      "name": "Heads of State",
+      "played_date": null
+    },
+    {
+      "objectid": "154597",
+      "name": "Hive Pocket",
+      "played_date": null
+    },
+    {
+      "objectid": "120",
+      "name": "Hoity Toity",
+      "played_date": null
+    },
+    {
+      "objectid": "134253",
+      "name": "Hostage Negotiator",
+      "played_date": null
+    },
+    {
+      "objectid": "207398",
+      "name": "Hungarian Rhapsody: The Eastern Front in Hungary",
+      "played_date": null
+    },
+    {
+      "objectid": "324680",
+      "name": "I Am… Alias",
+      "played_date": null
+    },
+    {
+      "objectid": "386469",
+      "name": "iKnow 2.0",
+      "played_date": null
+    },
+    {
+      "objectid": "154203",
+      "name": "Imperial Settlers",
+      "played_date": null
+    },
+    {
+      "objectid": "66076",
+      "name": "Industry",
+      "played_date": null
+    },
+    {
+      "objectid": "63888",
+      "name": "Innovation",
+      "played_date": null
+    },
+    {
+      "objectid": "302461",
+      "name": "Intrepid",
+      "played_date": null
+    },
+    {
+      "objectid": "355224",
+      "name": "Isle of Trains: All Aboard",
+      "played_date": null
+    },
+    {
+      "objectid": "183251",
+      "name": "Karuba",
+      "played_date": null
+    },
+    {
+      "objectid": "252402",
+      "name": "Kodama Duo",
+      "played_date": null
+    },
+    {
+      "objectid": "146886",
+      "name": "La Granja",
+      "played_date": null
+    },
+    {
+      "objectid": "154246",
+      "name": "La Isla",
+      "played_date": null
+    },
+    {
+      "objectid": "117959",
+      "name": "Las Vegas",
+      "played_date": null
+    },
+    {
+      "objectid": "271319",
+      "name": "Las Vegas Royale",
+      "played_date": null
+    },
+    {
+      "objectid": "354934",
+      "name": "Legacy of Yu",
+      "played_date": null
+    },
+    {
+      "objectid": "410991",
+      "name": "Looot",
+      "played_date": null
+    },
+    {
+      "objectid": "110327",
+      "name": "Lords of Waterdeep",
+      "played_date": null
+    },
+    {
+      "objectid": "169611",
+      "name": "Love Letter: The Hobbit – The Battle of the Five Armies",
+      "played_date": null
+    },
+    {
+      "objectid": "15817",
+      "name": "Manila",
+      "played_date": null
+    },
+    {
+      "objectid": "331652",
+      "name": "Mazescape: Ariadne",
+      "played_date": null
+    },
+    {
+      "objectid": "154386",
+      "name": "Medieval Academy",
+      "played_date": null
+    },
+    {
+      "objectid": "251293",
+      "name": "Megaland",
+      "played_date": null
+    },
+    {
+      "objectid": "262477",
+      "name": "Mercado de Lisboa",
+      "played_date": null
+    },
+    {
+      "objectid": "300217",
+      "name": "Merchants of the Dark Road",
+      "played_date": null
+    },
+    {
+      "objectid": "230933",
+      "name": "Merlin",
+      "played_date": null
+    },
+    {
+      "objectid": "387378",
+      "name": "MLEM: Space Agency",
+      "played_date": null
+    },
+    {
+      "objectid": "5339",
+      "name": "Junior Monopoly",
+      "played_date": null
+    },
+    {
+      "objectid": "275849",
+      "name": "Musket & Pike: Dual Pack",
+      "played_date": null
+    },
+    {
+      "objectid": "301767",
+      "name": "Mysterium Park",
+      "played_date": null
+    },
+    {
+      "objectid": "21241",
+      "name": "Neuroshima Hex! 3.0",
+      "played_date": null
+    },
+    {
+      "objectid": "263223",
+      "name": "Next War: Vietnam",
+      "played_date": null
+    },
+    {
+      "objectid": "293014",
+      "name": "Nidavellir",
+      "played_date": null
+    },
+    {
+      "objectid": "12942",
+      "name": "No Thanks!",
+      "played_date": null
+    },
+    {
+      "objectid": "5259",
+      "name": "Rotanloukku",
+      "played_date": null
+    },
+    {
+      "objectid": "182403",
+      "name": "Operation Gertrud: The German Invasion of Turkey",
+      "played_date": null
+    },
+    {
+      "objectid": "283850",
+      "name": "Orconomics (Second Edition)",
+      "played_date": null
+    },
+    {
+      "objectid": "2363",
+      "name": "Orient Express",
+      "played_date": null
+    },
+    {
+      "objectid": "193291",
+      "name": "Orient Express",
+      "played_date": null
+    },
+    {
+      "objectid": "1797",
+      "name": "Payday",
+      "played_date": null
+    },
+    {
+      "objectid": "19841",
+      "name": "Pentago",
+      "played_date": null
+    },
+    {
+      "objectid": "22950",
+      "name": "Play Nine",
+      "played_date": null
+    },
+    {
+      "objectid": "223779",
+      "name": "Pocket Mars",
+      "played_date": null
+    },
+    {
+      "objectid": "194231",
+      "name": "Poker Assault",
+      "played_date": null
+    },
+    {
+      "objectid": "73650",
+      "name": "Porto Carthago",
+      "played_date": null
+    },
+    {
+      "objectid": "27356",
+      "name": "Portobello Market",
+      "played_date": null
+    },
+    {
+      "objectid": "2651",
+      "name": "Power Grid",
+      "played_date": null
+    },
+    {
+      "objectid": "159473",
+      "name": "Quartermaster General",
+      "played_date": null
+    },
+    {
+      "objectid": "122",
+      "name": "Quo Vadis?",
+      "played_date": null
+    },
+    {
+      "objectid": "35503",
+      "name": "Ra: The Dice Game",
+      "played_date": null
+    },
+    {
+      "objectid": "269420",
+      "name": "Ragemore",
+      "played_date": null
+    },
+    {
+      "objectid": "6617",
+      "name": "Rapidough",
+      "played_date": null
+    },
+    {
+      "objectid": "262712",
+      "name": "Res Arcana",
+      "played_date": null
+    },
+    {
+      "objectid": "37198",
+      "name": "Risk (Revised Edition)",
+      "played_date": null
+    },
+    {
+      "objectid": "132531",
+      "name": "Roll for the Galaxy",
+      "played_date": null
+    },
+    {
+      "objectid": "37380",
+      "name": "Roll Through the Ages: The Bronze Age",
+      "played_date": null
+    },
+    {
+      "objectid": "127024",
+      "name": "Room 25",
+      "played_date": null
+    },
+    {
+      "objectid": "112580",
+      "name": "Roope-setä Pörssipeli",
+      "played_date": null
+    },
+    {
+      "objectid": "177248",
+      "name": "Saga of the Northmen",
+      "played_date": null
+    },
+    {
+      "objectid": "66214",
+      "name": "Samarkand: Routes to Riches",
+      "played_date": null
+    },
+    {
+      "objectid": "158900",
+      "name": "Samurai Spirit",
+      "played_date": null
+    },
+    {
+      "objectid": "439107",
+      "name": "Santorini: Second Edition",
+      "played_date": null
+    },
+    {
+      "objectid": "24416",
+      "name": "Santy Anno",
+      "played_date": null
+    },
+    {
+      "objectid": "169786",
+      "name": "Scythe",
+      "played_date": null
+    },
+    {
+      "objectid": "265683",
+      "name": "Second Chance",
+      "played_date": null
+    },
+    {
+      "objectid": "1198",
+      "name": "SET",
+      "played_date": null
+    },
+    {
+      "objectid": "418059",
+      "name": "SETI: Search for Extraterrestrial Intelligence",
+      "played_date": null
+    },
+    {
+      "objectid": "24068",
+      "name": "Shadow Hunters",
+      "played_date": null
+    },
+    {
+      "objectid": "255310",
+      "name": "Shit Happens: 50 Shades of Shit",
+      "played_date": null
+    },
+    {
+      "objectid": "202426",
+      "name": "Sidereal Confluence",
+      "played_date": null
+    },
+    {
+      "objectid": "257063",
+      "name": "SiegeStorm: SiegeMode",
+      "played_date": null
+    },
+    {
+      "objectid": "2073",
+      "name": "Sixth Fleet: Modern Naval Combat in the Mediterranean",
+      "played_date": null
+    },
+    {
+      "objectid": "40507",
+      "name": "Skip-Bo Junior",
+      "played_date": null
+    },
+    {
+      "objectid": "246684",
+      "name": "Smartphone Inc.",
+      "played_date": null
+    },
+    {
+      "objectid": "227893",
+      "name": "Smile",
+      "played_date": null
+    },
+    {
+      "objectid": "225610",
+      "name": "Smolensk: Barbarossa Derailed",
+      "played_date": null
+    },
+    {
+      "objectid": "67185",
+      "name": "Sobek",
+      "played_date": null
+    },
+    {
+      "objectid": "213648",
+      "name": "South Pacific: Breaking the Bismarck Barrier 1942-1943",
+      "played_date": null
+    },
+    {
+      "objectid": "415147",
+      "name": "Spectacular",
+      "played_date": null
+    },
+    {
+      "objectid": "364073",
+      "name": "Splendor Duel",
+      "played_date": null
+    },
+    {
+      "objectid": "253684",
+      "name": "Spring Meadow",
+      "played_date": null
+    },
+    {
+      "objectid": "318392",
+      "name": "Star Trek: Voyager Fluxx",
+      "played_date": null
+    },
+    {
+      "objectid": "370913",
+      "name": "Star Wars: The Clone Wars",
+      "played_date": null
+    },
+    {
+      "objectid": "293678",
+      "name": "Stellar",
+      "played_date": null
+    },
+    {
+      "objectid": "34635",
+      "name": "Stone Age",
+      "played_date": null
+    },
+    {
+      "objectid": "123260",
+      "name": "Suburbia",
+      "played_date": null
+    },
+    {
+      "objectid": "192291",
+      "name": "Sushi Go Party!",
+      "played_date": null
+    },
+    {
+      "objectid": "317311",
+      "name": "Switch & Signal",
+      "played_date": null
+    },
+    {
+      "objectid": "86542",
+      "name": "Taiga",
+      "played_date": null
+    },
+    {
+      "objectid": "40299",
+      "name": "Taistelurekka",
+      "played_date": null
+    },
+    {
+      "objectid": "350458",
+      "name": "Terracotta Army",
+      "played_date": null
+    },
+    {
+      "objectid": "17240",
+      "name": "Sellaista sattuu!",
+      "played_date": null
+    },
+    {
+      "objectid": "25951",
+      "name": "Die Kutschfahrt zur Teufelsburg",
+      "played_date": null
+    },
+    {
+      "objectid": "341519",
+      "name": "The Light in the Mist",
+      "played_date": null
+    },
+    {
+      "objectid": "823",
+      "name": "The Lord of the Rings",
+      "played_date": null
+    },
+    {
+      "objectid": "77423",
+      "name": "The Lord of the Rings: The Card Game",
+      "played_date": null
+    },
+    {
+      "objectid": "217372",
+      "name": "The Quest for El Dorado",
+      "played_date": null
+    },
+    {
+      "objectid": "142402",
+      "name": "The Red Dragon Inn 4",
+      "played_date": null
+    },
+    {
+      "objectid": "128882",
+      "name": "The Resistance: Avalon",
+      "played_date": null
+    },
+    {
+      "objectid": "385529",
+      "name": "The Vale of Eternity",
+      "played_date": null
+    },
+    {
+      "objectid": "147116",
+      "name": "The Witcher Adventure Game",
+      "played_date": null
+    },
+    {
+      "objectid": "7639",
+      "name": "Their Finest Hour",
+      "played_date": null
+    },
+    {
+      "objectid": "180852",
+      "name": "Tiny Epic Western",
+      "played_date": null
+    },
+    {
+      "objectid": "235802",
+      "name": "Too Many Bones: Undertow",
+      "played_date": null
+    },
+    {
+      "objectid": "21051",
+      "name": "Maaali!",
+      "played_date": null
+    },
+    {
+      "objectid": "216632",
+      "name": "Tournament at Camelot",
+      "played_date": null
+    },
+    {
+      "objectid": "175293",
+      "name": "Trambahn",
+      "played_date": null
+    },
+    {
+      "objectid": "16267",
+      "name": "Trans Europa",
+      "played_date": null
+    },
+    {
+      "objectid": "12333",
+      "name": "Twilight Struggle",
+      "played_date": null
+    },
+    {
+      "objectid": "329591",
+      "name": "Ultimate Railroads",
+      "played_date": null
+    },
+    {
+      "objectid": "354570",
+      "name": "Undaunted: Stalingrad",
+      "played_date": null
+    },
+    {
+      "objectid": "213460",
+      "name": "Unlock!: Escape Adventures",
+      "played_date": null
+    },
+    {
+      "objectid": "392193",
+      "name": "[Unknown — ID 392193]",
+      "played_date": null
+    },
+    {
+      "objectid": "187377",
+      "name": "Vikings Gone Wild",
+      "played_date": null
+    },
+    {
+      "objectid": "353814",
+      "name": "Wanna Bet? 2",
+      "played_date": null
+    },
+    {
+      "objectid": "155415",
+      "name": "Warpath: Indian Territory in the American Civil War",
+      "played_date": null
+    },
+    {
+      "objectid": "359601",
+      "name": "Weirdwood Manor",
+      "played_date": null
+    },
+    {
+      "objectid": "339789",
+      "name": "Welcome to the Moon",
+      "played_date": null
+    },
+    {
+      "objectid": "232405",
+      "name": "Western Legends",
+      "played_date": null
+    },
+    {
+      "objectid": "226610",
+      "name": "What Do You Meme?",
+      "played_date": null
+    },
+    {
+      "objectid": "2447",
+      "name": "World War II: European Theater of Operations",
+      "played_date": null
+    },
+    {
+      "objectid": "9046",
+      "name": "Zhukov's First Victory: The Battles of Nomonhan",
+      "played_date": null
+    },
+    {
+      "objectid": "29387",
+      "name": "Zombie Fluxx",
+      "played_date": null
+    }
+  ]
+}
