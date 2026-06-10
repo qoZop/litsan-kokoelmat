@@ -1225,9 +1225,8 @@
       <div class="filter-section">
         <div class="filter-label"><span class="icon">🎯</span>Challenge</div>
         <div style="display:flex;gap:6px;flex-wrap:wrap">
-          <button class="collector-btn" id="chal-filter-all"    onclick="setChallengeColFilter('all')"      style="flex:1">All</button>
-          <button class="collector-btn active" id="chal-filter-off" onclick="setChallengeColFilter('off')" style="flex:1;display:none">Hide</button>
-          <button class="collector-btn" id="chal-filter-only"   onclick="setChallengeColFilter('only')"    style="flex:1">Only</button>
+          <button class="threshold-btn active" id="chal-filter-all"  onclick="setChallengeColFilter('all')"  style="flex:1">All games</button>
+          <button class="threshold-btn"        id="chal-filter-only" onclick="setChallengeColFilter('only')" style="flex:1">Challenge only</button>
         </div>
       </div>
 
@@ -1622,7 +1621,8 @@ function applyFilters() {
   const weightMin  = parseFloat(document.getElementById("weight-min").value) || 1;
   const weightMax  = parseFloat(document.getElementById("weight-max").value) || 5;
   const activeUsers = [...document.querySelectorAll(".collector-btn.active")]
-                        .map(b => b.dataset.user);
+                        .map(b => b.dataset.user)
+                        .filter(Boolean);
 
   filteredGames = allGames.filter(g => {
     if (search && !g.name.toLowerCase().includes(search)) return false;
