@@ -280,23 +280,17 @@ def fetch_game_details(session: requests.Session, object_ids: list[str]) -> dict
                 break
 
             root = ET.fromstring(resp.content)
-            # v2 uses <item id="X"> elements under <items>
             for item in root.findall("item"):
                 oid = item.get("id", "")
 
-                # Primary name: <name type="primary" value="Game Name" />
-                name = ""
-                for name_el in item.findall("name"):
-                    if name_el.get("type") == "primary":
-                        name = (name_el.get("value") or "").strip()
-                        break
+                name_el = item.find("name[@type='primary']")
+                name = name_el.get("value", "").strip() if name_el is not None else ""
 
-                # Weight: <statistics><ratings><averageweight value="3.5" /></ratings></statistics>
                 complexity = None
                 w_el = item.find("statistics/ratings/averageweight")
                 if w_el is not None:
                     try:
-                        val = float(w_el.get("value", "0") or "0")
+                        val = float(w_el.get("value") or "0")
                         if val > 0:
                             complexity = round(val, 2)
                     except (ValueError, TypeError):
