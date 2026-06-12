@@ -47,7 +47,7 @@ CHANGELOG_PATH     = Path(__file__).parent.parent / "data" / "changelog.json"
 
 RETRY_DELAY = 6
 MAX_RETRIES = 10
-THING_BATCH = 150
+THING_BATCH = 20
 
 HEADERS = {
     "User-Agent": "BGGCollectionViewer/1.0 (private hobby project)",
