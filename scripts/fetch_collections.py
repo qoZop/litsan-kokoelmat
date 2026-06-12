@@ -40,7 +40,7 @@ USERNAMES = [
 
 BGG_LOGIN_URL      = "https://boardgamegeek.com/login/api/v1"
 BGG_COLLECTION_URL = "https://boardgamegeek.com/xmlapi2/collection"
-BGG_THING_URL      = "https://boardgamegeek.com/xmlapi/boardgame"
+BGG_THING_URL      = "https://boardgamegeek.com/xmlapi2/thing"
 OUTPUT_PATH        = Path(__file__).parent.parent / "data" / "collection.json"
 CACHE_PATH         = Path(__file__).parent.parent / "data" / "phase1_cache.json"
 CHANGELOG_PATH     = Path(__file__).parent.parent / "data" / "changelog.json"
@@ -248,20 +248,14 @@ def run_phase1(session: requests.Session) -> list[dict]:
 
 def fetch_game_details(session: requests.Session, object_ids: list[str]) -> dict[str, dict]:
     """
-    Fetch canonical (primary) name and complexity via BGG XML API v1.
-    Requires the authenticated session (BGG requires login for all XML API calls).
+    Fetch canonical (primary) name and complexity via BGG XML API v2.
+    Requires the authenticated session carrying the Bearer token.
 
-    URL format: /xmlapi/boardgame/ID1,ID2,...?stats=1
-    v1 XML uses text content (not value attributes) and <boardgame> elements.
+    URL: /xmlapi2/thing?id=ID1,ID2,...&stats=1
+    v2 XML uses <item id="X"> elements, name[@type='primary'] with a value
+    attribute, and statistics/ratings/averageweight with a value attribute.
     Returns {objectid: {"name": str, "complexity": float|None}}.
     """
-    # Add browser-like headers to the existing authenticated session
-    session.headers.update({
-        "Accept": "application/xml, text/xml, */*",
-        "Accept-Language": "en-US,en;q=0.9",
-        "Referer": "https://boardgamegeek.com/",
-    })
-
     results = {}
     batches = [object_ids[i:i + THING_BATCH] for i in range(0, len(object_ids), THING_BATCH)]
     total   = len(batches)
@@ -271,10 +265,9 @@ def fetch_game_details(session: requests.Session, object_ids: list[str]) -> dict
     for idx, batch in enumerate(batches, 1):
         print(f"  Batch {idx}/{total}…", end=" ", flush=True)
         ids_str = ",".join(batch)
-        url     = f"{BGG_THING_URL}/{ids_str}"
 
         for attempt in range(1, MAX_RETRIES + 1):
-            resp = session.get(url, params={"stats": 1}, timeout=60)
+            resp = session.get(BGG_THING_URL, params={"id": ids_str, "stats": 1}, timeout=60)
 
             if resp.status_code == 429:
                 wait = 60 * attempt
@@ -287,24 +280,23 @@ def fetch_game_details(session: requests.Session, object_ids: list[str]) -> dict
                 break
 
             root = ET.fromstring(resp.content)
-            # v1 uses <boardgame objectid="X"> elements under <boardgames>
-            for game in root.findall("boardgame"):
-                oid = game.get("objectid", "")
+            # v2 uses <item id="X"> elements under <items>
+            for item in root.findall("item"):
+                oid = item.get("id", "")
 
-                # Primary name: <name primary="true">Game Name</name>
+                # Primary name: <name type="primary" value="Game Name" />
                 name = ""
-                for name_el in game.findall("name"):
-                    if name_el.get("primary") == "true":
-                        name = (name_el.text or "").strip()
+                for name_el in item.findall("name"):
+                    if name_el.get("type") == "primary":
+                        name = (name_el.get("value") or "").strip()
                         break
 
-                # Weight: <statistics><ratings><averageweight>3.5</averageweight></ratings></statistics>
-                # v1 uses text content, not value attributes
+                # Weight: <statistics><ratings><averageweight value="3.5" /></ratings></statistics>
                 complexity = None
-                w_el = game.find("statistics/ratings/averageweight")
-                if w_el is not None and w_el.text:
+                w_el = item.find("statistics/ratings/averageweight")
+                if w_el is not None:
                     try:
-                        val = float(w_el.text.strip())
+                        val = float(w_el.get("value", "0") or "0")
                         if val > 0:
                             complexity = round(val, 2)
                     except (ValueError, TypeError):
