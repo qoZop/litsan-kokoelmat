@@ -26,8 +26,9 @@ jobs:
 
       - name: Fetch BGG collections
         env:
-          BGG_USERNAME: ${{ secrets.BGG_USERNAME }}
-          BGG_PASSWORD: ${{ secrets.BGG_PASSWORD }}
+          BGG_USERNAME:   ${{ secrets.BGG_USERNAME }}
+          BGG_PASSWORD:   ${{ secrets.BGG_PASSWORD }}
+          BGG_API_TOKEN:  ${{ secrets.BGG_API_TOKEN }}
         run: python scripts/fetch_collections.py
 
       - name: Commit updated collection data

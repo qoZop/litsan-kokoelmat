@@ -15,6 +15,7 @@ Usage:
 Requires BGG credentials in .env or environment:
     BGG_USERNAME=okram
     BGG_PASSWORD=your_password
+    BGG_API_TOKEN=your_token   (optional; enables Bearer auth for all requests)
 """
 
 import argparse
@@ -96,6 +97,10 @@ def make_session() -> requests.Session:
     session.headers.update(HEADERS)
     if not login(session):
         sys.exit(1)
+    api_token = os.environ.get("BGG_API_TOKEN", "").strip()
+    if api_token:
+        session.headers.update({"Authorization": f"Bearer {api_token}"})
+        print("BGG API token present — Bearer auth enabled.")
     return session
 
 # ── Phase 1: Collection fetch ──────────────────────────────────────────────────
