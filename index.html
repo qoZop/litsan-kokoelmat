@@ -1817,7 +1817,7 @@ function formatTime(min, max) {
 }
 
 function renderDots(weight) {
-  const filled = Math.round(weight);
+  const filled = weight >= 4.0 ? 5 : weight >= 3.0 ? 4 : weight >= 2.25 ? 3 : weight >= 1.5 ? 2 : 1;
   const dots = Array.from({length: 5}, (_, i) =>
     `<span class="dot${i < filled ? ' filled' : ''}"></span>`
   ).join("");
