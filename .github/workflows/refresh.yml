@@ -35,6 +35,6 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/collection.json
+          git add data/collection.json data/changelog.json
           git diff --cached --quiet || git commit -m "chore: refresh BGG collections [$(date -u '+%Y-%m-%d')]"
           git push
