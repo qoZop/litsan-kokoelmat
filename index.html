@@ -621,16 +621,16 @@
 
       /* Table: horizontal scroll, hide least useful columns */
       .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-      table { min-width: 320px; }
+      .col-name    { min-width: 0; }
       .col-weight  { display: none; }
       .col-time    { display: none; }
       .col-year    { display: none; }
-      .col-players { width: 60px; }
-      .col-rating  { width: 50px; }
+      .col-players { width: 52px; }
+      .col-rating  { width: 46px; }
       .col-owners  { width: 88px; }
-      .col-count   { width: 34px; }
+      .col-count   { width: 32px; }
       #game-table .game-name { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-width: 0; }
-      td, th { padding: 8px 8px; }
+      td, th { padding: 8px 6px; }
 
       /* Top games & changelog padding */
       #tab-top, #tab-changes { padding: 16px 16px 40px; }
@@ -1789,14 +1789,14 @@ function renderPage() {
       : '';
 
     return `<tr>
-      <td class="game-name">${chalBadge}<a href="${g.bgg_url}" target="_blank" rel="noopener">${escHtml(g.name)}</a></td>
-      <td class="cell-muted">${g.year || '<span class="cell-dim">—</span>'}</td>
-      <td class="cell-muted">${players}</td>
-      <td class="cell-muted">${time}</td>
-      <td>${rating}</td>
-      <td>${weight}</td>
-      <td><div class="owner-pills">${pills}</div></td>
-      <td><div class="${countClass}">${g.owner_count}</div></td>
+      <td class="col-name game-name">${chalBadge}<a href="${g.bgg_url}" target="_blank" rel="noopener">${escHtml(g.name)}</a></td>
+      <td class="col-year cell-muted">${g.year || '<span class="cell-dim">—</span>'}</td>
+      <td class="col-players cell-muted">${players}</td>
+      <td class="col-time cell-muted">${time}</td>
+      <td class="col-rating">${rating}</td>
+      <td class="col-weight">${weight}</td>
+      <td class="col-owners"><div class="owner-pills">${pills}</div></td>
+      <td class="col-count"><div class="${countClass}">${g.owner_count}</div></td>
     </tr>`;
   });
 
