@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-06-28T08:04:58.970088+00:00",
+    "generated_at": "2026-06-29T15:13:31.242062+00:00",
     "users": [
       "asaarto",
       "EemilVeemil",
@@ -1284,7 +1284,7 @@
       "minplaytime": 60,
       "maxplaytime": 120,
       "bgg_rating": 8.83,
-      "complexity": 3.31,
+      "complexity": 3.32,
       "bgg_url": "https://boardgamegeek.com/boardgame/270871",
       "thumbnail": "https://cf.geekdo-images.com/VZDzFs2DAm6Qe7n2HXCJOw__small/img/tv_78Pg2-hjLWQYl6uPgx9GfE24=/fit-in/200x150/filters:strip_icc()/pic7576506.jpg",
       "owners": [
@@ -2021,7 +2021,7 @@
       "minplaytime": 45,
       "maxplaytime": 45,
       "bgg_rating": 7.89,
-      "complexity": 3.42,
+      "complexity": 3.41,
       "bgg_url": "https://boardgamegeek.com/boardgame/124742",
       "thumbnail": "https://cf.geekdo-images.com/2ewHIIG_TRq8bYlqk0jIMw__small/img/IJaOyyQ7Y59tW6nbKbjTMTFt-Ls=/fit-in/200x150/filters:strip_icc()/pic3738560.jpg",
       "owners": [
@@ -2509,7 +2509,7 @@
       "minplaytime": 60,
       "maxplaytime": 120,
       "bgg_rating": 8.0,
-      "complexity": 3.44,
+      "complexity": 3.45,
       "bgg_url": "https://boardgamegeek.com/boardgame/359871",
       "thumbnail": "https://cf.geekdo-images.com/XWImAu_3RK61wbzcKboVdA__small/img/Ry-6KHwNgERWadyxs1X1_P3dMvY=/fit-in/200x150/filters:strip_icc()/pic8145530.png",
       "owners": [
@@ -4838,7 +4838,7 @@
       "minplaytime": 45,
       "maxplaytime": 60,
       "bgg_rating": 7.37,
-      "complexity": 2.39,
+      "complexity": 2.4,
       "bgg_url": "https://boardgamegeek.com/boardgame/413260",
       "thumbnail": "https://cf.geekdo-images.com/6rKMO7TctO94pdzVSPgGtg__small/img/xAeYJxQNM8kiUBUzRYwF91x3Op4=/fit-in/200x150/filters:strip_icc()/pic8093636.png",
       "owners": [
@@ -8242,7 +8242,7 @@
       "minplaytime": 20,
       "maxplaytime": 30,
       "bgg_rating": 8.23,
-      "complexity": 2.14,
+      "complexity": 2.25,
       "bgg_url": "https://boardgamegeek.com/boardgame/440606",
       "thumbnail": "https://cf.geekdo-images.com/NlEJZ82WjMzIdPyEcQJiUQ__small/img/4SPm5ULu1rmxaQ8nO_i7ibJqyrM=/fit-in/200x150/filters:strip_icc()/pic8883907.jpg",
       "owners": [
@@ -9037,23 +9037,6 @@
       "owner_count": 1
     },
     {
-      "objectid": "404509",
-      "name": "Cthulhu: Dark Providence",
-      "year": 2025,
-      "minplayers": 1,
-      "maxplayers": 5,
-      "minplaytime": 90,
-      "maxplaytime": 120,
-      "bgg_rating": 7.53,
-      "complexity": 3.26,
-      "bgg_url": "https://boardgamegeek.com/boardgame/404509",
-      "thumbnail": "https://cf.geekdo-images.com/EZYvI0bb44l1yv5FiQXckQ__small/img/0QCNGgVzFsr6P_QbdWdVlVj6yIE=/fit-in/200x150/filters:strip_icc()/pic7839297.png",
-      "owners": [
-        "_wjr_"
-      ],
-      "owner_count": 1
-    },
-    {
       "objectid": "253344",
       "name": "Cthulhu: Death May Die",
       "year": 2019,
@@ -9079,7 +9062,7 @@
       "minplaytime": 90,
       "maxplaytime": 90,
       "bgg_rating": 8.72,
-      "complexity": 2.68,
+      "complexity": 2.69,
       "bgg_url": "https://boardgamegeek.com/boardgame/373600",
       "thumbnail": "https://cf.geekdo-images.com/asStsgtyfmFidfGwjrZv9A__small/img/EVA6tZOYp0nT1YZ95A4UmhObrBU=/fit-in/200x150/filters:strip_icc()/pic7155574.png",
       "owners": [
@@ -9400,7 +9383,7 @@
       "minplaytime": 120,
       "maxplaytime": 180,
       "bgg_rating": 7.79,
-      "complexity": 3.52,
+      "complexity": 3.53,
       "bgg_url": "https://boardgamegeek.com/boardgame/295535",
       "thumbnail": "https://cf.geekdo-images.com/2DsTgz7kzY0lgycj5xhV0A__small/img/QGtKhIGmw-jQcpiISHWxRQasj0c=/fit-in/200x150/filters:strip_icc()/pic5092357.jpg",
       "owners": [
@@ -9554,7 +9537,7 @@
       "minplaytime": 15,
       "maxplaytime": 30,
       "bgg_rating": 7.43,
-      "complexity": 1.65,
+      "complexity": 1.59,
       "bgg_url": "https://boardgamegeek.com/boardgame/433283",
       "thumbnail": "https://cf.geekdo-images.com/pd3lkFX2HSjDWAQV9OlpPw__small/img/w3zEt-1J9SR9R5LTGYSF3z_Q2i8=/fit-in/200x150/filters:strip_icc()/pic8572999.jpg",
       "owners": [
@@ -9869,7 +9852,7 @@
       "maxplayers": 6,
       "minplaytime": 30,
       "maxplaytime": 30,
-      "bgg_rating": 7.16,
+      "bgg_rating": 7.15,
       "complexity": 1.09,
       "bgg_url": "https://boardgamegeek.com/boardgame/427866",
       "thumbnail": "https://cf.geekdo-images.com/rHDvwG45RCSBnVYM65mVIA__small/img/Zs5BP5rZQYm5c-0t00FnYAy2Pc0=/fit-in/200x150/filters:strip_icc()/pic8393449.png",
@@ -10539,7 +10522,7 @@
       "minplaytime": 30,
       "maxplaytime": 45,
       "bgg_rating": 7.65,
-      "complexity": 2.85,
+      "complexity": 2.86,
       "bgg_url": "https://boardgamegeek.com/boardgame/318009",
       "thumbnail": "https://cf.geekdo-images.com/xRP9jo5gfwhfFkgxQBgWTw__small/img/Ax_lCMYmPvnu1qYP0-nRAjcVBO8=/fit-in/200x150/filters:strip_icc()/pic5622932.png",
       "owners": [
@@ -11089,7 +11072,7 @@
       "maxplayers": 6,
       "minplaytime": 30,
       "maxplaytime": 90,
-      "bgg_rating": 8.0,
+      "bgg_rating": 8.01,
       "complexity": 1.93,
       "bgg_url": "https://boardgamegeek.com/boardgame/424774",
       "thumbnail": "https://cf.geekdo-images.com/fznRvIx6a-rU56Ly0RqpTA__small/img/VkEezaIwaCX_6MZj2vcrcSb9nQk=/fit-in/200x150/filters:strip_icc()/pic8305438.jpg",
@@ -15240,7 +15223,7 @@
       "minplaytime": 20,
       "maxplaytime": 20,
       "bgg_rating": 7.48,
-      "complexity": 3.32,
+      "complexity": 3.33,
       "bgg_url": "https://boardgamegeek.com/boardgame/393672",
       "thumbnail": "https://cf.geekdo-images.com/Z6MMX39UEAZT3-f-DlnHsA__small/img/5Bf6oWIJTdHYpLAodTPqbDxh_Bc=/fit-in/200x150/filters:strip_icc()/pic8114705.jpg",
       "owners": [
@@ -17001,7 +16984,7 @@
       "minplaytime": 20,
       "maxplaytime": 20,
       "bgg_rating": 7.83,
-      "complexity": 1.19,
+      "complexity": 1.2,
       "bgg_url": "https://boardgamegeek.com/boardgame/446497",
       "thumbnail": "https://cf.geekdo-images.com/co36SqyPYlM1QwVW6XSwyQ__small/img/dur_aXLM90CAW7CE_Tt5wjADaJk=/fit-in/200x150/filters:strip_icc()/pic8933083.jpg",
       "owners": [
@@ -18153,7 +18136,7 @@
       "minplaytime": 30,
       "maxplaytime": 45,
       "bgg_rating": 7.19,
-      "complexity": 2.41,
+      "complexity": 2.4,
       "bgg_url": "https://boardgamegeek.com/boardgame/364641",
       "thumbnail": "https://cf.geekdo-images.com/eflfeDSSSBlbPe0JFKJ0Pg__small/img/bMorCtDW6eFBeh7szmdiFXWZ570=/fit-in/200x150/filters:strip_icc()/pic6910522.jpg",
       "owners": [
@@ -18472,7 +18455,7 @@
       "minplaytime": 30,
       "maxplaytime": 40,
       "bgg_rating": 7.16,
-      "complexity": 1.42,
+      "complexity": 1.43,
       "bgg_url": "https://boardgamegeek.com/boardgame/183251",
       "thumbnail": "https://cf.geekdo-images.com/hhV3JiYZUHEi_glLhC0v8w__small/img/_XHxgYraTvLmBnHpY8snFa2ma9o=/fit-in/200x150/filters:strip_icc()/pic2727088.jpg",
       "owners": [
@@ -18958,7 +18941,7 @@
       "minplaytime": 45,
       "maxplaytime": 90,
       "bgg_rating": 7.76,
-      "complexity": 3.04,
+      "complexity": 3.02,
       "bgg_url": "https://boardgamegeek.com/boardgame/437245",
       "thumbnail": "https://cf.geekdo-images.com/QQikkHAYbLyf2IGC5tz0Fg__small/img/MOU9raZyQKJlM78wwqEenLpmRso=/fit-in/200x150/filters:strip_icc()/pic8660175.jpg",
       "owners": [
@@ -19576,7 +19559,7 @@
       "minplaytime": 90,
       "maxplaytime": 270,
       "bgg_rating": 8.84,
-      "complexity": 3.27,
+      "complexity": 3.22,
       "bgg_url": "https://boardgamegeek.com/boardgame/415848",
       "thumbnail": "https://cf.geekdo-images.com/y1OVwSAaHP-pFpYEJ9r5Zg__small/img/rK3Xo8_m8rVMAOOv8gtqaOHOml0=/fit-in/200x150/filters:strip_icc()/pic8061460.png",
       "owners": [
@@ -21727,7 +21710,7 @@
       "maxplayers": 4,
       "minplaytime": 15,
       "maxplaytime": 45,
-      "bgg_rating": 7.45,
+      "bgg_rating": 7.44,
       "complexity": 1.1,
       "bgg_url": "https://boardgamegeek.com/boardgame/318977",
       "thumbnail": "https://cf.geekdo-images.com/E_Qjd-VAEWgc4B5tX9H8cA__small/img/JnD6CwRWd-qN17fyZsVGNTogXbE=/fit-in/200x150/filters:strip_icc()/pic6282633.jpg",
@@ -23863,7 +23846,7 @@
       "minplaytime": 30,
       "maxplaytime": 90,
       "bgg_rating": 8.08,
-      "complexity": 3.12,
+      "complexity": 3.11,
       "bgg_url": "https://boardgamegeek.com/boardgame/231733",
       "thumbnail": "https://cf.geekdo-images.com/sy89BiuZXfbSnG7Cag9tBQ__small/img/eTnMwfCC2jCGDPXC08SIaMXNOTM=/fit-in/200x150/filters:strip_icc()/pic5902073.png",
       "owners": [
@@ -30765,7 +30748,7 @@
       "minplaytime": 30,
       "maxplaytime": 60,
       "bgg_rating": 7.01,
-      "complexity": 2.42,
+      "complexity": 2.41,
       "bgg_url": "https://boardgamegeek.com/boardgame/71721",
       "thumbnail": "https://cf.geekdo-images.com/DZwne59lYWFyH3BuBsFsUg__small/img/bW65k-7xj15ziitctpA75PXNp6g=/fit-in/200x150/filters:strip_icc()/pic8215036.jpg",
       "owners": [
@@ -31981,7 +31964,7 @@
       "minplaytime": 90,
       "maxplaytime": 150,
       "bgg_rating": 7.53,
-      "complexity": 3.27,
+      "complexity": 3.24,
       "bgg_url": "https://boardgamegeek.com/boardgame/392492",
       "thumbnail": "https://cf.geekdo-images.com/SJvK-Hq72xOiJ_JsmB1dGA__small/img/mDKoeUlKQjBTpNwJEeIm-2pszJQ=/fit-in/200x150/filters:strip_icc()/pic7585104.jpg",
       "owners": [
@@ -34833,7 +34816,7 @@
       "minplaytime": 60,
       "maxplaytime": 120,
       "bgg_rating": 8.05,
-      "complexity": 3.67,
+      "complexity": 3.68,
       "bgg_url": "https://boardgamegeek.com/boardgame/357873",
       "thumbnail": "https://cf.geekdo-images.com/q3Qp4L-rU3VOW6fMAFUJnQ__small/img/wLX_C6w13ebCON4euesUohQE_Ck=/fit-in/200x150/filters:strip_icc()/pic8937255.jpg",
       "owners": [
@@ -34968,6 +34951,23 @@
       "thumbnail": "https://cf.geekdo-images.com/i-naPlqJ-6EPLFEvRMUw_g__small/img/RGVgUg4XyDQQL084dy_OSkKdy0k=/fit-in/200x150/filters:strip_icc()/pic3048542.jpg",
       "owners": [
         "StoneDog"
+      ],
+      "owner_count": 1
+    },
+    {
+      "objectid": "227224",
+      "name": "The Red Cathedral",
+      "year": 2020,
+      "minplayers": 1,
+      "maxplayers": 4,
+      "minplaytime": 80,
+      "maxplaytime": 80,
+      "bgg_rating": 7.66,
+      "complexity": 2.82,
+      "bgg_url": "https://boardgamegeek.com/boardgame/227224",
+      "thumbnail": "https://cf.geekdo-images.com/-PuiCnbxlBzMSjnUegp9AQ__small/img/CKamYUPlBDXav4A1AEqMRy976fY=/fit-in/200x150/filters:strip_icc()/pic5556025.jpg",
+      "owners": [
+        "okram"
       ],
       "owner_count": 1
     },
@@ -37208,9 +37208,10 @@
       "bgg_url": "https://boardgamegeek.com/boardgame/352515",
       "thumbnail": "https://cf.geekdo-images.com/d9F0ZDqcN3J7J92WckyraQ__small/img/8d663Cj-RQy8pA8gZOcO80xYI5I=/fit-in/200x150/filters:strip_icc()/pic7605785.jpg",
       "owners": [
-        "Maradrus"
+        "Maradrus",
+        "okram"
       ],
-      "owner_count": 1
+      "owner_count": 2
     },
     {
       "objectid": "137910",
@@ -37724,7 +37725,7 @@
       "minplaytime": 120,
       "maxplaytime": 180,
       "bgg_rating": 8.23,
-      "complexity": 3.62,
+      "complexity": 3.61,
       "bgg_url": "https://boardgamegeek.com/boardgame/12333",
       "thumbnail": "https://cf.geekdo-images.com/pNCiUUphnoeWOYfsWq0kng__small/img/p7alNkNy8Avm8UISmhYHCiMz5bE=/fit-in/200x150/filters:strip_icc()/pic3530661.jpg",
       "owners": [
