@@ -1,6 +1,99 @@
 {
   "entries": [
     {
+      "id": "ef4bdb13-refresh",
+      "date": "2026-06-29T15:13:31Z",
+      "label": "Weekly refresh — 29 Jun 2026",
+      "source": "refresh",
+      "stats": {
+        "collectors_changed": 2,
+        "games_added": 2,
+        "games_removed": 1
+      },
+      "changes": [
+        {
+          "collector": "_wjr_",
+          "added": [],
+          "removed": [
+            {
+              "objectid": "404509",
+              "name": "Cthulhu: Dark Providence"
+            }
+          ]
+        },
+        {
+          "collector": "okram",
+          "added": [
+            {
+              "objectid": "227224",
+              "name": "The Red Cathedral"
+            },
+            {
+              "objectid": "352515",
+              "name": "Trio"
+            }
+          ],
+          "removed": []
+        }
+      ]
+    },
+    {
+      "id": "1c5e5415-refresh",
+      "date": "2026-06-21T08:43:56Z",
+      "label": "Weekly refresh — 21 Jun 2026",
+      "source": "refresh",
+      "stats": {
+        "collectors_changed": 1,
+        "games_added": 1,
+        "games_removed": 0
+      },
+      "changes": [
+        {
+          "collector": "StoneDog",
+          "added": [
+            {
+              "objectid": "357873",
+              "name": "The Old King's Crown"
+            }
+          ],
+          "removed": []
+        }
+      ]
+    },
+    {
+      "id": "7927444e-refresh",
+      "date": "2026-06-14T08:29:53Z",
+      "label": "Weekly refresh — 14 Jun 2026",
+      "source": "refresh",
+      "stats": {
+        "collectors_changed": 2,
+        "games_added": 2,
+        "games_removed": 0
+      },
+      "changes": [
+        {
+          "collector": "Luonto",
+          "added": [
+            {
+              "objectid": "172",
+              "name": "For Sale"
+            }
+          ],
+          "removed": []
+        },
+        {
+          "collector": "StoneDog",
+          "added": [
+            {
+              "objectid": "354342",
+              "name": "Marvel Mayhem"
+            }
+          ],
+          "removed": []
+        }
+      ]
+    },
+    {
       "id": "20260612055711-refresh",
       "date": "2026-06-12T05:57:11.678220+00:00",
       "label": "Weekly refresh — 12 Jun 2026",
