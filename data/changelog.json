@@ -1,6 +1,93 @@
 {
   "entries": [
     {
+      "id": "20260705073747-refresh",
+      "date": "2026-07-05T07:37:47.826393+00:00",
+      "label": "Weekly refresh — 05 Jul 2026",
+      "source": "refresh",
+      "stats": {
+        "collectors_changed": 5,
+        "games_added": 11,
+        "games_removed": 0
+      },
+      "changes": [
+        {
+          "collector": "asaarto",
+          "added": [
+            {
+              "objectid": "199042",
+              "name": "Harry Potter: Hogwarts Battle"
+            },
+            {
+              "objectid": "434367",
+              "name": "Nippon: Zaibatsu"
+            }
+          ],
+          "removed": []
+        },
+        {
+          "collector": "EssEss",
+          "added": [
+            {
+              "objectid": "446703",
+              "name": "Fortunes of Scoundrel Bay"
+            },
+            {
+              "objectid": "408180",
+              "name": "Shackleton Base: A Journey to the Moon"
+            },
+            {
+              "objectid": "371942",
+              "name": "The White Castle"
+            }
+          ],
+          "removed": []
+        },
+        {
+          "collector": "Maradrus",
+          "added": [
+            {
+              "objectid": "431308",
+              "name": "Hitster: Rock"
+            },
+            {
+              "objectid": "437705",
+              "name": "Horrified: Dungeons & Dragons"
+            }
+          ],
+          "removed": []
+        },
+        {
+          "collector": "StoneDog",
+          "added": [
+            {
+              "objectid": "453740",
+              "name": "Container"
+            },
+            {
+              "objectid": "288080",
+              "name": "Dice Realms"
+            },
+            {
+              "objectid": "452817",
+              "name": "Emberheart"
+            }
+          ],
+          "removed": []
+        },
+        {
+          "collector": "_wjr_",
+          "added": [
+            {
+              "objectid": "437383",
+              "name": "Age of Galaxy (Second Edition)"
+            }
+          ],
+          "removed": []
+        }
+      ]
+    },
+    {
       "id": "ef4bdb13-refresh",
       "date": "2026-06-29T15:13:31Z",
       "label": "Weekly refresh — 29 Jun 2026",
