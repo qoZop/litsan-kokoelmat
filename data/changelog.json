@@ -1,6 +1,71 @@
 {
   "entries": [
     {
+      "id": "20260712064633-refresh",
+      "date": "2026-07-12T06:46:33.151097+00:00",
+      "label": "Weekly refresh — 12 Jul 2026",
+      "source": "refresh",
+      "stats": {
+        "collectors_changed": 4,
+        "games_added": 7,
+        "games_removed": 0
+      },
+      "changes": [
+        {
+          "collector": "Maradrus",
+          "added": [
+            {
+              "objectid": "287411",
+              "name": "The Shivers"
+            }
+          ],
+          "removed": []
+        },
+        {
+          "collector": "okram",
+          "added": [
+            {
+              "objectid": "432456",
+              "name": "dnup"
+            }
+          ],
+          "removed": []
+        },
+        {
+          "collector": "StoneDog",
+          "added": [
+            {
+              "objectid": "432456",
+              "name": "dnup"
+            },
+            {
+              "objectid": "440540",
+              "name": "Take Time"
+            }
+          ],
+          "removed": []
+        },
+        {
+          "collector": "Taateli",
+          "added": [
+            {
+              "objectid": "438729",
+              "name": "Marvel Dice Throne: X-Men – Cyclops v. Gambit v. Rogue v. Jean Grey"
+            },
+            {
+              "objectid": "438727",
+              "name": "Marvel Dice Throne: X-Men – Iceman v. Psylocke v. Storm v. Wolverine"
+            },
+            {
+              "objectid": "367898",
+              "name": "Peninsula"
+            }
+          ],
+          "removed": []
+        }
+      ]
+    },
+    {
       "id": "20260705073747-refresh",
       "date": "2026-07-05T07:37:47.826393+00:00",
       "label": "Weekly refresh — 05 Jul 2026",
