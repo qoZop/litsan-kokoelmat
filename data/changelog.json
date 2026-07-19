@@ -1,6 +1,99 @@
 {
   "entries": [
     {
+      "id": "20260719064348-refresh",
+      "date": "2026-07-19T06:43:48.775461+00:00",
+      "label": "Weekly refresh — 19 Jul 2026",
+      "source": "refresh",
+      "stats": {
+        "collectors_changed": 4,
+        "games_added": 14,
+        "games_removed": 0
+      },
+      "changes": [
+        {
+          "collector": "EemilVeemil",
+          "added": [
+            {
+              "objectid": "260465",
+              "name": "Across The Narva: The Soviet Assault on Estonia, February 1944"
+            },
+            {
+              "objectid": "282300",
+              "name": "Pitt's War"
+            },
+            {
+              "objectid": "438329",
+              "name": "Thunderbolt: Deluxe Edition"
+            }
+          ],
+          "removed": []
+        },
+        {
+          "collector": "Maradrus",
+          "added": [
+            {
+              "objectid": "450782",
+              "name": "Codenames: Back to Hogwarts"
+            },
+            {
+              "objectid": "397736",
+              "name": "Hitster: Guilty Pleasures"
+            },
+            {
+              "objectid": "410209",
+              "name": "Hitster: Summer Party"
+            },
+            {
+              "objectid": "464697",
+              "name": "Unlock!: Short Adventures – The Ascent"
+            }
+          ],
+          "removed": []
+        },
+        {
+          "collector": "Marttapa",
+          "added": [
+            {
+              "objectid": "437313",
+              "name": "Flip Voyage"
+            },
+            {
+              "objectid": "341945",
+              "name": "La Granja: Deluxe Master Set"
+            },
+            {
+              "objectid": "374201",
+              "name": "Lata"
+            },
+            {
+              "objectid": "442615",
+              "name": "Oliva"
+            },
+            {
+              "objectid": "285036",
+              "name": "Shadow Kingdoms of Valeria"
+            },
+            {
+              "objectid": "440942",
+              "name": "Trismegistus"
+            }
+          ],
+          "removed": []
+        },
+        {
+          "collector": "okram",
+          "added": [
+            {
+              "objectid": "165722",
+              "name": "KLASK"
+            }
+          ],
+          "removed": []
+        }
+      ]
+    },
+    {
       "id": "20260712064633-refresh",
       "date": "2026-07-12T06:46:33.151097+00:00",
       "label": "Weekly refresh — 12 Jul 2026",
