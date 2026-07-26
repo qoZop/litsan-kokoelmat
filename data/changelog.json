@@ -1,6 +1,117 @@
 {
   "entries": [
     {
+      "id": "20260726064941-refresh",
+      "date": "2026-07-26T06:49:41.706274+00:00",
+      "label": "Weekly refresh — 26 Jul 2026",
+      "source": "refresh",
+      "stats": {
+        "collectors_changed": 5,
+        "games_added": 9,
+        "games_removed": 8
+      },
+      "changes": [
+        {
+          "collector": "EemilVeemil",
+          "added": [
+            {
+              "objectid": "329089",
+              "name": "A Most Fearful Sacrifice: The Three Days of Gettysburg"
+            }
+          ],
+          "removed": []
+        },
+        {
+          "collector": "Maradrus",
+          "added": [
+            {
+              "objectid": "367379",
+              "name": "Deal with the Devil"
+            },
+            {
+              "objectid": "378916",
+              "name": "Gold Nugget"
+            },
+            {
+              "objectid": "384173",
+              "name": "Indiana Jones: Cryptic – A Puzzles and Pathways Adventure"
+            }
+          ],
+          "removed": []
+        },
+        {
+          "collector": "Marttapa",
+          "added": [
+            {
+              "objectid": "323613",
+              "name": "LUNA Capital"
+            },
+            {
+              "objectid": "414927",
+              "name": "Parks & Potions"
+            },
+            {
+              "objectid": "322589",
+              "name": "Zapotec"
+            }
+          ],
+          "removed": []
+        },
+        {
+          "collector": "StoneDog",
+          "added": [
+            {
+              "objectid": "429861",
+              "name": "Ace of Spades"
+            },
+            {
+              "objectid": "403150",
+              "name": "World Order"
+            }
+          ],
+          "removed": []
+        },
+        {
+          "collector": "Taateli",
+          "added": [],
+          "removed": [
+            {
+              "objectid": "82168",
+              "name": "Escape from the Aliens in Outer Space"
+            },
+            {
+              "objectid": "320390",
+              "name": "Kabuto Sumo"
+            },
+            {
+              "objectid": "410680",
+              "name": "Kabuto Sumo: Sakura Slam"
+            },
+            {
+              "objectid": "13642",
+              "name": "Louis XIV"
+            },
+            {
+              "objectid": "451844",
+              "name": "Stone Layer"
+            },
+            {
+              "objectid": "16986",
+              "name": "Ubongo"
+            },
+            {
+              "objectid": "218920",
+              "name": "Valletta"
+            },
+            {
+              "objectid": "37691",
+              "name": "Wordlink"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "20260719064348-refresh",
       "date": "2026-07-19T06:43:48.775461+00:00",
       "label": "Weekly refresh — 19 Jul 2026",
