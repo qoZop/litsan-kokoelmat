@@ -1,6 +1,81 @@
 {
   "entries": [
     {
+      "id": "20260802064809-refresh",
+      "date": "2026-08-02T06:48:09.490967+00:00",
+      "label": "Weekly refresh — 02 Aug 2026",
+      "source": "refresh",
+      "stats": {
+        "collectors_changed": 5,
+        "games_added": 8,
+        "games_removed": 0
+      },
+      "changes": [
+        {
+          "collector": "Maradrus",
+          "added": [
+            {
+              "objectid": "1407",
+              "name": "Alcatraz"
+            }
+          ],
+          "removed": []
+        },
+        {
+          "collector": "Marttapa",
+          "added": [
+            {
+              "objectid": "385761",
+              "name": "Faraway"
+            },
+            {
+              "objectid": "308765",
+              "name": "Praga Caput Regni"
+            }
+          ],
+          "removed": []
+        },
+        {
+          "collector": "okram",
+          "added": [
+            {
+              "objectid": "463783",
+              "name": "Las Vegas"
+            },
+            {
+              "objectid": "220517",
+              "name": "The Shipwreck Arcana"
+            }
+          ],
+          "removed": []
+        },
+        {
+          "collector": "StoneDog",
+          "added": [
+            {
+              "objectid": "393672",
+              "name": "Gloomhaven: Buttons & Bugs"
+            }
+          ],
+          "removed": []
+        },
+        {
+          "collector": "Taateli",
+          "added": [
+            {
+              "objectid": "30381",
+              "name": "Hamburgum"
+            },
+            {
+              "objectid": "12002",
+              "name": "Jambo"
+            }
+          ],
+          "removed": []
+        }
+      ]
+    },
+    {
       "id": "20260726064941-refresh",
       "date": "2026-07-26T06:49:41.706274+00:00",
       "label": "Weekly refresh — 26 Jul 2026",
