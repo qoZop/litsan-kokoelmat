@@ -1,6 +1,99 @@
 {
   "entries": [
     {
+      "id": "20260809051717-refresh",
+      "date": "2026-08-09T05:17:17.544592+00:00",
+      "label": "Weekly refresh — 09 Aug 2026",
+      "source": "refresh",
+      "stats": {
+        "collectors_changed": 5,
+        "games_added": 7,
+        "games_removed": 5
+      },
+      "changes": [
+        {
+          "collector": "asaarto",
+          "added": [
+            {
+              "objectid": "406498",
+              "name": "Café Baras"
+            },
+            {
+              "objectid": "151645",
+              "name": "Jane Austen's Matchmaker"
+            }
+          ],
+          "removed": [
+            {
+              "objectid": "66589",
+              "name": "Navegador"
+            }
+          ]
+        },
+        {
+          "collector": "okram",
+          "added": [
+            {
+              "objectid": "362202",
+              "name": "Zombie Kittens"
+            }
+          ],
+          "removed": []
+        },
+        {
+          "collector": "StoneDog",
+          "added": [
+            {
+              "objectid": "332800",
+              "name": "Summoner Wars (Second Edition)"
+            },
+            {
+              "objectid": "291508",
+              "name": "Tiny Epic Dinosaurs"
+            }
+          ],
+          "removed": []
+        },
+        {
+          "collector": "Taateli",
+          "added": [
+            {
+              "objectid": "272453",
+              "name": "KeyForge: Age of Ascension"
+            }
+          ],
+          "removed": [
+            {
+              "objectid": "193560",
+              "name": "Escape the Room: Mystery at the Stargazer's Manor"
+            },
+            {
+              "objectid": "286703",
+              "name": "Kameleo"
+            },
+            {
+              "objectid": "33759",
+              "name": "Omega Centauri"
+            },
+            {
+              "objectid": "98229",
+              "name": "Pictomania"
+            }
+          ]
+        },
+        {
+          "collector": "_wjr_",
+          "added": [
+            {
+              "objectid": "463126",
+              "name": "Arkham Horror: The Card Game"
+            }
+          ],
+          "removed": []
+        }
+      ]
+    },
+    {
       "id": "20260802064809-refresh",
       "date": "2026-08-02T06:48:09.490967+00:00",
       "label": "Weekly refresh — 02 Aug 2026",
