@@ -1,6 +1,80 @@
 {
   "entries": [
     {
+      "id": "20260816044806-refresh",
+      "date": "2026-08-16T04:48:06.632312+00:00",
+      "label": "Weekly refresh — 16 Aug 2026",
+      "source": "refresh",
+      "stats": {
+        "collectors_changed": 4,
+        "games_added": 6,
+        "games_removed": 3
+      },
+      "changes": [
+        {
+          "collector": "asaarto",
+          "added": [
+            {
+              "objectid": "308388",
+              "name": "Egizia: Shifting Sands – Kickstarter Edition"
+            },
+            {
+              "objectid": "225979",
+              "name": "Jane Austen's Matchmaker: Chapter Two"
+            }
+          ],
+          "removed": [
+            {
+              "objectid": "151645",
+              "name": "Jane Austen's Matchmaker"
+            }
+          ]
+        },
+        {
+          "collector": "jutapo",
+          "added": [
+            {
+              "objectid": "440032",
+              "name": "Angel's Share"
+            },
+            {
+              "objectid": "342343",
+              "name": "Birdwatcher"
+            },
+            {
+              "objectid": "291847",
+              "name": "Mantis Falls"
+            }
+          ],
+          "removed": []
+        },
+        {
+          "collector": "StoneDog",
+          "added": [
+            {
+              "objectid": "428664",
+              "name": "Fantasy Realms: Greek Legends"
+            }
+          ],
+          "removed": []
+        },
+        {
+          "collector": "Taateli",
+          "added": [],
+          "removed": [
+            {
+              "objectid": "113294",
+              "name": "Escape: The Curse of the Temple"
+            },
+            {
+              "objectid": "425765",
+              "name": "Ministry of Lost Things: Case 1 – Lint Condition"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "20260809051717-refresh",
       "date": "2026-08-09T05:17:17.544592+00:00",
       "label": "Weekly refresh — 09 Aug 2026",
