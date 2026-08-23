@@ -1,6 +1,133 @@
 {
   "entries": [
     {
+      "id": "20260823044923-refresh",
+      "date": "2026-08-23T04:49:23.558142+00:00",
+      "label": "Weekly refresh — 23 Aug 2026",
+      "source": "refresh",
+      "stats": {
+        "collectors_changed": 4,
+        "games_added": 14,
+        "games_removed": 8
+      },
+      "changes": [
+        {
+          "collector": "asaarto",
+          "added": [],
+          "removed": [
+            {
+              "objectid": "178900",
+              "name": "Codenames"
+            },
+            {
+              "objectid": "25242",
+              "name": "Relikt"
+            },
+            {
+              "objectid": "369282",
+              "name": "Rise"
+            }
+          ]
+        },
+        {
+          "collector": "Maradrus",
+          "added": [
+            {
+              "objectid": "260605",
+              "name": "Camel Up (Second Edition)"
+            },
+            {
+              "objectid": "169782",
+              "name": "Dice Alias"
+            },
+            {
+              "objectid": "181345",
+              "name": "Dr. Eureka"
+            },
+            {
+              "objectid": "343309",
+              "name": "Escape Room: The Game – Family Edition: Time Travel"
+            },
+            {
+              "objectid": "199478",
+              "name": "Flamme Rouge"
+            },
+            {
+              "objectid": "472506",
+              "name": "Spirit Train"
+            }
+          ],
+          "removed": [
+            {
+              "objectid": "378916",
+              "name": "Gold Nugget"
+            }
+          ]
+        },
+        {
+          "collector": "Marttapa",
+          "added": [
+            {
+              "objectid": "449853",
+              "name": "Frosted Blooms"
+            },
+            {
+              "objectid": "228341",
+              "name": "Pulsar 2849"
+            },
+            {
+              "objectid": "436217",
+              "name": "The Lord of the Rings: Fate of the Fellowship"
+            },
+            {
+              "objectid": "73439",
+              "name": "Troyes"
+            },
+            {
+              "objectid": "403441",
+              "name": "Windmill Valley"
+            }
+          ],
+          "removed": [
+            {
+              "objectid": "406498",
+              "name": "Café Baras"
+            },
+            {
+              "objectid": "122298",
+              "name": "Morels"
+            },
+            {
+              "objectid": "254513",
+              "name": "The Grimm Masquerade"
+            },
+            {
+              "objectid": "306735",
+              "name": "Under Falling Skies"
+            }
+          ]
+        },
+        {
+          "collector": "Taateli",
+          "added": [
+            {
+              "objectid": "422541",
+              "name": "Star Trek: Captain's Chair"
+            },
+            {
+              "objectid": "448086",
+              "name": "Star Trek: Captain's Chair – To Boldly Go"
+            },
+            {
+              "objectid": "349748",
+              "name": "StegegetS"
+            }
+          ],
+          "removed": []
+        }
+      ]
+    },
+    {
       "id": "20260816044806-refresh",
       "date": "2026-08-16T04:48:06.632312+00:00",
       "label": "Weekly refresh — 16 Aug 2026",
