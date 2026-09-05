@@ -29,7 +29,17 @@ jobs:
           BGG_USERNAME:   ${{ secrets.BGG_USERNAME }}
           BGG_PASSWORD:   ${{ secrets.BGG_PASSWORD }}
           BGG_API_TOKEN:  ${{ secrets.BGG_API_TOKEN }}
-        run: python scripts/fetch_collections.py
+        run: python -u scripts/fetch_collections.py
+
+      - name: Archive data snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: bgg-data-${{ github.run_number }}
+          path: |
+            data/collection.json
+            data/changelog.json
+          retention-days: 90
+          if-no-files-found: error
 
       - name: Commit updated collection data
         run: |

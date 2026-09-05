@@ -54,6 +54,36 @@ HEADERS = {
     "Accept":     "application/xml",
 }
 
+# ── HTTP / XML helpers ────────────────────────────────────────────────────────
+
+NETWORK_EXC = (requests.RequestException,)
+
+
+def http_get(session: requests.Session, url: str, **kwargs):
+    """GET that converts any network-layer failure (DNS, connect, read timeout,
+    reset, …) into a return value of None instead of raising, so callers can
+    treat it as one more retryable attempt rather than crashing the whole run."""
+    try:
+        return session.get(url, **kwargs)
+    except NETWORK_EXC as exc:
+        print(f"network error: {exc.__class__.__name__}: {exc}", end=" ", flush=True)
+        return None
+
+
+def parse_xml(content, *, context: str = ""):
+    """Parse XML, returning None (after logging a snippet of the offending body)
+    on malformed input instead of raising ElementTree.ParseError. BGG
+    occasionally serves an HTML error / rate-limit page with a 200 status; that
+    used to abort the job here."""
+    try:
+        return ET.fromstring(content)
+    except ET.ParseError as exc:
+        body    = content.decode("utf-8", "replace") if isinstance(content, (bytes, bytearray)) else str(content)
+        snippet = " ".join(body[:300].split())
+        label   = f" ({context})" if context else ""
+        print(f"XML parse error{label}: {exc} — body starts: {snippet!r}")
+        return None
+
 # ── .env loader ────────────────────────────────────────────────────────────────
 
 def load_dotenv():
@@ -70,7 +100,9 @@ def load_dotenv():
 # ── Authentication ─────────────────────────────────────────────────────────────
 
 def login(session: requests.Session) -> bool:
-    """Log in to BGG. Returns True on success."""
+    """Log in to BGG. Returns True on success, False on a definitive auth
+    failure. Transient problems (network errors, 5xx) are retried a few times
+    before giving up so a momentary blip at login doesn't kill the run."""
     username = os.environ.get("BGG_USERNAME", "").strip()
     password = os.environ.get("BGG_PASSWORD", "").strip()
 
@@ -78,17 +110,31 @@ def login(session: requests.Session) -> bool:
         print("ERROR: BGG_USERNAME and BGG_PASSWORD are required.")
         sys.exit(1)
 
-    print(f"Logging in to BGG as '{username}'…", end=" ", flush=True)
-    resp = session.post(
-        BGG_LOGIN_URL,
-        json={"credentials": {"username": username, "password": password}},
-        headers={**HEADERS, "Content-Type": "application/json"},
-        timeout=20,
-    )
-    if resp.status_code in (200, 204):
-        print("OK")
-        return True
-    print(f"FAILED (HTTP {resp.status_code})")
+    for attempt in range(1, 4):
+        print(f"Logging in to BGG as '{username}' (attempt {attempt})…", end=" ", flush=True)
+        try:
+            resp = session.post(
+                BGG_LOGIN_URL,
+                json={"credentials": {"username": username, "password": password}},
+                headers={**HEADERS, "Content-Type": "application/json"},
+                timeout=20,
+            )
+        except NETWORK_EXC as exc:
+            print(f"network error: {exc.__class__.__name__}: {exc} — retrying in {RETRY_DELAY}s")
+            time.sleep(RETRY_DELAY)
+            continue
+
+        if resp.status_code in (200, 204):
+            print("OK")
+            return True
+        if resp.status_code >= 500:
+            print(f"server error HTTP {resp.status_code} — retrying in {RETRY_DELAY}s")
+            time.sleep(RETRY_DELAY)
+            continue
+        print(f"FAILED (HTTP {resp.status_code})")
+        return False
+
+    print("FAILED (login endpoint unreachable after retries)")
     return False
 
 
@@ -116,8 +162,12 @@ def fetch_collection(session: requests.Session, username: str) -> list[dict]:
 
     for attempt in range(1, MAX_RETRIES + 1):
         print(f"  [{username}] attempt {attempt}...", end=" ", flush=True)
-        resp = session.get(BGG_COLLECTION_URL, params=params, timeout=30)
+        resp = http_get(session, BGG_COLLECTION_URL, params=params, timeout=30)
 
+        if resp is None:
+            print(f"retrying in {RETRY_DELAY}s")
+            time.sleep(RETRY_DELAY)
+            continue
         if resp.status_code == 202:
             print(f"queued, retrying in {RETRY_DELAY}s")
             time.sleep(RETRY_DELAY)
@@ -127,11 +177,18 @@ def fetch_collection(session: requests.Session, username: str) -> list[dict]:
             print(f"rate limited, waiting {wait}s")
             time.sleep(wait)
             continue
+        if resp.status_code >= 500:
+            print(f"server error HTTP {resp.status_code}, retrying in {RETRY_DELAY}s")
+            time.sleep(RETRY_DELAY)
+            continue
         if resp.status_code != 200:
             print(f"HTTP {resp.status_code} — skipping")
             return []
 
-        root = ET.fromstring(resp.content)
+        root = parse_xml(resp.content, context=f"collection {username}")
+        if root is None:
+            time.sleep(RETRY_DELAY)
+            continue
         if root.tag == "errors":
             print(f"API error: {root.findtext('.//message', 'unknown')} — skipping")
             return []
@@ -244,6 +301,19 @@ def run_phase1(session: requests.Session) -> list[dict]:
 
     return merged, failed_users
 
+
+def abort_if_incomplete(merged: list[dict], failed_users: list[str]):
+    """Refuse to write collection.json / changelog.json from a run that fetched
+    nothing useful. Partial failures are tolerated (carry_forward_failed handles
+    them); a total wipeout means BGG is down or we're blocked, and continuing
+    would overwrite good data with an empty collection."""
+    if failed_users:
+        print(f"\n⚠️  {len(failed_users)}/{len(USERNAMES)} collections failed: "
+              f"{', '.join(failed_users)}")
+    if not merged or len(failed_users) >= len(USERNAMES):
+        sys.exit("ABORT: no collection data fetched — leaving existing "
+                 "collection.json and changelog.json untouched.")
+
 # ── Phase 2: Canonical names + complexity ─────────────────────────────────────
 
 def fetch_game_details(session: requests.Session, object_ids: list[str]) -> dict[str, dict]:
@@ -267,19 +337,30 @@ def fetch_game_details(session: requests.Session, object_ids: list[str]) -> dict
         ids_str = ",".join(batch)
 
         for attempt in range(1, MAX_RETRIES + 1):
-            resp = session.get(BGG_THING_URL, params={"id": ids_str, "stats": 1}, timeout=60)
+            resp = http_get(session, BGG_THING_URL, params={"id": ids_str, "stats": 1}, timeout=60)
 
+            if resp is None:
+                print(f"retrying in {RETRY_DELAY}s", end=" ", flush=True)
+                time.sleep(RETRY_DELAY)
+                continue
             if resp.status_code == 429:
                 wait = 60 * attempt
                 print(f"rate limited, waiting {wait}s", end=" ", flush=True)
                 time.sleep(wait)
+                continue
+            if resp.status_code >= 500:
+                print(f"server error HTTP {resp.status_code}, retrying in {RETRY_DELAY}s", end=" ", flush=True)
+                time.sleep(RETRY_DELAY)
                 continue
             if resp.status_code != 200:
                 snippet = resp.text[:300].replace("\n", " ").strip()
                 print(f"HTTP {resp.status_code} — {snippet}")
                 break
 
-            root = ET.fromstring(resp.content)
+            root = parse_xml(resp.content, context=f"thing batch {idx}/{total}")
+            if root is None:
+                time.sleep(RETRY_DELAY)
+                continue
             for item in root.findall("item"):
                 oid = item.get("id", "")
 
@@ -301,6 +382,8 @@ def fetch_game_details(session: requests.Session, object_ids: list[str]) -> dict
 
             print(f"OK ({len(results)} matched so far)")
             break
+        else:
+            print(f"  Batch {idx}/{total}: gave up after {MAX_RETRIES} attempts — names/complexity for these games keep their Phase 1 values")
 
         time.sleep(4)
 
@@ -319,10 +402,15 @@ def build_ownership_map(games: list[dict]) -> dict[str, set]:
     return own
 
 
-def compute_changes(old_own: dict, new_own: dict, old_names: dict, new_names: dict) -> list[dict]:
-    """Return per-collector change records, only for collectors with actual changes."""
+def compute_changes(old_own: dict, new_own: dict, old_names: dict, new_names: dict,
+                    skip=frozenset()) -> list[dict]:
+    """Return per-collector change records, only for collectors with actual changes.
+    Collectors in `skip` (those whose fetch failed this run) are ignored, so a
+    transient per-user failure never shows up as a spurious add/remove."""
     changes = []
     for collector in USERNAMES:
+        if collector in skip:
+            continue
         added_ids   = new_own.get(collector, set()) - old_own.get(collector, set())
         removed_ids = old_own.get(collector, set()) - new_own.get(collector, set())
         if not added_ids and not removed_ids:
@@ -350,6 +438,41 @@ def append_changelog_entry(entry: dict):
 
 
 
+def carry_forward_failed(merged: list[dict], old_games: list[dict], failed_users: list[str]):
+    """Re-insert ownership rows for collectors whose Phase 1 fetch failed this
+    run, using the previous snapshot. Without this, a transient per-user failure
+    would drop the collector from collection.json for a week and produce a bogus
+    'removed everything' changelog entry now (and 'added everything back' next
+    week). Games touched only by failed collectors are copied over wholesale."""
+    failed   = set(failed_users)
+    by_id    = {g["objectid"]: g for g in merged}
+    restored = 0
+
+    for og in old_games:
+        keep = [o for o in og.get("owners", []) if o in failed]
+        if not keep:
+            continue
+        cur = by_id.get(og["objectid"])
+        if cur is None:
+            row = dict(og)
+            row["owners"]      = sorted(keep)
+            row["owner_count"] = len(keep)
+            merged.append(row)
+            by_id[og["objectid"]] = row
+            restored += len(keep)
+        else:
+            for o in keep:
+                if o not in cur["owners"]:
+                    cur["owners"].append(o)
+                    restored += 1
+            cur["owners"].sort()
+            cur["owner_count"] = len(cur["owners"])
+
+    if restored:
+        print(f"Carried forward {restored} ownership rows for failed collectors: "
+              f"{', '.join(sorted(failed))}")
+
+
 def run_phase2(session: requests.Session, merged: list[dict], failed_users: list[str]):
     object_ids   = [g["objectid"] for g in merged]
     game_details = fetch_game_details(session, object_ids)
@@ -371,6 +494,13 @@ def run_phase2(session: requests.Session, merged: list[dict], failed_users: list
 
     merged.sort(key=lambda g: g["name"].lower())
 
+    old_data = json.loads(OUTPUT_PATH.read_text()) if OUTPUT_PATH.exists() else None
+
+    # Protect collectors whose fetch failed this run (see carry_forward_failed).
+    if failed_users and old_data is not None:
+        carry_forward_failed(merged, old_data["games"], failed_users)
+        merged.sort(key=lambda g: g["name"].lower())
+
     output = {
         "meta": {
             "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -382,13 +512,12 @@ def run_phase2(session: requests.Session, merged: list[dict], failed_users: list
     }
 
     # ── Changelog detection ──
-    if OUTPUT_PATH.exists():
-        old_data   = json.loads(OUTPUT_PATH.read_text())
+    if old_data is not None:
         old_names  = {g["objectid"]: g["name"] for g in old_data["games"]}
         new_names  = {g["objectid"]: g["name"] for g in merged}
         old_own    = build_ownership_map(old_data["games"])
         new_own    = build_ownership_map(merged)
-        changes    = compute_changes(old_own, new_own, old_names, new_names)
+        changes    = compute_changes(old_own, new_own, old_names, new_names, skip=set(failed_users))
 
         if changes:
             total_added   = sum(len(c["added"])   for c in changes)
@@ -429,6 +558,7 @@ def main():
 
     if args.phase in ("1", "all"):
         merged, failed_users = run_phase1(session)
+        abort_if_incomplete(merged, failed_users)
 
     if args.phase == "2":
         if CACHE_PATH.exists():
