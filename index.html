@@ -636,10 +636,15 @@
       #game-table .game-name { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-width: 0; }
       td, th { padding: 8px 6px; }
 
-      /* Top games & changelog padding */
-      #tab-top, #tab-changes { padding: 16px 16px 40px; }
+      /* Statistics & changelog padding */
+      #tab-stats, #tab-changes { padding: 16px 16px 40px; }
       .top-controls { gap: 10px; }
       .threshold-btns { flex-wrap: wrap; }
+      .stats-subnav { gap: 0; overflow-x: auto; scrollbar-width: none; }
+      .stats-subnav::-webkit-scrollbar { display: none; }
+      .stats-subtab { flex: 0 0 auto; padding: 8px 12px; font-size: 0.7rem; }
+      .year-chart { height: 200px; }
+      .stats-pct-cell { min-width: 120px; }
     }
 
     /* ── Tab navigation ────────────────────────────────────────────── */
@@ -670,11 +675,131 @@
     .tab-btn:hover { color: var(--text); }
     .tab-btn.active { background: var(--surface); color: var(--accent); }
 
-    /* ── Top games view ────────────────────────────────────────────── */
-    #tab-top {
+    /* ── Statistics view ──────────────────────────────────────────── */
+    #tab-stats {
       flex: 1;
       overflow-y: auto;
       padding: 28px 36px 60px;
+    }
+    .stats-subnav {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 26px;
+      border-bottom: 1px solid var(--border-2);
+      flex-wrap: wrap;
+    }
+    .stats-subtab {
+      padding: 9px 18px;
+      border: none;
+      background: transparent;
+      color: var(--text-2);
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: all 0.15s;
+    }
+    .stats-subtab:hover { color: var(--text); }
+    .stats-subtab.active { color: var(--accent); border-bottom-color: var(--accent); }
+    .stats-blurb {
+      font-size: 0.83rem;
+      color: var(--text-2);
+      margin: 4px 0 22px;
+      max-width: 660px;
+      line-height: 1.55;
+    }
+
+    /* Games-by-year bar chart */
+    .year-chart {
+      display: flex;
+      align-items: flex-end;
+      gap: 3px;
+      height: 280px;
+      margin-bottom: 34px;
+      padding-top: 12px;
+      overflow-x: auto;
+      border-bottom: 1px solid var(--border-2);
+    }
+    .year-bar {
+      flex: 1 0 16px;
+      min-width: 12px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 4px;
+    }
+    .year-bar .bar {
+      width: 100%;
+      min-height: 1px;
+      background: var(--accent-dim);
+      border-radius: 2px 2px 0 0;
+      transition: background 0.15s;
+    }
+    .year-bar:hover .bar { background: var(--accent); }
+    .year-bar .bar-val {
+      font-size: 0.6rem;
+      color: var(--text-3);
+      white-space: nowrap;
+    }
+    .year-bar .bar-yr {
+      font-size: 0.58rem;
+      color: var(--text-3);
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      letter-spacing: 0.03em;
+    }
+
+    /* Statistics tables */
+    .stats-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .stats-table { width: 100%; min-width: 560px; border-collapse: collapse; font-size: 0.85rem; }
+    #year-table { min-width: 680px; }
+    .stats-table th {
+      text-align: left;
+      padding: 8px 10px;
+      font-size: 0.67rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      font-weight: 700;
+      border-bottom: 1px solid var(--border-2);
+      white-space: nowrap;
+    }
+    .stats-table th.num, .stats-table td.num { text-align: right; }
+    .stats-table td {
+      padding: 9px 10px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      vertical-align: middle;
+    }
+    .stats-table tr:hover td { background: var(--surface); }
+    .stats-table a { color: var(--text); }
+    .stats-table a:hover { color: var(--accent); text-decoration: none; }
+    .stats-rank { color: var(--text-3); font-variant-numeric: tabular-nums; font-size: 0.78em; }
+    .year-lead-game { color: var(--text-2); }
+    .stats-pct-cell { min-width: 200px; }
+    .stats-pct-bar {
+      position: relative;
+      height: 20px;
+      background: var(--surface-3);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .stats-pct-fill {
+      position: absolute; left: 0; top: 0; bottom: 0;
+      background: var(--accent-glow);
+      border-right: 2px solid var(--accent);
+    }
+    .stats-pct-num {
+      position: relative;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text);
+      padding-left: 8px;
+      line-height: 20px;
     }
     .top-controls {
       display: flex;
@@ -1367,7 +1492,7 @@
     </div>
     <nav class="tab-nav">
       <button class="tab-btn active" id="tab-btn-collection" onclick="switchTab('collection')">Collection</button>
-      <button class="tab-btn" id="tab-btn-top" onclick="switchTab('top')">Top Games</button>
+      <button class="tab-btn" id="tab-btn-stats" onclick="switchTab('stats')">Statistics</button>
       <button class="tab-btn" id="tab-btn-shops" onclick="switchTab('shops')">Shops</button>
       <button class="tab-btn" id="tab-btn-changes" onclick="switchTab('changes')">Changes</button>
       <button class="tab-btn" id="tab-btn-challenge" onclick="switchTab('challenge')">Haaste '26</button>
@@ -1572,13 +1697,75 @@
   </div>
   </div><!-- /tab-collection -->
 
-  <!-- ── Top Games tab ──────────────────────────────────────────────── -->
-  <div id="tab-top" style="display:none">
-    <div class="top-controls">
-      <span class="top-controls-label">Games owned by 5+ collectors</span>
-      <span class="top-as-of" id="top-as-of"></span>
+  <!-- ── Statistics tab ─────────────────────────────────────────────── -->
+  <div id="tab-stats" style="display:none">
+    <nav class="stats-subnav">
+      <button class="stats-subtab active" id="stats-subtab-top"        onclick="switchStatsSub('top')">Top Games</button>
+      <button class="stats-subtab"        id="stats-subtab-year"       onclick="switchStatsSub('year')">Games by Year</button>
+      <button class="stats-subtab"        id="stats-subtab-mainstream" onclick="switchStatsSub('mainstream')">Mainstream</button>
+      <button class="stats-subtab"        id="stats-subtab-lonewolf"   onclick="switchStatsSub('lonewolf')">Lone Wolf</button>
+    </nav>
+
+    <!-- Top Games sub-tab -->
+    <div id="stats-sub-top" class="stats-sub">
+      <div class="top-controls">
+        <span class="top-controls-label">Games owned by 5+ collectors</span>
+        <span class="top-as-of" id="top-as-of"></span>
+      </div>
+      <div id="top-list"></div>
     </div>
-    <div id="top-list"></div>
+
+    <!-- Games by Year sub-tab -->
+    <div id="stats-sub-year" class="stats-sub" style="display:none">
+      <div class="top-controls-label" style="margin-bottom:6px">Distinct games in the combined collection, by publication year</div>
+      <div id="year-chart" class="year-chart"></div>
+      <div class="stats-table-wrap">
+        <table class="stats-table" id="year-table">
+          <thead><tr>
+            <th>Year</th>
+            <th class="num">Games</th>
+            <th class="num">Copies</th>
+            <th>Top collector(s)</th>
+            <th>Most owned game(s)</th>
+          </tr></thead>
+          <tbody id="year-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Mainstream sub-tab -->
+    <div id="stats-sub-mainstream" class="stats-sub" style="display:none">
+      <div class="top-controls-label" style="margin-bottom:2px">Mainstream score</div>
+      <p class="stats-blurb" id="mainstream-blurb"></p>
+      <div class="stats-table-wrap">
+        <table class="stats-table">
+          <thead><tr>
+            <th class="num">#</th>
+            <th>Collector</th>
+            <th class="num">Classics owned</th>
+            <th>Coverage</th>
+          </tr></thead>
+          <tbody id="mainstream-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Lone Wolf sub-tab -->
+    <div id="stats-sub-lonewolf" class="stats-sub" style="display:none">
+      <div class="top-controls-label" style="margin-bottom:2px">Lone Wolf score</div>
+      <p class="stats-blurb">Share of each collector's games that <em>no other</em> collector owns. A high percentage means a very individual collection full of games nobody else in the group has.</p>
+      <div class="stats-table-wrap">
+        <table class="stats-table">
+          <thead><tr>
+            <th class="num">#</th>
+            <th>Collector</th>
+            <th class="num">Unique / Owned</th>
+            <th>Lone Wolf %</th>
+          </tr></thead>
+          <tbody id="lonewolf-tbody"></tbody>
+        </table>
+      </div>
+    </div>
   </div>
 
   <!-- ── Challenge tab ─────────────────────────────────────────────── -->
@@ -2114,16 +2301,180 @@ function switchTab(tab) {
   currentTab = tab;
   closeSidebar();
   document.getElementById('tab-collection').style.display = tab === 'collection' ? 'flex' : 'none';
-  document.getElementById('tab-top').style.display        = tab === 'top'        ? 'block' : 'none';
+  document.getElementById('tab-stats').style.display      = tab === 'stats'      ? 'block' : 'none';
   document.getElementById('tab-shops').style.display      = tab === 'shops'      ? 'block' : 'none';
   document.getElementById('tab-challenge').style.display  = tab === 'challenge'  ? 'block' : 'none';
   document.getElementById('tab-btn-collection').classList.toggle('active', tab === 'collection');
-  document.getElementById('tab-btn-top').classList.toggle('active', tab === 'top');
+  document.getElementById('tab-btn-stats').classList.toggle('active', tab === 'stats');
   document.getElementById('tab-btn-shops').classList.toggle('active', tab === 'shops');
   document.getElementById('tab-btn-challenge').classList.toggle('active', tab === 'challenge');
-  if (tab === 'top')       renderTopGames();
+  if (tab === 'stats')     renderStats();
   if (tab === 'shops' && !shopInited) { initShops(); shopInited = true; }
   if (tab === 'challenge') { renderChallengeStats(); renderChallengeTable(); }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// STATISTICS  (Top Games · Games by Year · Mainstream · Lone Wolf)
+// ─────────────────────────────────────────────────────────────────────────────
+let statsSub = 'top';
+
+function renderStats() {
+  switchStatsSub(statsSub);
+}
+
+function switchStatsSub(key) {
+  statsSub = key;
+  ['top', 'year', 'mainstream', 'lonewolf'].forEach(k => {
+    const panel = document.getElementById('stats-sub-' + k);
+    const btn   = document.getElementById('stats-subtab-' + k);
+    if (panel) panel.style.display = k === key ? 'block' : 'none';
+    if (btn)   btn.classList.toggle('active', k === key);
+  });
+  if      (key === 'top')        renderTopGames();
+  else if (key === 'year')       renderStatsByYear();
+  else if (key === 'mainstream') renderMainstream();
+  else if (key === 'lonewolf')   renderLoneWolf();
+}
+
+// ── Games by Year ──────────────────────────────────────────────────────────
+const STATS_YEAR_START = 1976;
+
+function statsYearRow(label, games) {
+  if (!games.length) return '';
+  const copies = games.reduce((s, g) => s + g.owner_count, 0);
+
+  // Which collector(s) own the most games from this set
+  const perColl = {};
+  games.forEach(g => g.owners.forEach(u => { perColl[u] = (perColl[u] || 0) + 1; }));
+  const maxColl = Math.max(...Object.values(perColl));
+  const leaders = Object.keys(perColl).filter(u => perColl[u] === maxColl).sort();
+  const leadHtml = leaders.map(u => {
+    const [fg, bg] = ownerColMap[u] || ['#888', '#222'];
+    return `<span class="owner-pill" style="color:${fg};background:${bg}">${escHtml(u)}</span>`;
+  }).join(' ') + ` <span class="stats-rank">×${maxColl}</span>`;
+
+  // Most commonly owned game(s) from this set
+  const maxOwn  = Math.max(...games.map(g => g.owner_count));
+  const popular = games.filter(g => g.owner_count === maxOwn)
+                       .sort((a, b) => a.name.localeCompare(b.name));
+  const popHtml = popular.map(g =>
+    `<a href="${g.bgg_url}" target="_blank" rel="noopener">${escHtml(g.name)}</a>`
+  ).join(', ') + ` <span class="stats-rank">×${maxOwn}</span>`;
+
+  return `<tr>
+    <td>${label}</td>
+    <td class="num">${games.length}</td>
+    <td class="num">${copies}</td>
+    <td>${leadHtml}</td>
+    <td class="year-lead-game">${popHtml}</td>
+  </tr>`;
+}
+
+function renderStatsByYear() {
+  const chart = document.getElementById('year-chart');
+  const tbody = document.getElementById('year-tbody');
+  if (!allGames.length) { chart.innerHTML = ''; tbody.innerHTML = ''; return; }
+
+  const byYear = new Map();
+  const preGames = [];
+  allGames.forEach(g => {
+    const y = g.year;
+    if (!y) return;
+    if (y < STATS_YEAR_START) { preGames.push(g); return; }
+    if (!byYear.has(y)) byYear.set(y, []);
+    byYear.get(y).push(g);
+  });
+
+  if (!byYear.size) {
+    chart.innerHTML = '<div class="top-empty">No dated games.</div>';
+    tbody.innerHTML = '';
+    return;
+  }
+
+  const maxYear = Math.max(...byYear.keys());
+  const years = [];
+  for (let y = STATS_YEAR_START; y <= maxYear; y++) years.push(y);
+  const maxCount = Math.max(...years.map(y => (byYear.get(y) || []).length));
+
+  chart.innerHTML = years.map(y => {
+    const n = (byYear.get(y) || []).length;
+    const h = maxCount ? (n / maxCount * 100) : 0;
+    return `<div class="year-bar" title="${y}: ${n} game${n === 1 ? '' : 's'}">
+      <span class="bar-val">${n || ''}</span>
+      <div class="bar" style="height:${h}%"></div>
+      <span class="bar-yr">${y}</span>
+    </div>`;
+  }).join('');
+
+  const rows = [...years].reverse()
+    .filter(y => (byYear.get(y) || []).length)
+    .map(y => statsYearRow(y, byYear.get(y)))
+    .join('');
+  const preRow = statsYearRow(`before ${STATS_YEAR_START}`, preGames);
+
+  tbody.innerHTML = rows + preRow;
+}
+
+// ── Mainstream ─────────────────────────────────────────────────────────────
+const STATS_CLASSIC_MIN = 5;
+
+function statsPctRow(rank, user, fraction, pct) {
+  const [fg, bg] = ownerColMap[user] || ['#888', '#222'];
+  return `<tr>
+    <td class="num stats-rank">${rank}</td>
+    <td><span class="owner-pill" style="color:${fg};background:${bg}">${escHtml(user)}</span></td>
+    <td class="num">${fraction}</td>
+    <td class="stats-pct-cell">
+      <div class="stats-pct-bar">
+        <div class="stats-pct-fill" style="width:${Math.max(pct, 0).toFixed(1)}%"></div>
+        <span class="stats-pct-num">${pct.toFixed(1)}%</span>
+      </div>
+    </td>
+  </tr>`;
+}
+
+function renderMainstream() {
+  const tbody = document.getElementById('mainstream-tbody');
+  const blurb = document.getElementById('mainstream-blurb');
+  if (!allGames.length) { tbody.innerHTML = ''; return; }
+
+  const classics = allGames.filter(g => g.owner_count >= STATS_CLASSIC_MIN);
+  const total = classics.length;
+  blurb.textContent =
+    `How much of the group's "classic" canon each collector owns — the ${total} games that appear in ` +
+    `${STATS_CLASSIC_MIN} or more of the ${collectors.length} collections (the Top Games list). ` +
+    `A high score means a collection built around widely-owned staples.`;
+
+  const rows = collectors.map(u => {
+    const owned = classics.reduce((s, g) => s + (g.owners.includes(u) ? 1 : 0), 0);
+    const pct   = total ? owned / total * 100 : 0;
+    return { u, owned, pct };
+  }).sort((a, b) => b.pct - a.pct || a.u.localeCompare(b.u));
+
+  tbody.innerHTML = rows.map((r, i) =>
+    statsPctRow(i + 1, r.u, `${r.owned} / ${total}`, r.pct)
+  ).join('');
+}
+
+// ── Lone Wolf ──────────────────────────────────────────────────────────────
+function renderLoneWolf() {
+  const tbody = document.getElementById('lonewolf-tbody');
+  if (!allGames.length) { tbody.innerHTML = ''; return; }
+
+  const rows = collectors.map(u => {
+    let owned = 0, lone = 0;
+    allGames.forEach(g => {
+      if (!g.owners.includes(u)) return;
+      owned++;
+      if (g.owner_count === 1) lone++;
+    });
+    const pct = owned ? lone / owned * 100 : 0;
+    return { u, owned, lone, pct };
+  }).sort((a, b) => b.pct - a.pct || b.lone - a.lone || a.u.localeCompare(b.u));
+
+  tbody.innerHTML = rows.map((r, i) =>
+    statsPctRow(i + 1, r.u, `${r.lone} / ${r.owned}`, r.pct)
+  ).join('');
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -2402,7 +2753,7 @@ function saveColors() {
   localStorage.setItem(COLOURS_KEY, JSON.stringify(saved));
   buildOwnerColMap();
   // Re-render current page
-  if (currentTab === 'top') renderTopGames();
+  if (currentTab === 'stats') renderStats();
   else if (currentTab === 'collection') renderPage();
   closeAdmin();
 }
