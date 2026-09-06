@@ -649,9 +649,13 @@
       background: var(--surface-3);
       border-radius: var(--radius);
       padding: 3px;
+      max-width: 100%;
+      overflow-x: auto;
+      scrollbar-width: none;
     }
+    .tab-nav::-webkit-scrollbar { display: none; }
     .tab-btn {
-      padding: 6px 18px;
+      padding: 6px 15px;
       border: none;
       border-radius: 4px;
       background: transparent;
@@ -660,6 +664,7 @@
       font-weight: 600;
       letter-spacing: 0.07em;
       text-transform: uppercase;
+      white-space: nowrap;
       transition: all 0.15s;
     }
     .tab-btn:hover { color: var(--text); }
@@ -1286,19 +1291,33 @@
     .shops-bgg:hover { color: var(--accent); }
     .shops-link-list { display: flex; flex-direction: column; }
     .shops-link-list a {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 8px 4px; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between; gap: 10px;
+      padding: 8px 8px; border-bottom: 1px solid var(--border);
+      border-left: 2px solid transparent;
       color: var(--text); font-weight: 400;
     }
     .shops-link-list a:last-child { border-bottom: none; }
     .shops-link-list a:hover { color: var(--accent); text-decoration: none; }
+    .shops-link-list a.perk { border-left-color: var(--accent); background: var(--accent-glow); }
+    .shops-link-left { display: flex; align-items: baseline; gap: 7px; min-width: 0; }
     .shops-link-store { font-family: var(--font-title); font-size: 1rem; }
     .shops-link-go {
       font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--text-3);
+      color: var(--text-3); white-space: nowrap;
     }
     .shops-link-list a:hover .shops-link-go { color: var(--accent); }
     .shops-empty { color: var(--text-3); font-size: 0.85rem; padding: 8px 0; }
+
+    .shop-badges { font-size: 0.85em; letter-spacing: 1px; white-space: nowrap; flex-shrink: 0; }
+    .shop-store-btn .shop-badges { margin-left: 2px; }
+    .shop-store-btn.perk { border-color: var(--accent-dim); }
+    .shop-store-btn.perk.active { border-color: var(--owned); }
+    .shops-legend {
+      display: flex; flex-wrap: wrap; gap: 4px 16px;
+      max-width: 780px; margin: -6px 0 20px;
+      font-size: 0.72rem; color: var(--text-3);
+    }
+    .shops-legend span { white-space: nowrap; }
 
     /* Shop-search shortcut icon in game rows */
     .shop-ico {
@@ -1665,6 +1684,12 @@
         </div>
         <div class="shops-store-grid" id="shop-grid-Ulkomaat"></div>
       </div>
+    </div>
+
+    <div class="shops-legend">
+      <span>🏘️ Local game store</span>
+      <span>👛 Finnish Board Game Society benefit</span>
+      <span>🇸🇪🇫🇷🇩🇪🇳🇱🇧🇪 Shop's country</span>
     </div>
 
     <div class="shops-results" id="shop-results" style="display:none"></div>
@@ -2766,17 +2791,23 @@ function openPinModal(callback) {
 // ─────────────────────────────────────────────────────────────────────────────
 // SHOPS TAB — fan a game name out to FI / EU board-game store searches
 // ─────────────────────────────────────────────────────────────────────────────
+// local  — 🏘️ "support your local game store"
+// fbgs   — 👛 Finnish Board Game Society (Suomen lautapeliseura) member benefit
+// flag   — country flag shown for shops outside Finland
+// nosearch — shop has no search page; the link opens its front page instead
 const SHOP_STORES = [
-  { group:'Suomi', name:'Pelipeikko',          url:'https://pelipeikko.fi/fi/etsi?controller=search&s=' },
-  { group:'Suomi', name:'Happy Badger',        url:'https://www.happybadger.fi/search?q=', suffix:'&options%5Bprefix%5D=last' },
-  { group:'Suomi', name:'Martinex',            url:'https://www.martinex.fi/catalogsearch/result/?q=' },
-  { group:'Suomi', name:'Muovitukku',          url:'https://www.muovitukku.fi/?s=' },
-  { group:'Suomi', name:'Spelivinkki',         url:'https://spelivinkki.fi/?s=', suffix:'&post_type=product' },
-  { group:'Suomi', name:'Tactic',              url:'https://games.tactic.net/?s=', suffix:'&post_type=product' },
-  { group:'Suomi', name:'Fantasiapelit',       url:'https://www.fantasiapelit.com/index.php?main=ai&mista=*&yhteen=eri&alue=&autoid=&kat=&etsittava=', suffix:'&hae=HAE' },
-  { group:'Suomi', name:'Lautapelit.fi',       url:'https://www.lautapelit.fi/search/?q=' },
-  { group:'Suomi', name:'Poromagia',           url:'https://lautapelit.poromagia.com/fi/search/?q=' },
-  { group:'Suomi', name:'Puolenkuun Pelit',    url:'https://www.puolenkuunpelit.com/kauppa/advanced_search_result.php?keywords=' },
+  { group:'Suomi', name:'Pelipeikko',          url:'https://pelipeikko.fi/fi/etsi?controller=search&s=', local:true, fbgs:true },
+  { group:'Suomi', name:'Happy Badger',        url:'https://www.happybadger.fi/search?q=', suffix:'&options%5Bprefix%5D=last', local:true },
+  { group:'Suomi', name:'Martinex',            url:'https://www.martinex.fi/catalogsearch/result/?q=', local:true },
+  { group:'Suomi', name:'Muovitukku',          url:'https://www.muovitukku.fi/?s=', local:true },
+  { group:'Suomi', name:'Snowdale Design',     url:'https://snowdaledesign.fi/store/', local:true, fbgs:true, nosearch:true },
+  { group:'Suomi', name:'Spelivinkki',         url:'https://spelivinkki.fi/?s=', suffix:'&post_type=product', local:true },
+  { group:'Suomi', name:'Tactic',              url:'https://games.tactic.net/?s=', suffix:'&post_type=product', local:true },
+  { group:'Suomi', name:'Fantasiapelit',       url:'https://www.fantasiapelit.com/index.php?main=ai&mista=*&yhteen=eri&alue=&autoid=&kat=&etsittava=', suffix:'&hae=HAE', fbgs:true },
+  { group:'Suomi', name:'Laiska Pelikaani',    url:'https://www.laiskapelikaani.fi/shop?search=', suffix:'&order=name+asc', fbgs:true },
+  { group:'Suomi', name:'Lautapelit.fi',       url:'https://www.lautapelit.fi/search/?q=', fbgs:true },
+  { group:'Suomi', name:'Poromagia',           url:'https://lautapelit.poromagia.com/fi/search/?q=', fbgs:true },
+  { group:'Suomi', name:'Puolenkuun Pelit',    url:'https://www.puolenkuunpelit.com/kauppa/advanced_search_result.php?keywords=', fbgs:true },
   { group:'Suomi', name:'Aprikoi Games',       url:'https://www.aprikoi.fi/search?q=', suffix:'&options%5Bprefix%5D=last' },
   { group:'Suomi', name:'Lautapelikauppa.com', url:'https://lautapelikauppa.com/search?q=' },
   { group:'Suomi', name:'Pelimies',            url:'https://pelimies.fi/?s=' },
@@ -2784,14 +2815,22 @@ const SHOP_STORES = [
   { group:'Suomi', name:'Verkkokauppa.com',    url:'https://www.verkkokauppa.com/fi/catalog/lautapelit?query=' },
   { group:'Suomi', name:'K-Citymarket',        url:'https://www.k-citymarket.fi/haku?q=' },
   { group:'Suomi', name:'Prisma',              url:'https://www.prisma.fi/haku?search=' },
-  { group:'Suomi', name:'AdLibris',            url:'https://www.adlibris.com/fi/haku?q=', suffix:'&filter=categoryfacet%3alautapelit+%26+palapelit' },
-  { group:'Suomi', name:'Spelexperten',        url:'https://www.spelexperten.fi/cgi-bin/ibutik/AIR_ibutik.fcgi?funk=gor_sokning&AvanceradSokning=N&artnr=&varum=&artgrp=&Sprak_Suffix=FI&term=' },
-  { group:'Ulkomaat', name:'Philibert',        url:'https://www.philibertnet.com/en/search?search_query=', suffix:'&submit_search=' },
-  { group:'Ulkomaat', name:'Hexasim',          url:'https://www.hexasim.com/en/index.php?page=recherche&recherche=' },
-  { group:'Ulkomaat', name:'FantasyWelt.de',   url:'https://www.fantasywelt.de/?lang=eng#f820/brand-categories/m=and&q=' },
-  { group:'Ulkomaat', name:'Spelspul.nl',      url:'https://www.spelspul.nl/gb/#%7B%22a09532e779e7%22%3A%7B%22search_term%22%3A%22', suffix:'%22%2C%22filters%22%3A%5B%5D%2C%22sorting%22%3A%5B%5D%2C%22offsets%22%3A%7B%22category%22%3A12%2C%22product%22%3A42%7D%7D%7D' },
-  { group:'Ulkomaat', name:'Spelshop.be',      url:'https://www.spelshop.be/en/search?controller=search&order=product.position.desc&s=' },
+  { group:'Ulkomaat', name:'AdLibris',         url:'https://www.adlibris.com/fi/haku?q=', suffix:'&filter=categoryfacet%3alautapelit+%26+palapelit', flag:'🇸🇪' },
+  { group:'Ulkomaat', name:'Spelexperten',     url:'https://www.spelexperten.fi/cgi-bin/ibutik/AIR_ibutik.fcgi?funk=gor_sokning&AvanceradSokning=N&artnr=&varum=&artgrp=&Sprak_Suffix=FI&term=', flag:'🇸🇪' },
+  { group:'Ulkomaat', name:'Philibert',        url:'https://www.philibertnet.com/en/search?search_query=', suffix:'&submit_search=', flag:'🇫🇷' },
+  { group:'Ulkomaat', name:'Hexasim',          url:'https://www.hexasim.com/en/index.php?page=recherche&recherche=', flag:'🇫🇷' },
+  { group:'Ulkomaat', name:'FantasyWelt.de',   url:'https://www.fantasywelt.de/?lang=eng#f820/brand-categories/m=and&q=', flag:'🇩🇪' },
+  { group:'Ulkomaat', name:'Spelspul.nl',      url:'https://www.spelspul.nl/gb/#%7B%22a09532e779e7%22%3A%7B%22search_term%22%3A%22', suffix:'%22%2C%22filters%22%3A%5B%5D%2C%22sorting%22%3A%5B%5D%2C%22offsets%22%3A%7B%22category%22%3A12%2C%22product%22%3A42%7D%7D%7D', flag:'🇳🇱' },
+  { group:'Ulkomaat', name:'Spelshop.be',      url:'https://www.spelshop.be/en/search?controller=search&order=product.position.desc&s=', flag:'🇧🇪' },
 ];
+
+function shopBadges(s) {
+  let b = '';
+  if (s.local) b += '🏘️';
+  if (s.fbgs)  b += '👛';
+  if (s.flag)  b += s.flag;
+  return b;
+}
 const SHOP_SEL_KEY = 'lc_shop_stores';
 const SHOP_Q_KEY   = 'lc_shop_query';
 let shopSelected = null;
@@ -2804,9 +2843,10 @@ function initShops() {
 
   ['Suomi', 'Ulkomaat'].forEach(group => {
     const grid = document.getElementById('shop-grid-' + group);
-    grid.innerHTML = SHOP_STORES.filter(s => s.group === group).map(s =>
-      `<button class="shop-store-btn${shopSelected.has(s.name) ? ' active' : ''}" data-store="${escHtml(s.name)}" onclick="toggleShopStore(this)">${escHtml(s.name)}</button>`
-    ).join('');
+    grid.innerHTML = SHOP_STORES.filter(s => s.group === group).map(s => {
+      const badges = shopBadges(s);
+      return `<button class="shop-store-btn${shopSelected.has(s.name) ? ' active' : ''}${(s.local || s.fbgs) ? ' perk' : ''}" data-store="${escHtml(s.name)}" onclick="toggleShopStore(this)">${escHtml(s.name)}${badges ? ` <span class="shop-badges">${badges}</span>` : ''}</button>`;
+    }).join('');
   });
 
   const q = localStorage.getItem(SHOP_Q_KEY);
@@ -2857,7 +2897,8 @@ function runShopSearch() {
 
   const enc    = encodeURIComponent(q);
   const chosen = SHOP_STORES.filter(s => shopSelected.has(s.name));
-  window._shopLinks = chosen.map(s => s.url + enc + (s.suffix || ''));
+  const shopUrl = s => s.nosearch ? s.url : s.url + enc + (s.suffix || '');
+  window._shopLinks = chosen.map(shopUrl);
 
   if (!chosen.length) {
     box.innerHTML = '<div class="shops-empty">No stores selected — pick at least one above.</div>';
@@ -2874,7 +2915,13 @@ function runShopSearch() {
     </div>
     <a class="shops-bgg" href="https://boardgamegeek.com/geeksearch.php?action=search&objecttype=boardgame&q=${enc}" target="_blank" rel="noopener">↗ Look up on BoardGameGeek</a>
     <div class="shops-link-list">
-      ${chosen.map(s => `<a href="${s.url}${enc}${s.suffix || ''}" target="_blank" rel="noopener"><span class="shops-link-store">${escHtml(s.name)}</span><span class="shops-link-go">Search ↗</span></a>`).join('')}
+      ${chosen.map(s => {
+        const badges = shopBadges(s);
+        const perk   = (s.local || s.fbgs) ? ' class="perk"' : '';
+        const ttl    = s.nosearch ? ' title="This shop has no search page — opens its front page"' : '';
+        const go     = s.nosearch ? 'Front page ↗' : 'Search ↗';
+        return `<a${perk}${ttl} href="${shopUrl(s)}" target="_blank" rel="noopener"><span class="shops-link-left"><span class="shops-link-store">${escHtml(s.name)}</span>${badges ? `<span class="shop-badges">${badges}</span>` : ''}</span><span class="shops-link-go">${go}</span></a>`;
+      }).join('')}
     </div>`;
 }
 
