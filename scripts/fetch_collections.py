@@ -100,15 +100,22 @@ def load_dotenv():
 # ── Authentication ─────────────────────────────────────────────────────────────
 
 def login(session: requests.Session) -> bool:
-    """Log in to BGG. Returns True on success, False on a definitive auth
-    failure. Transient problems (network errors, 5xx) are retried a few times
-    before giving up so a momentary blip at login doesn't kill the run."""
+    """Attempt username/password login to BGG. Returns True on success, False on
+    any failure (missing creds, auth rejection, or the endpoint being
+    unreachable). Transient problems (network errors, 5xx) are retried a few
+    times first. This is best-effort: when a BGG_API_TOKEN is set the caller can
+    proceed on Bearer auth alone (see make_session), so a failure here is not
+    necessarily fatal.
+
+    Note: from cloud/CI IP ranges this endpoint frequently returns HTTP 403
+    (Cloudflare bot protection) even with valid credentials — which is exactly
+    why token-only auth is the primary path."""
     username = os.environ.get("BGG_USERNAME", "").strip()
     password = os.environ.get("BGG_PASSWORD", "").strip()
 
     if not username or not password:
-        print("ERROR: BGG_USERNAME and BGG_PASSWORD are required.")
-        sys.exit(1)
+        print("no BGG_USERNAME/BGG_PASSWORD set — skipping password login")
+        return False
 
     for attempt in range(1, 4):
         print(f"Logging in to BGG as '{username}' (attempt {attempt})…", end=" ", flush=True)
@@ -131,7 +138,8 @@ def login(session: requests.Session) -> bool:
             print(f"server error HTTP {resp.status_code} — retrying in {RETRY_DELAY}s")
             time.sleep(RETRY_DELAY)
             continue
-        print(f"FAILED (HTTP {resp.status_code})")
+        hint = "  (likely a Cloudflare IP block, not bad credentials)" if resp.status_code == 403 else ""
+        print(f"FAILED (HTTP {resp.status_code}){hint}")
         return False
 
     print("FAILED (login endpoint unreachable after retries)")
@@ -139,14 +147,25 @@ def login(session: requests.Session) -> bool:
 
 
 def make_session() -> requests.Session:
+    """Build an authenticated session. Primary auth is the BGG_API_TOKEN Bearer
+    header, which on its own is sufficient for the collection and thing
+    endpoints. Password login is attempted opportunistically (it adds a session
+    cookie) but its failure is only fatal when there is no token to fall back
+    on."""
     session = requests.Session()
     session.headers.update(HEADERS)
-    if not login(session):
-        sys.exit(1)
+
     api_token = os.environ.get("BGG_API_TOKEN", "").strip()
     if api_token:
         session.headers.update({"Authorization": f"Bearer {api_token}"})
         print("BGG API token present — Bearer auth enabled.")
+
+    if not login(session):
+        if api_token:
+            print("Password login unavailable — continuing with Bearer token only.")
+        else:
+            sys.exit("ERROR: password login failed and no BGG_API_TOKEN is set — cannot authenticate.")
+
     return session
 
 # ── Phase 1: Collection fetch ──────────────────────────────────────────────────
