@@ -1,3 +1,8 @@
 .env
 .DS_Store
+data/phase1_cache.json
+
+# Local reference docs — kept in the project root but never committed
+CLAUDE.md
+PROJEKTIREFERENSSI.md
 litsan-kokoelmat-context.md
