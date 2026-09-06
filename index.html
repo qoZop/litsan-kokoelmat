@@ -597,20 +597,24 @@
       .stat-pill { font-size: 0.68rem; }
       .tab-nav {
         order: 10;
-        width: 100%;
+        width: calc(100% + 32px);
         border-radius: 0;
         background: transparent;
         border-top: 1px solid var(--border);
         padding: 0;
         margin: 8px -16px 0;
-        width: calc(100% + 32px);
-        justify-content: stretch;
+        justify-content: flex-start;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
       }
+      .tab-nav::-webkit-scrollbar { display: none; }
       .tab-btn {
-        flex: 1;
+        flex: 0 0 auto;
+        white-space: nowrap;
         border-radius: 0;
-        padding: 10px 4px;
-        font-size: 0.7rem;
+        padding: 11px 16px;
+        font-size: 0.72rem;
         border-bottom: 2px solid transparent;
       }
       .tab-btn.active {
@@ -1202,6 +1206,113 @@
       .challenge-card  { min-width: 100px; padding: 10px 14px; }
       .challenge-card-value { font-size: 1.5rem; }
     }
+
+    /* ── Shops tab ─────────────────────────────────────────────────── */
+    #tab-shops {
+      flex: 1; overflow-y: auto;
+      padding: 28px 36px 60px;
+    }
+    .shops-search-bar {
+      display: flex; gap: 10px; margin-bottom: 22px;
+      max-width: 640px;
+    }
+    .shop-input { flex: 1; font-size: 0.95rem; padding: 11px 14px; }
+    .shop-go-btn {
+      padding: 0 22px; background: var(--accent); color: #0c1510;
+      border: none; border-radius: var(--radius);
+      font-family: var(--font-ui); font-size: 0.8rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase; transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .shop-go-btn:hover { background: #e8a83a; }
+
+    .shops-store-panel {
+      display: flex; flex-direction: column; gap: 16px;
+      margin-bottom: 24px; max-width: 780px;
+    }
+    .shops-store-group {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 14px 16px;
+    }
+    .shops-group-head {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .shops-group-head span {
+      font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--text-3); font-weight: 700;
+    }
+    .shops-toggle-all {
+      background: none; border: none; color: var(--text-3);
+      font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase;
+      font-weight: 700; transition: color 0.15s;
+    }
+    .shops-toggle-all:hover { color: var(--accent); }
+    .shops-store-grid { display: flex; flex-wrap: wrap; gap: 5px; }
+    .shop-store-btn {
+      padding: 4px 10px; border-radius: 20px;
+      border: 1px solid var(--border-2); background: transparent;
+      color: var(--text-2); font-size: 0.72rem; letter-spacing: 0.03em;
+      transition: all 0.15s; white-space: nowrap;
+    }
+    .shop-store-btn:hover { border-color: var(--text-2); color: var(--text); }
+    .shop-store-btn.active {
+      background: var(--owned-dim); border-color: var(--owned);
+      color: var(--owned); font-weight: 600;
+    }
+
+    .shops-results {
+      max-width: 640px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 16px 18px;
+    }
+    .shops-results-head {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 10px; flex-wrap: wrap;
+      font-size: 0.8rem; color: var(--text-2);
+      padding-bottom: 12px; margin-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .shops-results-head strong { color: var(--accent); }
+    .shops-results-actions { display: flex; gap: 6px; }
+    .shops-results-actions button {
+      padding: 5px 12px; background: var(--surface-2);
+      border: 1px solid var(--border-2); border-radius: var(--radius);
+      color: var(--text-2); font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.04em; transition: all 0.15s;
+    }
+    .shops-results-actions button:hover { background: var(--surface-3); color: var(--text); }
+    .shops-bgg { display: block; font-size: 0.8rem; margin-bottom: 12px; color: var(--text-2); }
+    .shops-bgg:hover { color: var(--accent); }
+    .shops-link-list { display: flex; flex-direction: column; }
+    .shops-link-list a {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 8px 4px; border-bottom: 1px solid var(--border);
+      color: var(--text); font-weight: 400;
+    }
+    .shops-link-list a:last-child { border-bottom: none; }
+    .shops-link-list a:hover { color: var(--accent); text-decoration: none; }
+    .shops-link-store { font-family: var(--font-title); font-size: 1rem; }
+    .shops-link-go {
+      font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--text-3);
+    }
+    .shops-link-list a:hover .shops-link-go { color: var(--accent); }
+    .shops-empty { color: var(--text-3); font-size: 0.85rem; padding: 8px 0; }
+
+    /* Shop-search shortcut icon in game rows */
+    .shop-ico {
+      cursor: pointer; font-size: 0.8rem; margin-left: 6px;
+      opacity: 0.3; transition: opacity 0.15s; user-select: none;
+      vertical-align: middle;
+    }
+    .shop-ico:hover { opacity: 1; }
+
+    @media (max-width: 680px) {
+      #tab-shops { padding: 16px 16px 40px; }
+      .shops-search-bar { flex-wrap: wrap; }
+      #game-table .shop-ico { display: none; }
+    }
   </style>
 </head>
 <body>
@@ -1238,6 +1349,7 @@
     <nav class="tab-nav">
       <button class="tab-btn active" id="tab-btn-collection" onclick="switchTab('collection')">Collection</button>
       <button class="tab-btn" id="tab-btn-top" onclick="switchTab('top')">Top Games</button>
+      <button class="tab-btn" id="tab-btn-shops" onclick="switchTab('shops')">Shops</button>
       <button class="tab-btn" id="tab-btn-changes" onclick="switchTab('changes')">Changes</button>
       <button class="tab-btn" id="tab-btn-challenge" onclick="switchTab('challenge')">Haaste '26</button>
     </nav>
@@ -1524,6 +1636,40 @@
 
   </div>
 
+  <!-- ── Shops tab ─────────────────────────────────────────────────── -->
+  <div id="tab-shops" style="display:none">
+    <div class="challenge-hero">
+      <div class="challenge-hero-title">Store search</div>
+      <div class="challenge-hero-sub">Check a game's availability across Finnish &amp; European shops</div>
+    </div>
+
+    <div class="shops-search-bar">
+      <input id="shop-input" type="text" class="search-input shop-input"
+             placeholder="Game name…"
+             onkeydown="if(event.key==='Enter')runShopSearch()" />
+      <button class="shop-go-btn" onclick="runShopSearch()">Search</button>
+    </div>
+
+    <div class="shops-store-panel">
+      <div class="shops-store-group">
+        <div class="shops-group-head">
+          <span>Suomi</span>
+          <button class="shops-toggle-all" onclick="toggleShopGroup('Suomi')">Toggle all</button>
+        </div>
+        <div class="shops-store-grid" id="shop-grid-Suomi"></div>
+      </div>
+      <div class="shops-store-group">
+        <div class="shops-group-head">
+          <span>Ulkomaat</span>
+          <button class="shops-toggle-all" onclick="toggleShopGroup('Ulkomaat')">Toggle all</button>
+        </div>
+        <div class="shops-store-grid" id="shop-grid-Ulkomaat"></div>
+      </div>
+    </div>
+
+    <div class="shops-results" id="shop-results" style="display:none"></div>
+  </div>
+
   <!-- ── Changes tab ──────────────────────────────────────────────── -->
   <div id="tab-changes" style="display:none">
     <div id="changelog-content">
@@ -1795,7 +1941,7 @@ function renderPage() {
       : '';
 
     return `<tr>
-      <td class="col-name game-name">${chalBadge}<a href="${g.bgg_url}" target="_blank" rel="noopener">${escHtml(g.name)}</a></td>
+      <td class="col-name game-name">${chalBadge}<a href="${g.bgg_url}" target="_blank" rel="noopener">${escHtml(g.name)}</a><span class="shop-ico" title="Find in shops" data-name="${escHtml(g.name)}" onclick="shopSearchFor(this.dataset.name)">🛒</span></td>
       <td class="col-year cell-muted">${g.year || '<span class="cell-dim">—</span>'}</td>
       <td class="col-players cell-muted">${players}</td>
       <td class="col-time cell-muted">${time}</td>
@@ -1944,11 +2090,14 @@ function switchTab(tab) {
   closeSidebar();
   document.getElementById('tab-collection').style.display = tab === 'collection' ? 'flex' : 'none';
   document.getElementById('tab-top').style.display        = tab === 'top'        ? 'block' : 'none';
+  document.getElementById('tab-shops').style.display      = tab === 'shops'      ? 'block' : 'none';
   document.getElementById('tab-challenge').style.display  = tab === 'challenge'  ? 'block' : 'none';
   document.getElementById('tab-btn-collection').classList.toggle('active', tab === 'collection');
   document.getElementById('tab-btn-top').classList.toggle('active', tab === 'top');
+  document.getElementById('tab-btn-shops').classList.toggle('active', tab === 'shops');
   document.getElementById('tab-btn-challenge').classList.toggle('active', tab === 'challenge');
   if (tab === 'top')       renderTopGames();
+  if (tab === 'shops' && !shopInited) { initShops(); shopInited = true; }
   if (tab === 'challenge') { renderChallengeStats(); renderChallengeTable(); }
 }
 
@@ -1999,7 +2148,7 @@ function renderTopGames() {
       const rating = g.bgg_rating ? `<span class="top-game-rating">★ ${g.bgg_rating.toFixed(1)}</span>` : `<span class="top-game-rating" style="color:var(--text-3)">—</span>`;
 
       return `<div class="top-game-row">
-        <div class="top-game-name"><a href="${g.bgg_url}" target="_blank" rel="noopener">${escHtml(g.name)}</a></div>
+        <div class="top-game-name"><a href="${g.bgg_url}" target="_blank" rel="noopener">${escHtml(g.name)}</a><span class="shop-ico" title="Find in shops" data-name="${escHtml(g.name)}" onclick="shopSearchFor(this.dataset.name)">🛒</span></div>
         <div class="top-game-year">${g.year || ''}</div>
         ${rating}
         <div class="top-game-owners">${pills}</div>
@@ -2446,7 +2595,7 @@ function renderChallengeTable() {
       : '';
 
     return `<tr>
-      <td class="game-name">${badge}<a href="https://boardgamegeek.com/boardgame/${oid}" target="_blank" rel="noopener">${escHtml(name)}</a>${nameEdit}</td>
+      <td class="game-name">${badge}<a href="https://boardgamegeek.com/boardgame/${oid}" target="_blank" rel="noopener">${escHtml(name)}</a>${nameEdit}<span class="shop-ico" title="Find in shops" data-name="${escHtml(name)}" onclick="shopSearchFor(this.dataset.name)">🛒</span></td>
       <td><div class="owner-pills">${pills}</div></td>
       <td${editAttr}>${chalAdminMode && played ? '✏ ' : ''}${dateStr}</td>
     </tr>`;
@@ -2612,6 +2761,149 @@ function openPinModal(callback) {
   err.textContent = '';
   input.value = '';
   setTimeout(() => input.focus(), 50);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SHOPS TAB — fan a game name out to FI / EU board-game store searches
+// ─────────────────────────────────────────────────────────────────────────────
+const SHOP_STORES = [
+  { group:'Suomi', name:'Pelipeikko',          url:'https://pelipeikko.fi/fi/etsi?controller=search&s=' },
+  { group:'Suomi', name:'Happy Badger',        url:'https://www.happybadger.fi/search?q=', suffix:'&options%5Bprefix%5D=last' },
+  { group:'Suomi', name:'Martinex',            url:'https://www.martinex.fi/catalogsearch/result/?q=' },
+  { group:'Suomi', name:'Muovitukku',          url:'https://www.muovitukku.fi/?s=' },
+  { group:'Suomi', name:'Spelivinkki',         url:'https://spelivinkki.fi/?s=', suffix:'&post_type=product' },
+  { group:'Suomi', name:'Tactic',              url:'https://games.tactic.net/?s=', suffix:'&post_type=product' },
+  { group:'Suomi', name:'Fantasiapelit',       url:'https://www.fantasiapelit.com/index.php?main=ai&mista=*&yhteen=eri&alue=&autoid=&kat=&etsittava=', suffix:'&hae=HAE' },
+  { group:'Suomi', name:'Lautapelit.fi',       url:'https://www.lautapelit.fi/search/?q=' },
+  { group:'Suomi', name:'Poromagia',           url:'https://lautapelit.poromagia.com/fi/search/?q=' },
+  { group:'Suomi', name:'Puolenkuun Pelit',    url:'https://www.puolenkuunpelit.com/kauppa/advanced_search_result.php?keywords=' },
+  { group:'Suomi', name:'Aprikoi Games',       url:'https://www.aprikoi.fi/search?q=', suffix:'&options%5Bprefix%5D=last' },
+  { group:'Suomi', name:'Lautapelikauppa.com', url:'https://lautapelikauppa.com/search?q=' },
+  { group:'Suomi', name:'Pelimies',            url:'https://pelimies.fi/?s=' },
+  { group:'Suomi', name:'Tokmanni',            url:'https://www.tokmanni.fi/search/?q=' },
+  { group:'Suomi', name:'Verkkokauppa.com',    url:'https://www.verkkokauppa.com/fi/catalog/lautapelit?query=' },
+  { group:'Suomi', name:'K-Citymarket',        url:'https://www.k-citymarket.fi/haku?q=' },
+  { group:'Suomi', name:'Prisma',              url:'https://www.prisma.fi/haku?search=' },
+  { group:'Suomi', name:'AdLibris',            url:'https://www.adlibris.com/fi/haku?q=', suffix:'&filter=categoryfacet%3alautapelit+%26+palapelit' },
+  { group:'Suomi', name:'Spelexperten',        url:'https://www.spelexperten.fi/cgi-bin/ibutik/AIR_ibutik.fcgi?funk=gor_sokning&AvanceradSokning=N&artnr=&varum=&artgrp=&Sprak_Suffix=FI&term=' },
+  { group:'Ulkomaat', name:'Philibert',        url:'https://www.philibertnet.com/en/search?search_query=', suffix:'&submit_search=' },
+  { group:'Ulkomaat', name:'Hexasim',          url:'https://www.hexasim.com/en/index.php?page=recherche&recherche=' },
+  { group:'Ulkomaat', name:'FantasyWelt.de',   url:'https://www.fantasywelt.de/?lang=eng#f820/brand-categories/m=and&q=' },
+  { group:'Ulkomaat', name:'Spelspul.nl',      url:'https://www.spelspul.nl/gb/#%7B%22a09532e779e7%22%3A%7B%22search_term%22%3A%22', suffix:'%22%2C%22filters%22%3A%5B%5D%2C%22sorting%22%3A%5B%5D%2C%22offsets%22%3A%7B%22category%22%3A12%2C%22product%22%3A42%7D%7D%7D' },
+  { group:'Ulkomaat', name:'Spelshop.be',      url:'https://www.spelshop.be/en/search?controller=search&order=product.position.desc&s=' },
+];
+const SHOP_SEL_KEY = 'lc_shop_stores';
+const SHOP_Q_KEY   = 'lc_shop_query';
+let shopSelected = null;
+let shopInited   = false;
+
+function initShops() {
+  let saved = null;
+  try { saved = JSON.parse(localStorage.getItem(SHOP_SEL_KEY) || 'null'); } catch(e) {}
+  shopSelected = new Set(Array.isArray(saved) ? saved : SHOP_STORES.map(s => s.name));
+
+  ['Suomi', 'Ulkomaat'].forEach(group => {
+    const grid = document.getElementById('shop-grid-' + group);
+    grid.innerHTML = SHOP_STORES.filter(s => s.group === group).map(s =>
+      `<button class="shop-store-btn${shopSelected.has(s.name) ? ' active' : ''}" data-store="${escHtml(s.name)}" onclick="toggleShopStore(this)">${escHtml(s.name)}</button>`
+    ).join('');
+  });
+
+  const q = localStorage.getItem(SHOP_Q_KEY);
+  const input = document.getElementById('shop-input');
+  if (q && !input.value) input.value = q;
+}
+
+function persistShopSel() {
+  try { localStorage.setItem(SHOP_SEL_KEY, JSON.stringify([...shopSelected])); } catch(e) {}
+}
+
+function refreshShopButtons() {
+  document.querySelectorAll('.shop-store-btn').forEach(b =>
+    b.classList.toggle('active', shopSelected.has(b.dataset.store)));
+}
+
+function shopResultsOpen() {
+  return document.getElementById('shop-results').style.display === 'block';
+}
+
+function toggleShopStore(btn) {
+  const n = btn.dataset.store;
+  if (shopSelected.has(n)) shopSelected.delete(n); else shopSelected.add(n);
+  btn.classList.toggle('active', shopSelected.has(n));
+  persistShopSel();
+  if (shopResultsOpen()) runShopSearch();
+}
+
+function toggleShopGroup(group) {
+  const names = SHOP_STORES.filter(s => s.group === group).map(s => s.name);
+  const allOn = names.every(n => shopSelected.has(n));
+  names.forEach(n => allOn ? shopSelected.delete(n) : shopSelected.add(n));
+  persistShopSel();
+  refreshShopButtons();
+  if (shopResultsOpen()) runShopSearch();
+}
+
+function runShopSearch() {
+  const q   = document.getElementById('shop-input').value.trim();
+  const box = document.getElementById('shop-results');
+  box.style.display = 'block';
+
+  if (!q) {
+    box.innerHTML = '<div class="shops-empty">Type a game name and press Search.</div>';
+    return;
+  }
+  try { localStorage.setItem(SHOP_Q_KEY, q); } catch(e) {}
+
+  const enc    = encodeURIComponent(q);
+  const chosen = SHOP_STORES.filter(s => shopSelected.has(s.name));
+  window._shopLinks = chosen.map(s => s.url + enc + (s.suffix || ''));
+
+  if (!chosen.length) {
+    box.innerHTML = '<div class="shops-empty">No stores selected — pick at least one above.</div>';
+    return;
+  }
+
+  box.innerHTML = `
+    <div class="shops-results-head">
+      <span><strong>${chosen.length}</strong> shop${chosen.length === 1 ? '' : 's'} &middot; &ldquo;${escHtml(q)}&rdquo;</span>
+      <span class="shops-results-actions">
+        <button onclick="openAllShops()">Open all</button>
+        <button onclick="copyShopLinks()">Copy links</button>
+      </span>
+    </div>
+    <a class="shops-bgg" href="https://boardgamegeek.com/geeksearch.php?action=search&objecttype=boardgame&q=${enc}" target="_blank" rel="noopener">↗ Look up on BoardGameGeek</a>
+    <div class="shops-link-list">
+      ${chosen.map(s => `<a href="${s.url}${enc}${s.suffix || ''}" target="_blank" rel="noopener"><span class="shops-link-store">${escHtml(s.name)}</span><span class="shops-link-go">Search ↗</span></a>`).join('')}
+    </div>`;
+}
+
+function openAllShops() {
+  const links = window._shopLinks || [];
+  if (!links.length) return;
+  let opened = 0;
+  links.forEach(u => { if (window.open(u, '_blank', 'noopener')) opened++; });
+  if (opened < links.length) {
+    alert(`Opened ${opened} of ${links.length} tabs.\nYour browser blocked the rest — allow pop-ups for this site, or use "Copy links".`);
+  }
+}
+
+function copyShopLinks() {
+  const links = (window._shopLinks || []).join('\n');
+  if (!links) return;
+  navigator.clipboard.writeText(links)
+    .then(() => alert('Store search links copied to clipboard.'))
+    .catch(() => prompt('Copy these links:', links));
+}
+
+// Jump to the Shops tab with a game name pre-filled and searched (used by the
+// 🛒 icon in the Collection / Top Games / Haaste tables).
+function shopSearchFor(name) {
+  switchTab('shops');
+  const input = document.getElementById('shop-input');
+  input.value = name;
+  runShopSearch();
+  input.focus();
 }
 
 </script>
