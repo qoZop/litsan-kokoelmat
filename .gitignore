@@ -1,5 +1,6 @@
 .env
 .DS_Store
+.claude/
 data/phase1_cache.json
 
 # Local reference docs — kept in the project root but never committed

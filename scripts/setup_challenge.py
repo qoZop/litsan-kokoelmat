@@ -74,13 +74,17 @@ def main():
     collection = load_collection()
     lines      = [l.strip() for l in games_path.read_text(encoding="utf-8-sig").splitlines()]
 
-    # Load existing challenge.json to preserve played_dates
+    # Load existing challenge.json to preserve played_dates and real names
     existing_played = {}
+    existing_names  = {}
     if CHALLENGE_PATH.exists():
         existing = json.loads(CHALLENGE_PATH.read_text())
         for g in existing.get("games", []):
             if g.get("played_date"):
                 existing_played[g["objectid"]] = g["played_date"]
+            name = g.get("name", "")
+            if name and not name.startswith("[Unknown"):
+                existing_names[g["objectid"]] = name
 
     games     = []
     matched   = 0
@@ -91,9 +95,14 @@ def main():
             continue
         result = match_game(line, collection)
         if result:
+            name = result["name"]
+            # Game no longer in any collection — keep the name we stored last time
+            # instead of falling back to the "[Unknown — ID …]" stub.
+            if name.startswith("[Unknown") and result["objectid"] in existing_names:
+                name = existing_names[result["objectid"]]
             games.append({
                 "objectid":   result["objectid"],
-                "name":       result["name"],
+                "name":       name,
                 "played_date": existing_played.get(result["objectid"], None),
             })
             matched += 1
