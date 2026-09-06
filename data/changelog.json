@@ -1,6 +1,104 @@
 {
   "entries": [
     {
+      "id": "20260906094555-refresh",
+      "date": "2026-09-06T09:45:55.707293+00:00",
+      "label": "Weekly refresh — 06 Sep 2026",
+      "source": "refresh",
+      "stats": {
+        "collectors_changed": 6,
+        "games_added": 10,
+        "games_removed": 2
+      },
+      "changes": [
+        {
+          "collector": "asaarto",
+          "added": [
+            {
+              "objectid": "552",
+              "name": "Bus"
+            }
+          ],
+          "removed": [
+            {
+              "objectid": "407010",
+              "name": "The Secret Flower"
+            }
+          ]
+        },
+        {
+          "collector": "EssEss",
+          "added": [],
+          "removed": [
+            {
+              "objectid": "199792",
+              "name": "Everdell"
+            }
+          ]
+        },
+        {
+          "collector": "Maradrus",
+          "added": [
+            {
+              "objectid": "17329",
+              "name": "Animal Upon Animal"
+            },
+            {
+              "objectid": "153938",
+              "name": "Camel Up"
+            },
+            {
+              "objectid": "8652",
+              "name": "The Haunted Clock Tower"
+            }
+          ],
+          "removed": []
+        },
+        {
+          "collector": "okram",
+          "added": [
+            {
+              "objectid": "169786",
+              "name": "Scythe"
+            },
+            {
+              "objectid": "225482",
+              "name": "Seas of Strife"
+            }
+          ],
+          "removed": []
+        },
+        {
+          "collector": "StoneDog",
+          "added": [
+            {
+              "objectid": "465669",
+              "name": "Drillers"
+            },
+            {
+              "objectid": "429405",
+              "name": "Orloj: The Prague Astronomical Clock"
+            },
+            {
+              "objectid": "436217",
+              "name": "The Lord of the Rings: Fate of the Fellowship"
+            }
+          ],
+          "removed": []
+        },
+        {
+          "collector": "Taateli",
+          "added": [
+            {
+              "objectid": "366278",
+              "name": "The Lord of the Rings: Adventure to Mount Doom"
+            }
+          ],
+          "removed": []
+        }
+      ]
+    },
+    {
       "id": "20260823044923-refresh",
       "date": "2026-08-23T04:49:23.558142+00:00",
       "label": "Weekly refresh — 23 Aug 2026",
