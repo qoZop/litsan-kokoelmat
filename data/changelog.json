@@ -1,6 +1,80 @@
 {
   "entries": [
     {
+      "id": "20260915075638-refresh",
+      "date": "2026-09-15T07:56:38.248458+00:00",
+      "label": "Weekly refresh — 15 Sep 2026",
+      "source": "refresh",
+      "stats": {
+        "collectors_changed": 4,
+        "games_added": 7,
+        "games_removed": 2
+      },
+      "changes": [
+        {
+          "collector": "asaarto",
+          "added": [
+            {
+              "objectid": "391137",
+              "name": "Galactic Cruise"
+            }
+          ],
+          "removed": []
+        },
+        {
+          "collector": "Maradrus",
+          "added": [
+            {
+              "objectid": "479043",
+              "name": "Panda Gang"
+            }
+          ],
+          "removed": []
+        },
+        {
+          "collector": "StoneDog",
+          "added": [
+            {
+              "objectid": "150145",
+              "name": "Skull King"
+            },
+            {
+              "objectid": "462192",
+              "name": "The Crew: Journey to the Ends of the Earth"
+            }
+          ],
+          "removed": []
+        },
+        {
+          "collector": "Tatunen",
+          "added": [
+            {
+              "objectid": "176165",
+              "name": "Dale of Merchants"
+            },
+            {
+              "objectid": "191597",
+              "name": "Dale of Merchants 2"
+            },
+            {
+              "objectid": "282171",
+              "name": "Trial by Trolley"
+            }
+          ],
+          "removed": [
+            {
+              "objectid": "313963",
+              "name": "Cloud City"
+            },
+            {
+              "objectid": "169786",
+              "name": "Scythe"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "20260906094555-refresh",
       "date": "2026-09-06T09:45:55.707293+00:00",
       "label": "Weekly refresh — 06 Sep 2026",
