@@ -1,6 +1,75 @@
 {
   "entries": [
     {
+      "id": "20260920091828-refresh",
+      "date": "2026-09-20T09:18:28.639733+00:00",
+      "label": "Weekly refresh — 20 Sep 2026",
+      "source": "refresh",
+      "stats": {
+        "collectors_changed": 2,
+        "games_added": 11,
+        "games_removed": 0
+      },
+      "changes": [
+        {
+          "collector": "Maradrus",
+          "added": [
+            {
+              "objectid": "3818",
+              "name": "Alias"
+            },
+            {
+              "objectid": "4150",
+              "name": "Bakari"
+            },
+            {
+              "objectid": "453934",
+              "name": "DC Breakout: Arkham Asylum"
+            },
+            {
+              "objectid": "327107",
+              "name": "Escape Room: The Game 3"
+            },
+            {
+              "objectid": "434172",
+              "name": "Excalibur"
+            },
+            {
+              "objectid": "147020",
+              "name": "Star Realms"
+            },
+            {
+              "objectid": "182631",
+              "name": "Star Realms: Colony Wars"
+            },
+            {
+              "objectid": "283864",
+              "name": "Trails of Tucana"
+            },
+            {
+              "objectid": "28301",
+              "name": "Trivial Pursuit: Music Edition 1990-Now – Bite-size"
+            }
+          ],
+          "removed": []
+        },
+        {
+          "collector": "Taateli",
+          "added": [
+            {
+              "objectid": "277659",
+              "name": "Final Girl"
+            },
+            {
+              "objectid": "162007",
+              "name": "Steampunk Rally"
+            }
+          ],
+          "removed": []
+        }
+      ]
+    },
+    {
       "id": "20260915075638-refresh",
       "date": "2026-09-15T07:56:38.248458+00:00",
       "label": "Weekly refresh — 15 Sep 2026",
