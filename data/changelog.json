@@ -1,6 +1,88 @@
 {
   "entries": [
     {
+      "id": "20260927100419-refresh",
+      "date": "2026-09-27T10:04:19.312465+00:00",
+      "label": "Weekly refresh — 27 Sep 2026",
+      "source": "refresh",
+      "stats": {
+        "collectors_changed": 4,
+        "games_added": 8,
+        "games_removed": 3
+      },
+      "changes": [
+        {
+          "collector": "asaarto",
+          "added": [],
+          "removed": [
+            {
+              "objectid": "406498",
+              "name": "Café Baras"
+            }
+          ]
+        },
+        {
+          "collector": "Maradrus",
+          "added": [
+            {
+              "objectid": "455763",
+              "name": "In a Nutshell"
+            },
+            {
+              "objectid": "63617",
+              "name": "Metal Mania Alias"
+            },
+            {
+              "objectid": "450685",
+              "name": "Pinched!"
+            },
+            {
+              "objectid": "259345",
+              "name": "Snail Sprint!"
+            },
+            {
+              "objectid": "357873",
+              "name": "The Old King's Crown"
+            }
+          ],
+          "removed": []
+        },
+        {
+          "collector": "okram",
+          "added": [
+            {
+              "objectid": "220",
+              "name": "High Society"
+            }
+          ],
+          "removed": []
+        },
+        {
+          "collector": "Taateli",
+          "added": [
+            {
+              "objectid": "102794",
+              "name": "Caverna: The Cave Farmers"
+            },
+            {
+              "objectid": "77130",
+              "name": "Sid Meier's Civilization: The Board Game"
+            }
+          ],
+          "removed": [
+            {
+              "objectid": "383481",
+              "name": "Catan: Starfarers Duel"
+            },
+            {
+              "objectid": "3",
+              "name": "Samurai"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "20260920091828-refresh",
       "date": "2026-09-20T09:18:28.639733+00:00",
       "label": "Weekly refresh — 20 Sep 2026",
