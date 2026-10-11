@@ -1,6 +1,67 @@
 {
   "entries": [
     {
+      "id": "20261011105319-refresh",
+      "date": "2026-10-11T10:53:19.025211+00:00",
+      "label": "Weekly refresh — 11 Oct 2026",
+      "source": "refresh",
+      "stats": {
+        "collectors_changed": 4,
+        "games_added": 5,
+        "games_removed": 1
+      },
+      "changes": [
+        {
+          "collector": "Maradrus",
+          "added": [
+            {
+              "objectid": "236217",
+              "name": "Time Bomb"
+            }
+          ],
+          "removed": []
+        },
+        {
+          "collector": "Matthijsjbadmiraal",
+          "added": [
+            {
+              "objectid": "12",
+              "name": "Ra"
+            }
+          ],
+          "removed": []
+        },
+        {
+          "collector": "StoneDog",
+          "added": [
+            {
+              "objectid": "396895",
+              "name": "Corps of Discovery: A Game Set in the World of Manifest Destiny"
+            },
+            {
+              "objectid": "360617",
+              "name": "Findorff"
+            },
+            {
+              "objectid": "463605",
+              "name": "Hell of a Deal"
+            }
+          ],
+          "removed": []
+        },
+        {
+          "collector": "Taateli",
+          "added": [],
+          "removed": [
+            {
+              "objectid": "429622",
+              "name": "Tiskijukka"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "20261004104202-refresh",
       "date": "2026-10-04T10:42:02.998198+00:00",
       "label": "Weekly refresh — 04 Oct 2026",
