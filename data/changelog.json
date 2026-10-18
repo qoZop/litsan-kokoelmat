@@ -1,6 +1,49 @@
 {
   "entries": [
     {
+      "id": "20261018084754-refresh",
+      "date": "2026-10-18T08:47:54.251372+00:00",
+      "label": "Weekly refresh — 18 Oct 2026",
+      "source": "refresh",
+      "stats": {
+        "collectors_changed": 3,
+        "games_added": 3,
+        "games_removed": 0
+      },
+      "changes": [
+        {
+          "collector": "asaarto",
+          "added": [
+            {
+              "objectid": "450685",
+              "name": "Pinched!"
+            }
+          ],
+          "removed": []
+        },
+        {
+          "collector": "jutapo",
+          "added": [
+            {
+              "objectid": "440540",
+              "name": "Take Time"
+            }
+          ],
+          "removed": []
+        },
+        {
+          "collector": "okram",
+          "added": [
+            {
+              "objectid": "163163",
+              "name": "Grand Prix"
+            }
+          ],
+          "removed": []
+        }
+      ]
+    },
+    {
       "id": "20261011105319-refresh",
       "date": "2026-10-11T10:53:19.025211+00:00",
       "label": "Weekly refresh — 11 Oct 2026",
