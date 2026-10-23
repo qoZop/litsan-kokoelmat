@@ -15,7 +15,8 @@ BGG API ──▶ scripts/fetch_collections.py ──▶ data/*.json ──▶ i
   - *Phase 1* calls the BGG `collection` API for each user (owned boardgames, expansions excluded) and merges ownership into one record per game.
   - *Phase 2* calls the BGG `thing` API in batches to add the canonical English name and the community complexity (weight) score, then writes `data/collection.json`.
   - It also diffs ownership against the previous run and appends an entry to `data/changelog.json` when something changed.
-- **`index.html`** — one file, all CSS and JS inline, no framework or build step. Tabs: the full collection, games by owner count, the ownership changelog, and a yearly play challenge. Client-side password gate (SHA-256 hash in the page).
+- **`index.html`** — one file, all CSS and JS inline, no framework or build step. Tabs: the full collection, statistics, Open Tables (planned game sessions people join by name), Marketplace (games for sale within the group), a store-search helper, the ownership changelog, and a yearly play challenge. Client-side password gate (SHA-256 hash in the page).
+- **Cloud Firestore** (Firebase project `litsan-kokoelmat`) holds everything edited in the browser — the play challenge, Marketplace listings, Open Tables and collector colours — so changes are live for everyone. The Firebase SDK is loaded from gstatic at runtime; `firestore.rules` validates writes.
 - **GitHub Pages** serves the repo root from `main`; every push redeploys.
 
 ## Repository layout
@@ -25,15 +26,17 @@ index.html                     The webapp (served by GitHub Pages)
 data/
   collection.json              Merged, enriched dataset — generated, do not hand-edit
   changelog.json               Append-only ownership-change log, newest first
-  challenge.json               Yearly play-challenge game list + played dates
-  colors.json                  Per-collector pill colour overrides
+  challenge.json               Retired — 2026 challenge snapshot (now in Firestore)
+  colors.json                  Retired — collector colours snapshot (now in Firestore)
 scripts/
   fetch_collections.py         BGG data pipeline (Phase 1 + Phase 2)
   compare_csv.py               One-off: diff a legacy CSV export into changelog.json
   backfill_changelog.py        One-off: rebuild missed changelog entries from git history
-  setup_challenge.py           One-off: (re)build challenge.json's game list from a text file
+  setup_challenge.py           Retired — the yearly challenge is now built in the site's admin panel
   generate_password_hash.py    Helper: SHA-256 a new site password / admin PIN
 .github/workflows/refresh.yml  Weekly GitHub Action: fetch + commit
+firestore.rules                Firestore security rules (deploy: firebase deploy --only firestore:rules)
+firebase.json, .firebaserc     Firebase CLI config
 ```
 
 ## Running it locally
@@ -66,10 +69,11 @@ BGG_API_TOKEN=...      # bearer token for the BGG API; enables lighter rate limi
 
 - **Add or remove a collector** — update the `USERNAMES` list in `scripts/fetch_collections.py`, `scripts/compare_csv.py`, and `scripts/backfill_changelog.py` (all three), then run a full fetch. `index.html` reads the collector list from `collection.json` and needs no change.
 - **Change the site password or admin PIN** — run `python3 scripts/generate_password_hash.py` and paste the hash into `PASSWORD_HASH` / `ADMIN_PIN_HASH` in `index.html`.
-- **Set up the play challenge** — put one BGG id or game name per line in a text file and run `python3 scripts/setup_challenge.py --games games.txt`. Played dates are set in the site's admin mode and exported back into `data/challenge.json` by hand.
+- **Set up the yearly play challenge** — in the site, ⚙ → admin PIN → *Haaste year*: draw 200 random games (games from the previous 5 years' rosters are excluded), adjust by hand, then *Publish as active*. Played dates are marked in the Haaste tab's admin mode and saved straight to Firestore.
+- **Change what the database accepts** — edit `firestore.rules` and run `firebase deploy --only firestore:rules`.
 
 ## Notes
 
-- The password gate is a SHA-256 hash in a public page — it keeps the site out of search results and casual view, nothing more. Don't put anything genuinely private in the repo.
+- The password gate is a SHA-256 hash in a public page — it keeps the site out of search results and casual view, nothing more. The Firestore data is likewise readable by anyone who has the page. Don't put anything genuinely private in the repo or the database.
 - The BGG collection API returns HTTP 202 ("queued") on a first request; the script retries automatically. It also tolerates transient network errors and BGG serving non-XML error pages, and refuses to overwrite good data if every collector fails.
-- `data/collection.json` stores a thumbnail URL per game, currently unused by the UI.
+- `data/collection.json` stores a thumbnail URL per game, shown in the game picker and on Marketplace / Open Tables cards.

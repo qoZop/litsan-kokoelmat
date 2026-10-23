@@ -1,0 +1,101 @@
+rules_version = '2';
+
+// Litsa Collection — Firestore rules.
+// There is no real authentication in this app (the password gate and admin PIN are
+// client-side only), so these rules only validate shape and size to block garbage.
+// Deploy: firebase deploy --only firestore:rules
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function str(v, max)      { return v is string && v.size() <= max; }
+    function nonEmpty(v, max) { return v is string && v.size() > 0 && v.size() <= max; }
+    function optStr(v, max)   { return v == null || str(v, max); }
+    function optTs(v)         { return v == null || v is timestamp; }
+    function okObjectId(v)    { return v == null || (v is string && v.matches('^[0-9]{1,12}$')); }
+    function okHistory(v)     { return v is list && v.size() <= 200; }
+
+    // ── Collector colours: { username: "#rrggbb" } ──────────────────────────
+    match /settings/colours {
+      allow read: if true;
+      allow write: if request.resource.data.size() <= 60;
+    }
+
+    // ── Haaste (challenge) ──────────────────────────────────────────────────
+    match /challenge_meta/current {
+      allow read: if true;
+      allow write: if request.resource.data.keys().hasOnly(['activeYear'])
+        && request.resource.data.activeYear is int
+        && request.resource.data.activeYear >= 2020
+        && request.resource.data.activeYear <= 2100;
+    }
+
+    match /challenge_years/{year} {
+      allow read: if true;
+      allow delete: if true;
+      allow create, update: if request.resource.data.keys().hasOnly(['year', 'title', 'target', 'tiers', 'game_ids'])
+        && request.resource.data.year == int(year)
+        && request.resource.data.game_ids is list
+        && request.resource.data.game_ids.size() <= 500
+        && (!('title'  in request.resource.data) || str(request.resource.data.title, 80))
+        && (!('target' in request.resource.data) || request.resource.data.target is int)
+        && (!('tiers'  in request.resource.data) || request.resource.data.tiers is map);
+
+      match /games/{objectid} {
+        allow read: if true;
+        allow delete: if true;
+        allow create, update: if request.resource.data.keys().hasOnly(['objectid', 'name', 'played_date'])
+          && request.resource.data.objectid == objectid
+          && str(request.resource.data.name, 200)
+          && (request.resource.data.played_date == null
+              || (request.resource.data.played_date is string
+                  && request.resource.data.played_date.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$')));
+      }
+    }
+
+    // ── Marketplace ─────────────────────────────────────────────────────────
+    match /market/{id} {
+      allow read: if true;
+      allow delete: if true;
+      allow create, update: if okMarket(request.resource.data);
+    }
+
+    function okMarket(d) {
+      return d.keys().hasOnly(['seller', 'objectid', 'game_name', 'price', 'notes',
+                               'created_at', 'updated_at', 'deleted', 'deleted_at',
+                               'deleted_reason', 'history'])
+        && nonEmpty(d.seller, 60)
+        && okObjectId(d.objectid)
+        && nonEmpty(d.game_name, 200)
+        && d.price is number && d.price >= 0 && d.price <= 100000
+        && str(d.notes, 2000)
+        && d.created_at is timestamp && d.updated_at is timestamp
+        && d.deleted is bool && optTs(d.deleted_at) && optStr(d.deleted_reason, 40)
+        && okHistory(d.history);
+    }
+
+    // ── Open Tables ─────────────────────────────────────────────────────────
+    match /tables/{id} {
+      allow read: if true;
+      allow delete: if true;
+      allow create, update: if okTable(request.resource.data);
+    }
+
+    function okTable(d) {
+      return d.keys().hasOnly(['host', 'objectid', 'game_name', 'starts_at', 'min_players',
+                               'max_players', 'players', 'notes', 'created_at', 'updated_at',
+                               'deleted', 'deleted_at', 'deleted_reason', 'history'])
+        && nonEmpty(d.host, 60)
+        && okObjectId(d.objectid)
+        && nonEmpty(d.game_name, 200)
+        && d.starts_at is timestamp
+        && d.min_players is int && d.max_players is int
+        && d.min_players >= 1 && d.min_players <= d.max_players && d.max_players <= 20
+        && d.players is list && d.players.size() <= d.max_players - 1
+        && str(d.notes, 2000)
+        && d.created_at is timestamp && d.updated_at is timestamp
+        && d.deleted is bool && optTs(d.deleted_at) && optStr(d.deleted_reason, 40)
+        && okHistory(d.history);
+    }
+  }
+}

@@ -1048,7 +1048,7 @@
       background: var(--surface);
       border: 1px solid var(--border-2);
       border-radius: var(--radius-lg);
-      width: 100%; max-width: 560px;
+      width: 100%; max-width: 640px;
       max-height: 85vh;
       display: flex; flex-direction: column;
       overflow: hidden;
@@ -1243,12 +1243,6 @@
     }
     .chal-admin-btn:hover    { border-color: var(--accent-dim); color: var(--accent); }
     .chal-admin-btn.active   { background: var(--accent-glow); border-color: var(--accent); color: var(--accent); }
-    .chal-export-btn {
-      padding: 6px 14px; background: var(--owned-dim);
-      border: 1px solid var(--owned); border-radius: var(--radius);
-      color: var(--owned); font-size: 0.72rem; font-weight: 600;
-      letter-spacing: 0.06em; text-transform: uppercase; transition: all 0.15s;
-    }
 
     /* Challenge table */
     .challenge-table-wrap { overflow-x: auto; }
@@ -1457,6 +1451,200 @@
       .shops-search-bar { flex-wrap: wrap; }
       #game-table .shop-ico { display: none; }
     }
+
+    /* ── Marketplace & Open Tables (shared) ────────────────────────── */
+    #tab-market, #tab-tables {
+      flex: 1; overflow-y: auto;
+      padding: 28px 36px 60px;
+    }
+    .board-toolbar {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+      margin-bottom: 20px; max-width: 820px;
+    }
+    .board-toolbar .search-input { max-width: 260px; }
+    .board-add-btn { padding: 10px 18px; }
+    .me-chip { margin-left: auto; font-size: 0.75rem; color: var(--text-3); }
+    .me-chip b {
+      color: var(--text-2); cursor: pointer; font-weight: 600;
+      border-bottom: 1px dashed var(--border-2);
+    }
+    .me-chip b:hover { color: var(--accent); }
+    .board-empty { color: var(--text-3); font-size: 0.85rem; padding: 40px 0; text-align: center; max-width: 820px; }
+
+    .item-list { display: flex; flex-direction: column; gap: 10px; max-width: 820px; }
+    .item-card {
+      display: flex; gap: 14px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 14px 16px;
+    }
+    .item-card.dim { opacity: 0.55; }
+    .item-thumb {
+      width: 56px; height: 56px; flex-shrink: 0;
+      border-radius: var(--radius); object-fit: cover; background: var(--surface-3);
+    }
+    .item-thumb.blank {
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-3); font-size: 1.4rem;
+    }
+    .item-main { flex: 1; min-width: 0; }
+    .item-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+    .item-title { font-family: var(--font-title); font-size: 1.2rem; font-weight: 600; line-height: 1.2; }
+    .item-title a { color: var(--text); }
+    .item-title a:hover { color: var(--accent); text-decoration: none; }
+    .item-price { font-size: 1.1rem; font-weight: 700; color: var(--accent); white-space: nowrap; }
+    .item-meta { font-size: 0.78rem; color: var(--text-2); margin-top: 4px; }
+    .item-meta .sep { color: var(--text-3); margin: 0 6px; }
+    .item-notes {
+      font-size: 0.82rem; color: var(--text-2); line-height: 1.45;
+      margin-top: 8px; white-space: pre-wrap; overflow-wrap: anywhere;
+    }
+    .item-foot { display: flex; align-items: center; gap: 14px; margin-top: 10px; }
+    .item-act {
+      background: none; border: none; padding: 0;
+      color: var(--text-3); font-size: 0.72rem; transition: color 0.15s;
+    }
+    .item-act:hover { color: var(--accent); }
+    .item-act.danger:hover { color: #c0605a; }
+    .item-act.hist { margin-left: auto; font-size: 0.68rem; }
+    .item-hist {
+      margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--border);
+      font-size: 0.7rem; color: var(--text-3); line-height: 1.7;
+    }
+    .item-hist time { margin-right: 6px; opacity: 0.8; }
+
+    .day-divider {
+      display: flex; align-items: center; gap: 10px;
+      margin-top: 14px;
+      font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+      font-weight: 700; color: var(--text-2);
+    }
+    .day-divider:first-child { margin-top: 0; }
+    .day-divider::after { content: ''; flex: 1; height: 1px; background: var(--border-2); }
+    .day-divider .today { color: var(--accent); }
+    .table-time {
+      flex-shrink: 0; min-width: 50px; padding-top: 2px;
+      font-size: 1.15rem; font-weight: 700; color: var(--accent);
+    }
+    .seat-badge {
+      font-size: 0.75rem; font-weight: 700; white-space: nowrap;
+      padding: 2px 9px; border-radius: 10px;
+      background: var(--owned-dim); color: var(--owned);
+    }
+    .seat-badge.short { background: var(--accent-glow); color: var(--accent); }
+    .seat-badge.full  { background: var(--surface-3); color: var(--text-3); }
+    .player-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 9px; }
+    .player-chip {
+      font-size: 0.72rem; padding: 2px 9px; border-radius: 10px;
+      background: var(--surface-3); color: var(--text-2); border: 1px solid var(--border-2);
+    }
+    .player-chip.host { color: var(--accent); border-color: var(--accent-dim); }
+    .player-chip .x { margin-left: 6px; cursor: pointer; color: var(--text-3); }
+    .player-chip .x:hover { color: #c0605a; }
+    .join-row { display: flex; gap: 6px; margin-top: 9px; max-width: 300px; }
+    .join-row .search-input { padding: 6px 10px; font-size: 0.8rem; }
+    .join-btn {
+      padding: 0 14px; border-radius: var(--radius);
+      background: var(--accent-glow); border: 1px solid var(--accent-dim); color: var(--accent);
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    }
+    .join-btn:hover { background: rgba(212,146,42,0.25); }
+    .join-full { font-size: 0.75rem; color: var(--text-3); font-style: italic; margin-top: 9px; }
+
+    /* Add / edit form modal */
+    .form-overlay {
+      position: fixed; inset: 0; z-index: 250;
+      background: rgba(0,0,0,0.7);
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    .form-box {
+      background: var(--surface); border: 1px solid var(--border-2);
+      border-radius: var(--radius-lg);
+      width: 100%; max-width: 460px; max-height: 90vh; overflow-y: auto;
+      padding: 20px 22px;
+    }
+    .form-title {
+      font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
+      font-weight: 700; color: var(--text-2); margin-bottom: 16px;
+    }
+    .form-row { margin-bottom: 12px; }
+    .form-row label {
+      display: block; margin-bottom: 5px;
+      font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase;
+      font-weight: 700; color: var(--text-3);
+    }
+    .form-row label .opt { text-transform: none; letter-spacing: 0; font-weight: 400; }
+    .form-split { display: flex; gap: 10px; }
+    .form-split > .form-row { flex: 1; min-width: 0; }
+    textarea.search-input { resize: vertical; min-height: 84px; line-height: 1.4; }
+    .form-box input[type=date], .form-box input[type=time] { color-scheme: dark; }
+    .form-error { color: #c0605a; font-size: 0.75rem; min-height: 16px; }
+    .form-btns { display: flex; gap: 8px; margin-top: 10px; }
+
+    /* Game picker (autocomplete over the collection) */
+    .gp-wrap { position: relative; }
+    .gp-list {
+      position: absolute; left: 0; right: 0; top: calc(100% + 3px); z-index: 20;
+      background: var(--surface-2); border: 1px solid var(--border-2);
+      border-radius: var(--radius); box-shadow: 0 8px 24px rgba(0,0,0,0.45);
+      max-height: 300px; overflow-y: auto;
+    }
+    .gp-item { display: flex; align-items: center; gap: 8px; padding: 6px 10px; cursor: pointer; font-size: 0.85rem; }
+    .gp-item img { width: 28px; height: 28px; object-fit: cover; border-radius: 3px; background: var(--surface-3); flex-shrink: 0; }
+    .gp-item .yr { margin-left: auto; color: var(--text-3); font-size: 0.75rem; }
+    .gp-item.active, .gp-item:hover { background: var(--surface-3); }
+    .gp-hint { font-size: 0.7rem; color: var(--text-3); margin-top: 4px; min-height: 14px; }
+    .gp-hint.ok { color: var(--owned); }
+
+    /* Admin panel sections */
+    .admin-sections {
+      display: flex; gap: 2px; padding: 6px 14px 0;
+      border-bottom: 1px solid var(--border); flex-shrink: 0;
+    }
+    .admin-sec-btn {
+      background: none; border: none; border-bottom: 2px solid transparent;
+      padding: 8px 10px; color: var(--text-3);
+      font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700;
+    }
+    .admin-sec-btn:hover  { color: var(--text-2); }
+    .admin-sec-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+    .trash-row { padding: 10px 0; border-bottom: 1px solid var(--border); }
+    .trash-row:last-child { border-bottom: none; }
+    .trash-row .item-head { align-items: center; }
+    .trash-row b { font-size: 0.88rem; }
+    .trash-type {
+      display: inline-block; margin-right: 6px; padding: 1px 5px;
+      border: 1px solid var(--border-2); border-radius: 3px;
+      font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase;
+      font-weight: 700; color: var(--text-3); vertical-align: middle;
+    }
+    .trash-btns { display: flex; gap: 12px; flex-shrink: 0; }
+    .yr-fields { display: flex; flex-wrap: wrap; gap: 0 10px; }
+    .yr-fields .form-row { flex: 1 1 80px; }
+    .yr-tools { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+    .yr-tools .admin-action-btn, .yr-bulk .admin-action-btn { flex: 0 0 auto; padding: 8px 12px; }
+    .yr-bulk summary { cursor: pointer; font-size: 0.75rem; color: var(--text-2); margin-bottom: 6px; }
+    .yr-bulk textarea { margin-bottom: 6px; }
+    .yr-status { font-size: 0.75rem; color: var(--text-2); margin-bottom: 8px; line-height: 1.5; }
+    .yr-list { max-height: 320px; overflow-y: auto; border: 1px solid var(--border); border-radius: var(--radius); }
+    .yr-list:empty { display: none; }
+    .yr-list-row {
+      display: flex; align-items: center; gap: 8px;
+      padding: 5px 10px; font-size: 0.8rem; border-bottom: 1px solid var(--border);
+    }
+    .yr-list-row:last-child { border-bottom: none; }
+    .yr-list-row .n  { width: 28px; color: var(--text-3); font-size: 0.7rem; flex-shrink: 0; }
+    .yr-list-row .nm { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+    @media (max-width: 680px) {
+      #tab-market, #tab-tables { padding: 16px 16px 40px; }
+      .board-toolbar .search-input { max-width: none; flex: 1 1 100%; order: 5; }
+      .item-card { padding: 12px; gap: 10px; }
+      .item-thumb { width: 44px; height: 44px; }
+      #tables-list .item-thumb { display: none; }
+      .item-head { flex-wrap: wrap; }
+      .form-box { padding: 16px; }
+    }
   </style>
 </head>
 <body>
@@ -1493,6 +1681,8 @@
     <nav class="tab-nav">
       <button class="tab-btn active" id="tab-btn-collection" onclick="switchTab('collection')">Collection</button>
       <button class="tab-btn" id="tab-btn-stats" onclick="switchTab('stats')">Statistics</button>
+      <button class="tab-btn" id="tab-btn-tables" onclick="switchTab('tables')">Open Tables</button>
+      <button class="tab-btn" id="tab-btn-market" onclick="switchTab('market')">Marketplace</button>
       <button class="tab-btn" id="tab-btn-shops" onclick="switchTab('shops')">Shops</button>
       <button class="tab-btn" id="tab-btn-changes" onclick="switchTab('changes')">Changes</button>
       <button class="tab-btn" id="tab-btn-challenge" onclick="switchTab('challenge')">Haaste '26</button>
@@ -1507,17 +1697,114 @@
   <div id="admin-overlay" style="display:none" onclick="if(event.target===this)closeAdmin()">
     <div id="admin-panel">
       <div class="admin-panel-header">
-        <span class="admin-panel-title">Collector colours</span>
+        <span class="admin-panel-title">Admin</span>
         <button class="admin-close-btn" onclick="closeAdmin()">✕</button>
       </div>
-      <div class="admin-panel-body">
-        <p class="admin-hint">Pick a colour for each collector. Changes apply immediately and are saved in this browser. Use "Export colors.json" to share across devices — place the file in <code>data/</code> and commit it.</p>
-        <div id="admin-color-rows"></div>
+      <div class="admin-sections">
+        <button class="admin-sec-btn active" id="admin-sec-btn-colours" onclick="switchAdminSection('colours')">Colours</button>
+        <button class="admin-sec-btn" id="admin-sec-btn-trash" onclick="switchAdminSection('trash')">Trash</button>
+        <button class="admin-sec-btn" id="admin-sec-btn-year" onclick="switchAdminSection('year')">Haaste year</button>
       </div>
-      <div class="admin-panel-footer">
+      <div class="admin-panel-body">
+        <div id="admin-sec-colours">
+          <p class="admin-hint">Pick a colour for each collector. Saved colours are shared with everyone.</p>
+          <div id="admin-color-rows"></div>
+        </div>
+        <div id="admin-sec-trash" style="display:none">
+          <p class="admin-hint">Removed Marketplace listings and Open Tables, including tables archived automatically a day after they were played. Restore puts a record back; Delete removes it for good.</p>
+          <div id="admin-trash-list"></div>
+        </div>
+        <div id="admin-sec-year" style="display:none">
+          <p class="admin-hint">Build a yearly Haaste roster: draw random games from every collection (games on the previous 5 years' rosters are left out), then trim and add by hand. <b>Save as historical</b> only records the list for the 5-year rule (e.g. to enter year 1). <b>Publish as active</b> makes it the Haaste tab for everyone.</p>
+          <div class="yr-fields">
+            <div class="form-row"><label for="yr-year">Year</label><input id="yr-year" type="number" class="search-input" onchange="loadAdminYear()" /></div>
+            <div class="form-row" style="flex:4 1 200px"><label for="yr-title">Title</label><input id="yr-title" class="search-input" maxlength="80" /></div>
+          </div>
+          <div class="yr-fields">
+            <div class="form-row"><label for="yr-bronze">Bronze</label><input id="yr-bronze" type="number" min="0" class="search-input" /></div>
+            <div class="form-row"><label for="yr-silver">Silver</label><input id="yr-silver" type="number" min="0" class="search-input" /></div>
+            <div class="form-row"><label for="yr-gold">Gold</label><input id="yr-gold" type="number" min="0" class="search-input" /></div>
+          </div>
+          <div class="yr-tools">
+            <button class="admin-action-btn" onclick="drawYearGames()">🎲 Draw up to 200</button>
+            <button class="admin-action-btn" onclick="clearYearGames()">Clear list</button>
+          </div>
+          <div class="form-row">
+            <label for="yr-add">Add a game</label>
+            <div class="gp-wrap"><input id="yr-add" class="search-input" placeholder="Search the collection…" autocomplete="off" /></div>
+          </div>
+          <details class="form-row yr-bulk">
+            <summary>Bulk add: one BGG ID or game name per line</summary>
+            <textarea id="yr-bulk" class="search-input" rows="5" placeholder="174430&#10;Gloomhaven&#10;7 Wonders Duel"></textarea>
+            <button class="admin-action-btn" onclick="bulkAddYearGames()">Add from list</button>
+            <div class="gp-hint" id="yr-bulk-result"></div>
+          </details>
+          <div class="yr-status" id="yr-status"></div>
+          <div class="yr-list" id="yr-list"></div>
+        </div>
+      </div>
+      <div class="admin-panel-footer" id="admin-footer-colours">
         <button class="admin-action-btn" onclick="resetColors()">↺ Reset defaults</button>
-        <button class="admin-action-btn" onclick="exportColors()">↓ Export colors.json</button>
         <button class="admin-action-btn primary" onclick="saveColors()">✓ Save</button>
+      </div>
+      <div class="admin-panel-footer" id="admin-footer-year" style="display:none">
+        <button class="admin-action-btn" onclick="saveYearHistorical()">💾 Save as historical</button>
+        <button class="admin-action-btn primary" onclick="publishYear()">🚀 Publish as active</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Marketplace form ───────────────────────────────────────────── -->
+  <div id="market-form" class="form-overlay" style="display:none" onclick="if(event.target===this)closeMarketForm()">
+    <div class="form-box">
+      <div class="form-title" id="market-form-title">Sell a game</div>
+      <div class="form-row"><label for="mf-seller">Seller</label><input id="mf-seller" class="search-input" maxlength="60" placeholder="Your name" /></div>
+      <div class="form-row">
+        <label for="mf-game">Game</label>
+        <div class="gp-wrap"><input id="mf-game" class="search-input" maxlength="200" placeholder="Search the collection or type any name…" autocomplete="off" /></div>
+        <div class="gp-hint" id="mf-game-hint"></div>
+      </div>
+      <div class="form-row" style="max-width:160px"><label for="mf-price">Price (€)</label><input id="mf-price" type="number" min="0" step="0.5" class="search-input" /></div>
+      <div class="form-row">
+        <label for="mf-notes">Details <span class="opt">(optional)</span></label>
+        <textarea id="mf-notes" class="search-input" maxlength="2000" placeholder="Condition, expansions or extras included, pickup…"></textarea>
+      </div>
+      <div class="form-row" id="mf-by-row"><label for="mf-by">Edited by</label><input id="mf-by" class="search-input" maxlength="60" placeholder="Your name" /></div>
+      <div class="form-error" id="mf-error"></div>
+      <div class="form-btns">
+        <button class="admin-action-btn" onclick="closeMarketForm()">Cancel</button>
+        <button class="admin-action-btn primary" id="mf-save" onclick="saveMarketForm()">✓ Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Open Tables form ───────────────────────────────────────────── -->
+  <div id="table-form" class="form-overlay" style="display:none" onclick="if(event.target===this)closeTableForm()">
+    <div class="form-box">
+      <div class="form-title" id="table-form-title">Open a table</div>
+      <div class="form-row"><label for="tf-host">Host</label><input id="tf-host" class="search-input" maxlength="60" placeholder="Your name" /></div>
+      <div class="form-row">
+        <label for="tf-game">Game</label>
+        <div class="gp-wrap"><input id="tf-game" class="search-input" maxlength="200" placeholder="Search the collection or type any name…" autocomplete="off" /></div>
+        <div class="gp-hint" id="tf-game-hint"></div>
+      </div>
+      <div class="form-split">
+        <div class="form-row"><label for="tf-date">Date</label><input id="tf-date" type="date" class="search-input" /></div>
+        <div class="form-row"><label for="tf-time">Time</label><input id="tf-time" type="time" class="search-input" /></div>
+      </div>
+      <div class="form-split">
+        <div class="form-row"><label for="tf-min">Min players</label><input id="tf-min" type="number" min="1" max="20" class="search-input" /></div>
+        <div class="form-row"><label for="tf-max">Max players</label><input id="tf-max" type="number" min="1" max="20" class="search-input" /></div>
+      </div>
+      <div class="form-row">
+        <label for="tf-notes">Details <span class="opt">(optional)</span></label>
+        <textarea id="tf-notes" class="search-input" maxlength="2000" placeholder="Where, who brings the game, learn the rules beforehand, house rules / variant…"></textarea>
+      </div>
+      <div class="form-row" id="tf-by-row"><label for="tf-by">Edited by</label><input id="tf-by" class="search-input" maxlength="60" placeholder="Your name" /></div>
+      <div class="form-error" id="tf-error"></div>
+      <div class="form-btns">
+        <button class="admin-action-btn" onclick="closeTableForm()">Cancel</button>
+        <button class="admin-action-btn primary" id="tf-save" onclick="saveTableForm()">✓ Save</button>
       </div>
     </div>
   </div>
@@ -1805,7 +2092,6 @@
         <option value="unplayed-first">Not played first</option>
       </select>
       <button class="chal-admin-btn" id="chal-admin-btn" onclick="toggleChallengeAdmin()">⚙ Admin</button>
-      <button class="chal-export-btn" id="chal-export-btn" style="display:none" onclick="exportChallengeJson()">↓ Export challenge.json</button>
     </div>
 
     <!-- Table -->
@@ -1840,6 +2126,40 @@
       </div>
     </div>
 
+  </div>
+
+  <!-- ── Open Tables tab ───────────────────────────────────────────── -->
+  <div id="tab-tables" style="display:none">
+    <div class="challenge-hero">
+      <div class="challenge-hero-title">Open Tables</div>
+      <div class="challenge-hero-sub">Planned game sessions. Add your name to grab a seat.</div>
+    </div>
+    <div class="board-toolbar">
+      <button class="shop-go-btn board-add-btn" onclick="openTableForm()">+ Open a table</button>
+      <span class="me-chip" id="tables-me"></span>
+    </div>
+    <div class="item-list" id="tables-list"><div class="board-empty">Loading…</div></div>
+  </div>
+
+  <!-- ── Marketplace tab ───────────────────────────────────────────── -->
+  <div id="tab-market" style="display:none">
+    <div class="challenge-hero">
+      <div class="challenge-hero-title">Marketplace</div>
+      <div class="challenge-hero-sub">Games for sale within the group. Interested? Message the seller on Telegram.</div>
+    </div>
+    <div class="board-toolbar">
+      <button class="shop-go-btn board-add-btn" onclick="openMarketForm()">+ Sell a game</button>
+      <input id="market-search" type="text" class="search-input" placeholder="Search game or seller…" oninput="renderMarket()" />
+      <select id="market-sort" class="chal-sort-select" onchange="renderMarket()">
+        <option value="new">Newest first</option>
+        <option value="old">Oldest first</option>
+        <option value="price-asc">Price: low → high</option>
+        <option value="price-desc">Price: high → low</option>
+        <option value="name">Game A → Z</option>
+      </select>
+      <span class="me-chip" id="market-me"></span>
+    </div>
+    <div class="item-list" id="market-list"><div class="board-empty">Loading…</div></div>
   </div>
 
   <!-- ── Shops tab ─────────────────────────────────────────────────── -->
@@ -1904,6 +2224,19 @@ const PASSWORD_HASH = "44712ade717dbac9088af264742bf234fa4770b5ab5bda797be725be1
 // SHA-256 hash of the admin PIN (protects the colour editor).
 // Default PIN is: 1234  — change it with: python3 scripts/generate_password_hash.py
 const ADMIN_PIN_HASH  = "c4f9fcfbf89fa5e150549254e038fbd92543b00e532e5b4248d88c12b4e94d01";
+
+// Firebase web config — public by design (not a secret); access is governed by
+// firestore.rules. Firestore is the live shared store for the Haaste challenge,
+// Marketplace, Open Tables and collector colours.
+const FIREBASE_CONFIG = {
+  apiKey:            "AIzaSyAp26qLJYxIC9ZOnK8afWuFJo0lxs0XYHI",
+  authDomain:        "litsan-kokoelmat.firebaseapp.com",
+  projectId:         "litsan-kokoelmat",
+  storageBucket:     "litsan-kokoelmat.firebasestorage.app",
+  messagingSenderId: "873953348324",
+  appId:             "1:873953348324:web:9bd4d80d478e4753c27af1",
+};
+const FIREBASE_SDK = "https://www.gstatic.com/firebasejs/12.19.0/";
 
 const PAGE_SIZE = 75;
 const SESSION_KEY = "bgg_auth";
@@ -1999,8 +2332,12 @@ async function loadData() {
     allGames   = data.games || [];
     collectors = data.meta?.users || [];
 
-    // Build owner → colour map (respects localStorage overrides + colors.json)
-    await loadColorsJson();
+    // Firestore — if it can't be reached, the collection still works; the
+    // live features show a connection warning instead.
+    try { await initDb(); } catch(e) { console.error("Firestore unavailable", e); }
+
+    // Build owner → colour map (shared colours from Firestore, else defaults)
+    await loadColours();
     buildOwnerColMap();
 
     // Update topbar stats
@@ -2035,6 +2372,8 @@ async function loadData() {
     });
 
     await loadChallengeData();
+    await migrateLocalStorage();
+    initBoards();
 
     document.getElementById("loading-msg").style.display = "none";
     document.getElementById("game-table").style.display = "";
@@ -2302,13 +2641,19 @@ function switchTab(tab) {
   closeSidebar();
   document.getElementById('tab-collection').style.display = tab === 'collection' ? 'flex' : 'none';
   document.getElementById('tab-stats').style.display      = tab === 'stats'      ? 'block' : 'none';
+  document.getElementById('tab-tables').style.display     = tab === 'tables'     ? 'block' : 'none';
+  document.getElementById('tab-market').style.display     = tab === 'market'     ? 'block' : 'none';
   document.getElementById('tab-shops').style.display      = tab === 'shops'      ? 'block' : 'none';
   document.getElementById('tab-challenge').style.display  = tab === 'challenge'  ? 'block' : 'none';
   document.getElementById('tab-btn-collection').classList.toggle('active', tab === 'collection');
   document.getElementById('tab-btn-stats').classList.toggle('active', tab === 'stats');
+  document.getElementById('tab-btn-tables').classList.toggle('active', tab === 'tables');
+  document.getElementById('tab-btn-market').classList.toggle('active', tab === 'market');
   document.getElementById('tab-btn-shops').classList.toggle('active', tab === 'shops');
   document.getElementById('tab-btn-challenge').classList.toggle('active', tab === 'challenge');
   if (tab === 'stats')     renderStats();
+  if (tab === 'tables')    renderTables();
+  if (tab === 'market')    renderMarket();
   if (tab === 'shops' && !shopInited) { initShops(); shopInited = true; }
   if (tab === 'challenge') { renderChallengeStats(); renderChallengeTable(); }
 }
@@ -2660,29 +3005,29 @@ function hexToRgba(hex, alpha) {
   return `rgba(${r},${g},${b},${alpha})`;
 }
 
-function buildOwnerColMap() {
-  // Try localStorage overrides, then colors.json (loaded separately), then defaults
-  let saved = {};
-  try { saved = JSON.parse(localStorage.getItem(COLOURS_KEY) || '{}'); } catch(e) {}
+let sharedColours = {};   // Firestore settings/colours — { username: "#hex" }
 
+function buildOwnerColMap() {
+  // Shared colours from Firestore, then defaults
   ownerColMap = {};
   collectors.forEach((u, i) => {
-    if (saved[u]) {
-      const hex = saved[u];
-      ownerColMap[u] = [hex, hexToRgba(hex, 0.15)];
-    } else if (window._colorsJson && window._colorsJson[u]) {
-      ownerColMap[u] = window._colorsJson[u];
-    } else {
-      ownerColMap[u] = DEFAULT_COLOURS[i % DEFAULT_COLOURS.length];
-    }
+    const hex = sharedColours[u];
+    ownerColMap[u] = hex ? [hex, hexToRgba(hex, 0.15)] : DEFAULT_COLOURS[i % DEFAULT_COLOURS.length];
   });
 }
 
-async function loadColorsJson() {
+async function loadColours() {
+  if (!fdb) return;
   try {
-    const res = await fetch('data/colors.json');
-    if (res.ok) window._colorsJson = await res.json();
-  } catch(e) {}
+    const snap = await FS.getDoc(dbDoc('settings/colours'));
+    sharedColours = snap.exists() ? snap.data() : {};
+  } catch(e) { console.error(e); }
+}
+
+function rerenderCurrentTab() {
+  if (currentTab === 'stats')          renderStats();
+  else if (currentTab === 'collection') renderPage();
+  else if (currentTab === 'challenge')  renderChallengeTable();
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -2712,10 +3057,31 @@ async function checkAdminPin() {
 
 function _openAdminPanel() {
   adminPending = {};
-  const rows = document.getElementById('admin-color-rows');
-  let saved = {};
-  try { saved = JSON.parse(localStorage.getItem(COLOURS_KEY) || '{}'); } catch(e) {}
+  renderColourRows();
+  document.getElementById('admin-overlay').style.display = 'flex';
+  switchAdminSection(adminSection);
+}
 
+let adminSection = 'colours';
+
+function switchAdminSection(key) {
+  adminSection = key;
+  ['colours', 'trash', 'year'].forEach(k => {
+    document.getElementById('admin-sec-' + k).style.display = k === key ? '' : 'none';
+    document.getElementById('admin-sec-btn-' + k).classList.toggle('active', k === key);
+  });
+  document.getElementById('admin-footer-colours').style.display = key === 'colours' ? '' : 'none';
+  document.getElementById('admin-footer-year').style.display    = key === 'year'    ? '' : 'none';
+  if (key === 'trash') renderTrash();
+  if (key === 'year')  openYearSection();
+}
+
+function adminIsOpen(section) {
+  return document.getElementById('admin-overlay').style.display !== 'none' && adminSection === section;
+}
+
+function renderColourRows() {
+  const rows = document.getElementById('admin-color-rows');
   rows.innerHTML = collectors.map((u, i) => {
     const [fg] = ownerColMap[u] || DEFAULT_COLOURS[i % DEFAULT_COLOURS.length];
     const bg = hexToRgba(fg, 0.15);
@@ -2729,8 +3095,6 @@ function _openAdminPanel() {
         />
       </div>`;
   }).join('');
-
-  document.getElementById('admin-overlay').style.display = 'flex';
 }
 
 function closeAdmin() {
@@ -2746,58 +3110,43 @@ function previewColor(username, hex) {
   }
 }
 
-function saveColors() {
-  let saved = {};
-  try { saved = JSON.parse(localStorage.getItem(COLOURS_KEY) || '{}'); } catch(e) {}
-  Object.assign(saved, adminPending);
-  localStorage.setItem(COLOURS_KEY, JSON.stringify(saved));
-  buildOwnerColMap();
-  // Re-render current page
-  if (currentTab === 'stats') renderStats();
-  else if (currentTab === 'collection') renderPage();
-  closeAdmin();
+async function saveColors() {
+  if (!Object.keys(adminPending).length) { closeAdmin(); return; }
+  try {
+    await FS.setDoc(dbDoc('settings/colours'), adminPending, { merge: true });
+    Object.assign(sharedColours, adminPending);
+    adminPending = {};
+    buildOwnerColMap();
+    rerenderCurrentTab();
+    closeAdmin();
+  } catch(e) { dbFail(e); }
 }
 
-function resetColors() {
-  localStorage.removeItem(COLOURS_KEY);
-  adminPending = {};
-  buildOwnerColMap();
-  openAdmin(); // re-open with defaults
-}
-
-function exportColors() {
-  const output = {};
-  collectors.forEach((u, i) => {
-    const picker = document.getElementById(`picker-${u}`);
-    const hex = (picker ? picker.value : null) || (ownerColMap[u] || DEFAULT_COLOURS[i])[0];
-    output[u] = [hex, hexToRgba(hex, 0.15)];
-  });
-  const json = JSON.stringify(output, null, 2);
-  navigator.clipboard.writeText(json).then(() => {
-    alert('colors.json content copied to clipboard!\nPaste it into data/colors.json and commit.');
-  }).catch(() => {
-    // Fallback: show in a textarea
-    const ta = document.createElement('textarea');
-    ta.value = json;
-    ta.style.cssText = 'position:fixed;top:20px;left:20px;width:80vw;height:60vh;z-index:999;font-family:monospace;font-size:12px';
-    document.body.appendChild(ta);
-    ta.select();
-    alert('Copy the JSON above, paste into data/colors.json and commit. Click OK to dismiss.');
-    document.body.removeChild(ta);
-  });
+async function resetColors() {
+  if (!confirm('Reset every collector to the default colour — for everyone?')) return;
+  try {
+    await FS.setDoc(dbDoc('settings/colours'), {});
+    sharedColours = {};
+    adminPending = {};
+    buildOwnerColMap();
+    renderColourRows();
+    rerenderCurrentTab();
+  } catch(e) { dbFail(e); }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// CHALLENGE TAB
+// CHALLENGE TAB  (live from Firestore: challenge_meta/current → challenge_years/{year}/games)
 // ─────────────────────────────────────────────────────────────────────────────
-let challengeData      = null;
+let challengeData      = null;        // { year, title, target, tiers, games: [{objectid, name, played_date}] }
 let challengeSet       = new Set();   // objectids of challenge games
-let challengeOverrides = {};          // localStorage {objectid: "YYYY-MM-DD"|null}
-let challengeNameOverrides = {};      // localStorage {objectid: "Game name"} — admin-entered names for games no longer in collection
+let challengeById      = new Map();   // objectid → game doc data
+let activeYear         = null;
 let chalFilter         = 'all';
 let chalAdminMode      = false;
 let chalEditingId      = null;
-const CHAL_KEY         = 'lc_challenge_played';
+let _chalGamesUnsub    = null;
+let _chalMetaUnsub     = null;
+// Legacy localStorage keys — only read once by migrateLocalStorage()
 const CHAL_OVERRIDE_KEY = 'lc_challenge_overrides';
 const CHAL_NAME_KEY     = 'lc_challenge_name_overrides';
 
@@ -2809,31 +3158,65 @@ function todayStr() {
 }
 
 async function loadChallengeData() {
-  try {
-    const res = await fetch('data/challenge.json');
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    challengeData = await res.json();
-    challengeSet  = new Set((challengeData.games || []).map(g => g.objectid));
-    // Merge localStorage overrides
-    try { challengeOverrides = JSON.parse(localStorage.getItem(CHAL_OVERRIDE_KEY) || '{}'); } catch(e) {}
-    try { challengeNameOverrides = JSON.parse(localStorage.getItem(CHAL_NAME_KEY) || '{}'); } catch(e) {}
-  } catch(e) {
-    challengeData = { year: 2026, title: 'Satunnaishaaste 2026', target: 201,
-                      tiers: {bronze:75, silver:100, gold:125}, games: [] };
+  const fallbackYear = activeYear || new Date().getFullYear();
+  if (!fdb) {
+    challengeData = { year: fallbackYear, title: `Satunnaishaaste ${fallbackYear}`, tiers: {bronze:75, silver:100, gold:125}, games: [] };
+    return;
   }
+  try {
+    const meta = await FS.getDoc(dbDoc('challenge_meta/current'));
+    activeYear = meta.exists() ? meta.data().activeYear : fallbackYear;
+    const yr   = await FS.getDoc(dbDoc(`challenge_years/${activeYear}`));
+    const y    = yr.exists() ? yr.data() : {};
+    challengeData = {
+      year:   activeYear,
+      title:  y.title || `Satunnaishaaste ${activeYear}`,
+      target: y.target,
+      tiers:  y.tiers || {bronze:75, silver:100, gold:125},
+      games:  [],
+    };
+    // Live subscription — every open tab sees played-marks as soon as they're saved
+    if (_chalGamesUnsub) _chalGamesUnsub();
+    await new Promise(resolve => {
+      _chalGamesUnsub = FS.onSnapshot(dbCol(`challenge_years/${activeYear}/games`), snap => {
+        setChallengeGames(snap.docs.map(d => d.data()));
+        onChallengeChanged();
+        resolve();
+      }, err => { console.error(err); resolve(); });
+    });
+    // A newly published year switches everyone over without a reload
+    if (!_chalMetaUnsub) {
+      _chalMetaUnsub = FS.onSnapshot(dbDoc('challenge_meta/current'), snap => {
+        const y = snap.data()?.activeYear;
+        if (y && y !== activeYear) loadChallengeData().then(onChallengeChanged);
+      });
+    }
+  } catch(e) {
+    console.error(e);
+    challengeData = { year: fallbackYear, title: `Satunnaishaaste ${fallbackYear}`, tiers: {bronze:75, silver:100, gold:125}, games: [] };
+  }
+  document.getElementById('tab-btn-challenge').textContent = `Haaste '${String(challengeData.year).slice(-2)}`;
+}
+
+function setChallengeGames(games) {
+  challengeData.games = games;
+  challengeById = new Map(games.map(g => [g.objectid, g]));
+  challengeSet  = new Set(challengeById.keys());
+}
+
+function onChallengeChanged() {
+  if (currentTab === 'challenge') { renderChallengeStats(); renderChallengeTable(); }
+  else if (currentTab === 'collection' && filteredGames.length) renderPage();
 }
 
 function getChalPlayedDate(objectid) {
-  if (objectid in challengeOverrides) return challengeOverrides[objectid];
-  const g = (challengeData?.games || []).find(g => g.objectid === objectid);
-  return g?.played_date || null;
+  return challengeById.get(objectid)?.played_date || null;
 }
 
 // Best available name for a challenge game, in priority order:
-// admin-entered override → challenge.json name (if not a stub) → current collection name → challenge.json stub
+// stored name (if not a stub) → current collection name → stored stub
 function getChalName(objectid) {
-  if (challengeNameOverrides[objectid]) return challengeNameOverrides[objectid];
-  const g = (challengeData?.games || []).find(g => g.objectid === objectid);
+  const g = challengeById.get(objectid);
   if (g && g.name && !STUB_NAME_RE.test(g.name)) return g.name;
   const coll = allGames.find(ag => ag.objectid === objectid);
   if (coll && coll.name) return coll.name;
@@ -2841,7 +3224,13 @@ function getChalName(objectid) {
 }
 
 function countChalPlayed() {
-  return (challengeData?.games || []).filter(g => !!getChalPlayedDate(g.objectid)).length;
+  return (challengeData?.games || []).filter(g => !!g.played_date).length;
+}
+
+async function saveChalGame(objectid, fields) {
+  try {
+    await FS.updateDoc(dbDoc(`challenge_years/${activeYear}/games/${objectid}`), fields);
+  } catch(e) { dbFail(e); }
 }
 
 // ── Stats ──────────────────────────────────────────────────────────────────
@@ -2852,7 +3241,7 @@ function renderChallengeStats() {
   const tiers  = challengeData.tiers  || {bronze:75, silver:100, gold:125};
   const played = countChalPlayed();
 
-  document.getElementById('chal-title').textContent = challengeData.title || 'Satunnaishaaste 2026';
+  document.getElementById('chal-title').textContent = challengeData.title || `Satunnaishaaste ${challengeData.year}`;
   document.getElementById('chal-stat-played').textContent     = played;
   document.getElementById('chal-stat-played-sub').textContent = `of ${target} games`;
 
@@ -2986,11 +3375,8 @@ function renderChallengeTable() {
 function toggleChalPlayed(objectid) {
   if (!chalAdminMode) return;
   const playing = !getChalPlayedDate(objectid);
-  challengeOverrides[objectid] = playing ? todayStr() : null;
-  localStorage.setItem(CHAL_OVERRIDE_KEY, JSON.stringify(challengeOverrides));
   closeDatePopup();
-  renderChallengeStats();
-  renderChallengeTable();
+  saveChalGame(objectid, { played_date: playing ? todayStr() : null });
 }
 
 function editChalName(objectid) {
@@ -2998,14 +3384,8 @@ function editChalName(objectid) {
   const current = getChalName(objectid);
   const next = prompt(`Stored name for BGG ID ${objectid}\n(used when the game is no longer in anyone's collection):`, current);
   if (next === null) return;
-  const trimmed = next.trim();
-  if (trimmed && trimmed !== current) {
-    challengeNameOverrides[objectid] = trimmed;
-  } else if (!trimmed) {
-    delete challengeNameOverrides[objectid];
-  }
-  localStorage.setItem(CHAL_NAME_KEY, JSON.stringify(challengeNameOverrides));
-  renderChallengeTable();
+  const trimmed = next.trim().slice(0, 200);
+  if (trimmed && trimmed !== current) saveChalGame(objectid, { name: trimmed });
 }
 
 // ── Admin mode ─────────────────────────────────────────────────────────────
@@ -3016,14 +3396,12 @@ function toggleChallengeAdmin() {
       chalAdminMode = true;
       document.getElementById('chal-admin-btn').classList.add('active');
       document.getElementById('chal-admin-btn').textContent = '⚙ Admin ON';
-      document.getElementById('chal-export-btn').style.display = '';
       renderChallengeTable();
     });
   } else {
     chalAdminMode = false;
     document.getElementById('chal-admin-btn').classList.remove('active');
     document.getElementById('chal-admin-btn').textContent = '⚙ Admin';
-    document.getElementById('chal-export-btn').style.display = 'none';
     renderChallengeTable();
     closeDatePopup();
   }
@@ -3059,40 +3437,16 @@ function saveChallengeDate() {
   if (!chalEditingId) return;
   const val = document.getElementById('date-input').value;
   if (!val) { clearChallengeDate(); return; }
-  challengeOverrides[chalEditingId] = val;
-  localStorage.setItem(CHAL_OVERRIDE_KEY, JSON.stringify(challengeOverrides));
+  const oid = chalEditingId;
   closeDatePopup();
-  renderChallengeStats();
-  renderChallengeTable();
+  saveChalGame(oid, { played_date: val });
 }
 
 function clearChallengeDate() {
   if (!chalEditingId) return;
-  challengeOverrides[chalEditingId] = null;
-  localStorage.setItem(CHAL_OVERRIDE_KEY, JSON.stringify(challengeOverrides));
+  const oid = chalEditingId;
   closeDatePopup();
-  renderChallengeStats();
-  renderChallengeTable();
-}
-
-function exportChallengeJson() {
-  const output = JSON.parse(JSON.stringify(challengeData));
-  output.games = output.games.map(g => ({
-    ...g,
-    name: getChalName(g.objectid),
-    played_date: getChalPlayedDate(g.objectid) || null
-  }));
-  const json = JSON.stringify(output, null, 2);
-  navigator.clipboard.writeText(json)
-    .then(() => alert('challenge.json copied to clipboard!\nPaste into data/challenge.json and commit.'))
-    .catch(() => {
-      const ta = document.createElement('textarea');
-      ta.value = json;
-      ta.style.cssText = 'position:fixed;top:20px;left:20px;width:80vw;height:60vh;z-index:999;font-family:monospace;font-size:11px';
-      document.body.appendChild(ta); ta.select();
-      alert('Copy the JSON, paste into data/challenge.json and commit. Click OK.');
-      document.body.removeChild(ta);
-    });
+  saveChalGame(oid, { played_date: null });
 }
 
 // Close date popup when clicking outside
@@ -3137,6 +3491,885 @@ function openPinModal(callback) {
   err.textContent = '';
   input.value = '';
   setTimeout(() => input.focus(), 50);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// FIRESTORE — SDK loaded on demand from gstatic (no bundler)
+// ─────────────────────────────────────────────────────────────────────────────
+let FS  = null;   // firebase-firestore module: doc, setDoc, onSnapshot, …
+let fdb = null;   // Firestore instance (null if it couldn't be reached)
+
+async function initDb() {
+  if (fdb) return;
+  const [appMod, fsMod] = await Promise.all([
+    import(FIREBASE_SDK + 'firebase-app.js'),
+    import(FIREBASE_SDK + 'firebase-firestore.js'),
+  ]);
+  FS  = fsMod;
+  fdb = FS.getFirestore(appMod.initializeApp(FIREBASE_CONFIG));
+}
+
+const dbDoc = path => FS.doc(fdb, path);
+const dbCol = path => FS.collection(fdb, path);
+
+function dbFail(e) {
+  console.error(e);
+  alert('Saving failed — ' + (e?.code || e?.message || e) + '\nCheck your connection and try again.');
+}
+
+// Run a list of batch operations in chunks (Firestore caps a batch at 500 writes)
+async function commitOps(ops) {
+  for (let i = 0; i < ops.length; i += 450) {
+    const batch = FS.writeBatch(fdb);
+    ops.slice(i, i + 450).forEach(op => op(batch));
+    await batch.commit();
+  }
+}
+
+// One-time push of anything an admin browser still holds in the old
+// localStorage-only stores (pre-Firestore played-marks, names, colours).
+const MIGRATED_KEY = 'lc_migrated_v1';
+
+async function migrateLocalStorage() {
+  if (!fdb) return;
+  let overrides = {}, names = {}, colours = {};
+  try {
+    if (localStorage.getItem(MIGRATED_KEY)) return;
+    overrides = JSON.parse(localStorage.getItem(CHAL_OVERRIDE_KEY) || '{}');
+    names     = JSON.parse(localStorage.getItem(CHAL_NAME_KEY)     || '{}');
+    colours   = JSON.parse(localStorage.getItem(COLOURS_KEY)       || '{}');
+  } catch(e) { return; }
+  const ops = [];
+  if (activeYear === 2026) {   // the old overrides all belong to the 2026 roster
+    const ref = oid => dbDoc(`challenge_years/2026/games/${oid}`);
+    // Dates only fill games still unplayed — challenge.json was hand-updated since,
+    // so a stale local "un-mark" (null) must not wipe a newer committed date.
+    Object.entries(overrides).forEach(([oid, date]) => {
+      const g = challengeById.get(oid);
+      if (g && date && !g.played_date) ops.push(b => b.update(ref(oid), { played_date: date }));
+    });
+    Object.entries(names).forEach(([oid, name]) => {
+      const g = challengeById.get(oid);
+      if (g && name && name !== g.name) ops.push(b => b.update(ref(oid), { name: String(name).slice(0, 200) }));
+    });
+  }
+  if (Object.keys(colours).length) {
+    ops.push(b => b.set(dbDoc('settings/colours'), colours, { merge: true }));
+  }
+  try {
+    if (ops.length) await commitOps(ops);
+    if (Object.keys(colours).length) { Object.assign(sharedColours, colours); buildOwnerColMap(); }
+    localStorage.setItem(MIGRATED_KEY, '1');
+    if (ops.length) console.info(`Migrated ${ops.length} local change(s) to Firestore`);
+  } catch(e) { console.error('localStorage migration failed', e); }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SHARED HELPERS — names, dates, history, game lookup
+// ─────────────────────────────────────────────────────────────────────────────
+const MY_NAME_KEY = 'lc_my_name';
+const DAY_MS = 86400000;
+
+function getMyName()  { try { return localStorage.getItem(MY_NAME_KEY) || ''; } catch(e) { return ''; } }
+function setMyName(n) { try { localStorage.setItem(MY_NAME_KEY, n); } catch(e) {} renderMeChips(); }
+function rememberName(n) { if (n && !getMyName()) setMyName(n); }
+
+// Name for the change log — remembered, or asked once
+function whoAmI() {
+  let n = getMyName();
+  if (!n) {
+    n = (prompt('Your name (shown in the change log):') || '').trim().slice(0, 60);
+    if (n) setMyName(n);
+  }
+  return n;
+}
+
+function changeMyName() {
+  const n = prompt('Your name — pre-filled in forms and used in change logs:', getMyName());
+  if (n === null) return;
+  setMyName(n.trim().slice(0, 60));
+}
+
+function renderMeChips() {
+  const n = getMyName();
+  const html = n
+    ? `You: <b onclick="changeMyName()" title="Change your name">${esc(n)}</b>`
+    : `<b onclick="changeMyName()">Set your name</b>`;
+  ['market-me', 'tables-me'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = html;
+  });
+}
+
+function esc(v) { return escHtml(String(v ?? '')); }
+function val(id) { return document.getElementById(id).value.trim(); }
+function histEntry(by, text) { return { at: new Date().toISOString(), by: by || '?', text }; }
+function tsDate(ts) { return ts?.toDate ? ts.toDate() : new Date(ts || 0); }
+function fmtDay(d)  { return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }); }
+function fmtTime(d) { return d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }); }
+function fmtWhen(d) { return d.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' }) + ' ' + fmtTime(d); }
+function fmtPrice(p) { return (Number.isInteger(p) ? p : p.toFixed(2)) + ' €'; }
+function isoDate(d) { return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
+
+// One entry per objectid — the collection, deduplicated
+let _gameIndex = null;
+function gameIndex() {
+  if (!_gameIndex) {
+    _gameIndex = new Map();
+    allGames.forEach(g => { if (!_gameIndex.has(g.objectid)) _gameIndex.set(g.objectid, g); });
+  }
+  return _gameIndex;
+}
+function collGame(oid) { return oid ? gameIndex().get(oid) : null; }
+
+function gameThumbHtml(oid) {
+  const g = collGame(oid);
+  return g?.thumbnail
+    ? `<img class="item-thumb" src="${esc(g.thumbnail)}" alt="" loading="lazy" />`
+    : `<div class="item-thumb blank">♟</div>`;
+}
+
+function gameTitleHtml(oid, name) {
+  return oid
+    ? `<a href="https://boardgamegeek.com/boardgame/${oid}" target="_blank" rel="noopener">${esc(name)}</a>`
+    : esc(name);
+}
+
+// Small, collapsible change log under each card (open state survives live re-renders)
+const openHistories = new Set();
+
+function histToggleHtml(d) {
+  const n = (d.history || []).length;
+  return n ? `<button class="item-act hist" onclick="toggleHistory('${d.id}')">History (${n}) ${openHistories.has(d.id) ? '▴' : '▾'}</button>` : '';
+}
+
+function histBodyHtml(d) {
+  if (!openHistories.has(d.id)) return '';
+  const rows = (d.history || []).slice().reverse().map(h => {
+    const at = new Date(h.at);
+    return `<div><time>${fmtDay(at)} ${fmtTime(at)}</time>${esc(h.by)} — ${esc(h.text)}</div>`;
+  }).join('');
+  return `<div class="item-hist">${rows}</div>`;
+}
+
+function toggleHistory(id) {
+  openHistories.has(id) ? openHistories.delete(id) : openHistories.add(id);
+  renderMarket(); renderTables(); refreshTrash();
+}
+
+// Soft delete — record stays in Firestore and shows up in Admin → Trash
+async function softDelete(coll, id, reason, by) {
+  const now = FS.Timestamp.now();
+  await FS.updateDoc(dbDoc(`${coll}/${id}`), {
+    deleted: true, deleted_at: now, deleted_reason: reason, updated_at: now,
+    history: FS.arrayUnion(histEntry(by, reason === 'expired' ? 'Auto-archived (played)' : 'Removed')),
+  });
+}
+
+async function removeItem(coll, id, label) {
+  if (!confirm(`Remove this ${label}? (The admin can still restore it.)`)) return;
+  const by = whoAmI();
+  if (!by) return;
+  try { await softDelete(coll, id, 'removed', by); } catch(e) { dbFail(e); }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// GAME PICKER — autocomplete over the collection, free text allowed
+// ─────────────────────────────────────────────────────────────────────────────
+// The input's data-objectid holds the picked game; free text leaves it empty.
+function attachGamePicker(input, opts = {}) {
+  const hint = document.getElementById(input.id + '-hint');
+  const list = document.createElement('div');
+  list.className = 'gp-list';
+  list.style.display = 'none';
+  input.parentElement.appendChild(list);
+  let matches = [], active = -1;
+
+  const setHint = () => {
+    if (!hint) return;
+    if (input.dataset.objectid)  { hint.className = 'gp-hint ok'; hint.textContent = '✓ In our collections'; }
+    else if (input.value.trim()) { hint.className = 'gp-hint';    hint.textContent = 'Not in our collections — will be saved as typed.'; }
+    else hint.textContent = '';
+  };
+  const close = () => { list.style.display = 'none'; active = -1; };
+  const render = () => {
+    list.innerHTML = matches.map((g, i) => `
+      <div class="gp-item${i === active ? ' active' : ''}" data-i="${i}">
+        ${g.thumbnail ? `<img src="${esc(g.thumbnail)}" alt="" loading="lazy" />` : '<img alt="" />'}
+        <span>${esc(g.name)}</span><span class="yr">${g.year || ''}</span>
+      </div>`).join('');
+    list.style.display = matches.length ? 'block' : 'none';
+  };
+  const pick = g => {
+    input.dataset.objectid = g.objectid;
+    input.value = g.name;
+    close(); setHint();
+    if (opts.onPick) opts.onPick(g);
+  };
+
+  input.addEventListener('input', () => {
+    delete input.dataset.objectid;
+    const q = input.value.trim().toLowerCase();
+    matches = [];
+    if (q.length >= 2) {
+      const pre = [], mid = [];
+      for (const g of gameIndex().values()) {
+        const n = g.name.toLowerCase();
+        if (n.startsWith(q)) pre.push(g); else if (n.includes(q)) mid.push(g);
+      }
+      const byName = (a, b) => a.name.localeCompare(b.name);
+      matches = [...pre.sort(byName), ...mid.sort(byName)].slice(0, 8);
+      const exact = matches.find(g => g.name.toLowerCase() === q);
+      if (exact && !opts.onPick) input.dataset.objectid = exact.objectid;
+    }
+    active = -1; render(); setHint();
+  });
+  input.addEventListener('keydown', e => {
+    if (list.style.display === 'none') return;
+    if (e.key === 'ArrowDown')      { active = Math.min(active + 1, matches.length - 1); render(); e.preventDefault(); }
+    else if (e.key === 'ArrowUp')   { active = Math.max(active - 1, 0); render(); e.preventDefault(); }
+    else if (e.key === 'Enter' && active >= 0) { pick(matches[active]); e.preventDefault(); }
+    else if (e.key === 'Escape')    { close(); e.stopPropagation(); }
+  });
+  list.addEventListener('mousedown', e => {
+    const item = e.target.closest('.gp-item');
+    if (!item) return;
+    e.preventDefault();
+    pick(matches[+item.dataset.i]);
+  });
+  input.addEventListener('blur', () => setTimeout(close, 120));
+  input._gpSetHint = setHint;
+}
+
+function setPickerValue(input, name, objectid) {
+  input.value = name || '';
+  if (objectid) input.dataset.objectid = objectid; else delete input.dataset.objectid;
+  if (input._gpSetHint) input._gpSetHint();
+}
+
+function readGameField(id) {
+  const input = document.getElementById(id);
+  return { game_name: input.value.trim().slice(0, 200), objectid: input.dataset.objectid || null };
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// BOARDS — boot for Marketplace + Open Tables
+// ─────────────────────────────────────────────────────────────────────────────
+function initBoards() {
+  renderMeChips();
+  attachGamePicker(document.getElementById('mf-game'));
+  attachGamePicker(document.getElementById('tf-game'));
+  const yrAdd = document.getElementById('yr-add');
+  attachGamePicker(yrAdd, { onPick: g => { addYearGame(g.objectid, g.name); setPickerValue(yrAdd, '', null); } });
+
+  if (!fdb) {
+    const msg = `<div class="board-empty">⚠️ Couldn't connect to the database — try reloading.</div>`;
+    document.getElementById('market-list').innerHTML = msg;
+    document.getElementById('tables-list').innerHTML = msg;
+    return;
+  }
+  // Skip malformed docs (e.g. a write still pending that the rules will reject)
+  FS.onSnapshot(dbCol('market'), snap => {
+    marketDocs = snap.docs.map(d => ({ id: d.id, ...d.data() }))
+      .filter(m => typeof m.price === 'number' && m.game_name && m.seller);
+    renderMarket(); refreshTrash();
+  }, e => console.error(e));
+  FS.onSnapshot(dbCol('tables'), snap => {
+    tableDocs = snap.docs.map(d => ({ id: d.id, ...d.data() }))
+      .filter(t => t.starts_at && Array.isArray(t.players) && t.game_name && t.host);
+    archiveExpiredTables(); renderTables(); refreshTrash();
+  }, e => console.error(e));
+  // Tables move to "Recently played" / get archived as time passes
+  setInterval(() => { archiveExpiredTables(); if (currentTab === 'tables') renderTables(); }, 60000);
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Escape') return;
+  if (document.getElementById('market-form').style.display !== 'none') closeMarketForm();
+  if (document.getElementById('table-form').style.display  !== 'none') closeTableForm();
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// MARKETPLACE  (Kirppari) — Firestore market/{id}
+// ─────────────────────────────────────────────────────────────────────────────
+let marketDocs   = [];     // every listing, soft-deleted included: [{id, ...data}]
+let marketEditId = null;
+
+function renderMarket() {
+  const el = document.getElementById('market-list');
+  if (!el || !fdb) return;
+  const q    = document.getElementById('market-search').value.trim().toLowerCase();
+  const sort = document.getElementById('market-sort').value;
+  const live = marketDocs.filter(m => !m.deleted);
+  const items = live.filter(m => !q || m.game_name.toLowerCase().includes(q) || m.seller.toLowerCase().includes(q));
+  const created = m => tsDate(m.created_at).getTime();
+  items.sort((a, b) =>
+      sort === 'old'        ? created(a) - created(b)
+    : sort === 'price-asc'  ? a.price - b.price
+    : sort === 'price-desc' ? b.price - a.price
+    : sort === 'name'       ? a.game_name.localeCompare(b.game_name)
+    :                         created(b) - created(a));
+  if (!items.length) {
+    el.innerHTML = `<div class="board-empty">${live.length ? 'No listings match the search.' : 'Nothing for sale yet.'}</div>`;
+    return;
+  }
+  el.innerHTML = items.map(m => `
+    <div class="item-card">
+      ${gameThumbHtml(m.objectid)}
+      <div class="item-main">
+        <div class="item-head">
+          <span class="item-title">${gameTitleHtml(m.objectid, m.game_name)}</span>
+          <span class="item-price">${fmtPrice(m.price)}</span>
+        </div>
+        <div class="item-meta">${esc(m.seller)}<span class="sep">·</span>listed ${fmtDay(tsDate(m.created_at))}</div>
+        ${m.notes ? `<div class="item-notes">${esc(m.notes)}</div>` : ''}
+        <div class="item-foot">
+          <button class="item-act" onclick="openMarketForm('${m.id}')">✎ Edit</button>
+          <button class="item-act danger" onclick="removeItem('market','${m.id}','listing')">🗑 Remove</button>
+          ${histToggleHtml(m)}
+        </div>
+        ${histBodyHtml(m)}
+      </div>
+    </div>`).join('');
+}
+
+function openMarketForm(id) {
+  const m = id ? marketDocs.find(x => x.id === id) : null;
+  marketEditId = m ? m.id : null;
+  document.getElementById('market-form-title').textContent = m ? 'Edit listing' : 'Sell a game';
+  document.getElementById('mf-seller').value = m ? m.seller : getMyName();
+  setPickerValue(document.getElementById('mf-game'), m?.game_name, m?.objectid);
+  document.getElementById('mf-price').value  = m ? m.price : '';
+  document.getElementById('mf-notes').value  = m ? m.notes : '';
+  document.getElementById('mf-by').value     = getMyName();
+  document.getElementById('mf-by-row').style.display = m ? '' : 'none';
+  document.getElementById('mf-error').textContent = '';
+  document.getElementById('market-form').style.display = 'flex';
+  setTimeout(() => document.getElementById(m || getMyName() ? 'mf-game' : 'mf-seller').focus(), 50);
+}
+
+function closeMarketForm() {
+  document.getElementById('market-form').style.display = 'none';
+  marketEditId = null;
+}
+
+async function saveMarketForm() {
+  const err    = document.getElementById('mf-error');
+  const seller = val('mf-seller').slice(0, 60);
+  const { game_name, objectid } = readGameField('mf-game');
+  const price  = Math.round(parseFloat(document.getElementById('mf-price').value) * 100) / 100;
+  const notes  = val('mf-notes').slice(0, 2000);
+  const by     = marketEditId ? val('mf-by').slice(0, 60) : seller;
+  if (!seller)        { err.textContent = 'Who is selling?'; return; }
+  if (!game_name)     { err.textContent = 'Which game?'; return; }
+  if (!(price >= 0))  { err.textContent = 'Enter a price in euros.'; return; }
+  if (!by)            { err.textContent = 'Add your name for the change log.'; return; }
+
+  const btn = document.getElementById('mf-save');
+  btn.disabled = true;
+  const now = FS.Timestamp.now();
+  try {
+    if (!marketEditId) {
+      await FS.addDoc(dbCol('market'), {
+        seller, objectid, game_name, price, notes,
+        created_at: now, updated_at: now,
+        deleted: false, deleted_at: null, deleted_reason: null,
+        history: [histEntry(seller, `Listed for ${fmtPrice(price)}`)],
+      });
+    } else {
+      const m = marketDocs.find(x => x.id === marketEditId);
+      const changes = [];
+      if (seller !== m.seller)                                   changes.push(`Seller ${m.seller} → ${seller}`);
+      if (game_name !== m.game_name || objectid !== m.objectid)  changes.push(`Game ${m.game_name} → ${game_name}`);
+      if (price !== m.price)                                     changes.push(`Price ${fmtPrice(m.price)} → ${fmtPrice(price)}`);
+      if (notes !== m.notes)                                     changes.push('Details edited');
+      if (changes.length) {
+        await FS.updateDoc(dbDoc(`market/${m.id}`), {
+          seller, objectid, game_name, price, notes, updated_at: now,
+          history: FS.arrayUnion(histEntry(by, changes.join(' · '))),
+        });
+      }
+    }
+    rememberName(by);
+    closeMarketForm();
+  } catch(e) { dbFail(e); }
+  btn.disabled = false;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// OPEN TABLES  (Sovitut pelit) — Firestore tables/{id}
+// ─────────────────────────────────────────────────────────────────────────────
+// The host takes a seat: seats taken = 1 + players.length. Tables stay visible
+// for a day after their start time, then the next client to load archives them.
+let tableDocs    = [];     // every table, soft-deleted included
+let tableEditId  = null;
+const autoArchived = new Set();
+
+function archiveExpiredTables() {
+  if (!fdb) return;
+  const cutoff = Date.now() - DAY_MS;
+  tableDocs.forEach(t => {
+    if (t.deleted || autoArchived.has(t.id) || tsDate(t.starts_at).getTime() > cutoff) return;
+    autoArchived.add(t.id);
+    softDelete('tables', t.id, 'expired', 'auto').catch(e => console.error(e));
+  });
+}
+
+function dayLabel(d) {
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  const diff  = Math.round((new Date(d.getFullYear(), d.getMonth(), d.getDate()) - today) / DAY_MS);
+  const label = d.toLocaleDateString('en-GB', {
+    weekday: 'long', day: 'numeric', month: 'long',
+    ...(d.getFullYear() !== today.getFullYear() ? { year: 'numeric' } : {}),
+  });
+  if (diff === 0) return `<span class="today">Today</span> · ${label}`;
+  if (diff === 1) return `Tomorrow · ${label}`;
+  return label;
+}
+
+function renderTables() {
+  const el = document.getElementById('tables-list');
+  if (!el || !fdb) return;
+  // Keep whatever someone is typing into a join box across live re-renders
+  const typed   = {};
+  document.querySelectorAll('#tables-list .join-row input').forEach(i => typed[i.id] = i.value);
+  const focused = document.activeElement?.id;
+
+  const now  = Date.now();
+  const at   = t => tsDate(t.starts_at).getTime();
+  const live = tableDocs.filter(t => !t.deleted && at(t) > now - DAY_MS);
+  const upcoming = live.filter(t => at(t) >  now).sort((a, b) => at(a) - at(b));
+  const recent   = live.filter(t => at(t) <= now).sort((a, b) => at(b) - at(a));
+
+  let html = '', lastDay = '';
+  upcoming.forEach(t => {
+    const d = tsDate(t.starts_at);
+    if (d.toDateString() !== lastDay) { html += `<div class="day-divider">${dayLabel(d)}</div>`; lastDay = d.toDateString(); }
+    html += tableCard(t, false);
+  });
+  if (!upcoming.length) html += `<div class="board-empty">No upcoming tables.</div>`;
+  if (recent.length) html += `<div class="day-divider">Recently played</div>` + recent.map(t => tableCard(t, true)).join('');
+  el.innerHTML = html;
+
+  Object.entries(typed).forEach(([id, v]) => { const i = document.getElementById(id); if (i) i.value = v; });
+  if (focused && focused.startsWith('join-')) document.getElementById(focused)?.focus();
+}
+
+function tableCard(t, past) {
+  const d      = tsDate(t.starts_at);
+  const taken  = 1 + t.players.length;
+  const full   = taken >= t.max_players;
+  const short  = Math.max(0, t.min_players - taken);
+  const left   = t.max_players - taken;
+  const range  = t.min_players === t.max_players ? `${t.max_players} players` : `${t.min_players}–${t.max_players} players`;
+  const status = full ? 'full' : short ? `needs ${short} more` : `${left} seat${left === 1 ? '' : 's'} left`;
+  const seatCls = full ? 'full' : short ? 'short' : '';
+
+  const chips = [`<span class="player-chip host">${esc(t.host)} · host</span>`]
+    .concat(t.players.map((p, i) =>
+      `<span class="player-chip">${esc(p)}${past ? '' : `<span class="x" title="Remove ${esc(p)}" onclick="leaveTable('${t.id}',${i})">×</span>`}</span>`))
+    .join('');
+
+  const mine = getMyName();
+  const joinName = mine && ![t.host, ...t.players].some(p => p.toLowerCase() === mine.toLowerCase()) ? mine : '';
+  const join = past ? '' : full
+    ? `<div class="join-full">Table is full.</div>`
+    : `<div class="join-row">
+         <input class="search-input" id="join-${t.id}" maxlength="60" placeholder="Your name" value="${esc(joinName)}"
+                onkeydown="if(event.key==='Enter')joinTable('${t.id}')" />
+         <button class="join-btn" onclick="joinTable('${t.id}')">Join</button>
+       </div>`;
+
+  return `
+    <div class="item-card${past ? ' dim' : ''}">
+      <div class="table-time">${fmtTime(d)}</div>
+      ${gameThumbHtml(t.objectid)}
+      <div class="item-main">
+        <div class="item-head">
+          <span class="item-title">${gameTitleHtml(t.objectid, t.game_name)}</span>
+          <span class="seat-badge ${seatCls}" title="${range}">${taken}/${t.max_players}</span>
+        </div>
+        <div class="item-meta">${range}<span class="sep">·</span>${past ? fmtDay(d) : status}</div>
+        ${t.notes ? `<div class="item-notes">${esc(t.notes)}</div>` : ''}
+        <div class="player-chips">${chips}</div>
+        ${join}
+        <div class="item-foot">
+          ${past ? '' : `<button class="item-act" onclick="openTableForm('${t.id}')">✎ Edit</button>
+          <button class="item-act danger" onclick="removeItem('tables','${t.id}','table')">🗑 Remove</button>`}
+          ${histToggleHtml(t)}
+        </div>
+        ${histBodyHtml(t)}
+      </div>
+    </div>`;
+}
+
+async function joinTable(id) {
+  const input = document.getElementById('join-' + id);
+  const name  = (input?.value || '').trim().slice(0, 60);
+  if (!name) { input?.focus(); return; }
+  try {
+    // Transaction: two people can't both take the last seat
+    const problem = await FS.runTransaction(fdb, async tx => {
+      const ref  = dbDoc(`tables/${id}`);
+      const snap = await tx.get(ref);
+      if (!snap.exists() || snap.data().deleted) return 'This table no longer exists.';
+      const t = snap.data();
+      if ([t.host, ...t.players].some(p => p.toLowerCase() === name.toLowerCase())) return `${name} is already at this table.`;
+      if (1 + t.players.length >= t.max_players) return 'Sorry — the table just filled up.';
+      tx.update(ref, {
+        players: [...t.players, name], updated_at: FS.Timestamp.now(),
+        history: FS.arrayUnion(histEntry(name, `Joined: ${name}`)),
+      });
+      return null;
+    });
+    if (problem) alert(problem);
+    else { if (input) input.value = ''; rememberName(name); }
+  } catch(e) { dbFail(e); }
+}
+
+async function leaveTable(id, idx) {
+  const t = tableDocs.find(x => x.id === id);
+  const name = t?.players[idx];
+  if (!name || !confirm(`Remove ${name} from this table?`)) return;
+  const by = whoAmI();
+  if (!by) return;
+  try {
+    await FS.runTransaction(fdb, async tx => {
+      const ref  = dbDoc(`tables/${id}`);
+      const snap = await tx.get(ref);
+      if (!snap.exists()) return;
+      tx.update(ref, {
+        players: snap.data().players.filter(p => p !== name), updated_at: FS.Timestamp.now(),
+        history: FS.arrayUnion(histEntry(by, `Left: ${name}`)),
+      });
+    });
+  } catch(e) { dbFail(e); }
+}
+
+function openTableForm(id) {
+  const t = id ? tableDocs.find(x => x.id === id) : null;
+  tableEditId = t ? t.id : null;
+  const d = t ? tsDate(t.starts_at) : null;
+  document.getElementById('table-form-title').textContent = t ? 'Edit table' : 'Open a table';
+  document.getElementById('tf-host').value  = t ? t.host : getMyName();
+  setPickerValue(document.getElementById('tf-game'), t?.game_name, t?.objectid);
+  document.getElementById('tf-date').value  = d ? isoDate(d) : '';
+  document.getElementById('tf-time').value  = d ? fmtTime(d) : '18:00';
+  document.getElementById('tf-min').value   = t ? t.min_players : 2;
+  document.getElementById('tf-max').value   = t ? t.max_players : 4;
+  document.getElementById('tf-notes').value = t ? t.notes : '';
+  document.getElementById('tf-by').value    = getMyName();
+  document.getElementById('tf-by-row').style.display = t ? '' : 'none';
+  document.getElementById('tf-error').textContent = '';
+  document.getElementById('table-form').style.display = 'flex';
+  setTimeout(() => document.getElementById(t || getMyName() ? 'tf-game' : 'tf-host').focus(), 50);
+}
+
+function closeTableForm() {
+  document.getElementById('table-form').style.display = 'none';
+  tableEditId = null;
+}
+
+async function saveTableForm() {
+  const err  = document.getElementById('tf-error');
+  const host = val('tf-host').slice(0, 60);
+  const { game_name, objectid } = readGameField('tf-game');
+  const date = val('tf-date'), time = val('tf-time');
+  const min  = parseInt(val('tf-min')), max = parseInt(val('tf-max'));
+  const notes = val('tf-notes').slice(0, 2000);
+  const t    = tableEditId ? tableDocs.find(x => x.id === tableEditId) : null;
+  const by   = t ? val('tf-by').slice(0, 60) : host;
+  const when = date && time ? new Date(`${date}T${time}`) : null;
+  if (!host)                            { err.textContent = 'Who is hosting?'; return; }
+  if (!game_name)                       { err.textContent = 'Which game?'; return; }
+  if (!when || isNaN(when))             { err.textContent = 'Pick a date and time.'; return; }
+  if (!t && when.getTime() < Date.now()) { err.textContent = 'That time has already passed.'; return; }
+  if (!(min >= 1 && max >= min && max <= 20)) { err.textContent = 'Players: min 1, max 20, and max at least min.'; return; }
+  if (t && max < 1 + t.players.length)  { err.textContent = `${1 + t.players.length} people are already seated — max can't be lower.`; return; }
+  if (!by)                              { err.textContent = 'Add your name for the change log.'; return; }
+
+  const btn = document.getElementById('tf-save');
+  btn.disabled = true;
+  const now = FS.Timestamp.now();
+  const starts_at = FS.Timestamp.fromDate(when);
+  try {
+    if (!t) {
+      await FS.addDoc(dbCol('tables'), {
+        host, objectid, game_name, starts_at, min_players: min, max_players: max,
+        players: [], notes, created_at: now, updated_at: now,
+        deleted: false, deleted_at: null, deleted_reason: null,
+        history: [histEntry(host, `Opened table for ${fmtWhen(when)}`)],
+      });
+    } else {
+      const old = tsDate(t.starts_at);
+      const changes = [];
+      if (host !== t.host)                                       changes.push(`Host ${t.host} → ${host}`);
+      if (game_name !== t.game_name || objectid !== t.objectid)  changes.push(`Game ${t.game_name} → ${game_name}`);
+      if (when.getTime() !== old.getTime())                      changes.push(`Time ${fmtWhen(old)} → ${fmtWhen(when)}`);
+      if (min !== t.min_players || max !== t.max_players)        changes.push(`Players ${t.min_players}–${t.max_players} → ${min}–${max}`);
+      if (notes !== t.notes)                                     changes.push('Details edited');
+      if (changes.length) {
+        await FS.updateDoc(dbDoc(`tables/${t.id}`), {
+          host, objectid, game_name, starts_at, min_players: min, max_players: max, notes, updated_at: now,
+          history: FS.arrayUnion(histEntry(by, changes.join(' · '))),
+        });
+      }
+    }
+    rememberName(by);
+    closeTableForm();
+  } catch(e) { dbFail(e); }
+  btn.disabled = false;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// ADMIN → TRASH  (soft-deleted Marketplace listings + Open Tables)
+// ─────────────────────────────────────────────────────────────────────────────
+function refreshTrash() {
+  const n = marketDocs.filter(m => m.deleted).length + tableDocs.filter(t => t.deleted).length;
+  document.getElementById('admin-sec-btn-trash').textContent = n ? `Trash (${n})` : 'Trash';
+  if (adminIsOpen('trash')) renderTrash();
+}
+
+function renderTrash() {
+  const el = document.getElementById('admin-trash-list');
+  const rows = [
+    ...marketDocs.filter(m => m.deleted).map(m => ({
+      coll: 'market', d: m, type: 'Marketplace', title: m.game_name,
+      meta: `${esc(m.seller)}<span class="sep">·</span>${fmtPrice(m.price)}`,
+    })),
+    ...tableDocs.filter(t => t.deleted).map(t => ({
+      coll: 'tables', d: t, type: 'Open Table', title: t.game_name,
+      meta: `Host ${esc(t.host)}<span class="sep">·</span>${fmtWhen(tsDate(t.starts_at))}<span class="sep">·</span>${1 + t.players.length}/${t.max_players}`,
+    })),
+  ].sort((a, b) => tsDate(b.d.deleted_at) - tsDate(a.d.deleted_at));
+
+  if (!rows.length) { el.innerHTML = `<div class="board-empty">Trash is empty.</div>`; return; }
+  el.innerHTML = rows.map(r => `
+    <div class="trash-row">
+      <div class="item-head">
+        <span><span class="trash-type">${r.type}</span><b>${esc(r.title)}</b></span>
+        <span class="trash-btns">
+          <button class="item-act" onclick="restoreItem('${r.coll}','${r.d.id}')">↺ Restore</button>
+          <button class="item-act danger" onclick="purgeItem('${r.coll}','${r.d.id}')">✕ Delete</button>
+        </span>
+      </div>
+      <div class="item-meta">${r.meta}<span class="sep">·</span>${r.d.deleted_reason === 'expired' ? 'auto-archived' : 'removed'} ${fmtDay(tsDate(r.d.deleted_at))}</div>
+      <div class="item-foot">${histToggleHtml(r.d)}</div>
+      ${histBodyHtml(r.d)}
+    </div>`).join('');
+}
+
+async function restoreItem(coll, id) {
+  if (coll === 'tables') {
+    const t = tableDocs.find(x => x.id === id);
+    if (t && tsDate(t.starts_at).getTime() <= Date.now() - DAY_MS) {
+      alert('This table was more than a day ago, so it would be archived again straight away.');
+      return;
+    }
+    autoArchived.delete(id);
+  }
+  try {
+    await FS.updateDoc(dbDoc(`${coll}/${id}`), {
+      deleted: false, deleted_at: null, deleted_reason: null, updated_at: FS.Timestamp.now(),
+      history: FS.arrayUnion(histEntry('admin', 'Restored by admin')),
+    });
+  } catch(e) { dbFail(e); }
+}
+
+async function purgeItem(coll, id) {
+  if (!confirm('Delete permanently? This cannot be undone.')) return;
+  try { await FS.deleteDoc(dbDoc(`${coll}/${id}`)); } catch(e) { dbFail(e); }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// ADMIN → HAASTE YEAR  (yearly lottery, manual trim/add, publish)
+// ─────────────────────────────────────────────────────────────────────────────
+// challenge_years/{year}.game_ids records every roster; a game on any of the
+// previous YEAR_COOLDOWN rosters is left out of the draw.
+const YEAR_ROSTER_SIZE = 200;
+const YEAR_COOLDOWN    = 5;
+let yrGames    = [];      // working roster: [{objectid, name}]
+let yrExisting = null;    // challenge_years/{year} doc if it exists
+let yrNote     = '';
+let yrInited   = false;
+
+function openYearSection() {
+  if (yrInited) return;
+  yrInited = true;
+  document.getElementById('yr-year').value = (activeYear || new Date().getFullYear()) + 1;
+  loadAdminYear();
+}
+
+function yrYear() { return parseInt(document.getElementById('yr-year').value); }
+
+function yearGameName(oid, year) {
+  if (year === activeYear && challengeById.has(oid)) return getChalName(oid);
+  return collGame(oid)?.name || `[Unknown — ID ${oid}]`;
+}
+
+async function loadAdminYear() {
+  const year = yrYear();
+  if (!(year >= 2020 && year <= 2100)) return;
+  yrNote = '';
+  try {
+    const snap = await FS.getDoc(dbDoc(`challenge_years/${year}`));
+    yrExisting = snap.exists() ? snap.data() : null;
+  } catch(e) { dbFail(e); return; }
+  const tiers = yrExisting?.tiers || challengeData?.tiers || { bronze: 75, silver: 100, gold: 125 };
+  document.getElementById('yr-title').value  = yrExisting?.title || `Satunnaishaaste ${year}`;
+  document.getElementById('yr-bronze').value = tiers.bronze;
+  document.getElementById('yr-silver').value = tiers.silver;
+  document.getElementById('yr-gold').value   = tiers.gold;
+  yrGames = (yrExisting?.game_ids || []).map(oid => ({ objectid: oid, name: yearGameName(oid, year) }));
+  renderYearList();
+}
+
+function renderYearList() {
+  const year = yrYear();
+  const saved = !yrExisting ? 'not saved yet'
+    : year === activeYear ? 'the active challenge'
+    : yrExisting.title ? 'published earlier' : 'saved as historical';
+  document.getElementById('yr-status').innerHTML =
+    `<b>${yrGames.length}</b> games · ${year}: ${saved}${yrNote ? `<br>${esc(yrNote)}` : ''}`;
+  document.getElementById('yr-list').innerHTML = yrGames.map((g, i) => `
+    <div class="yr-list-row">
+      <span class="n">${i + 1}</span>
+      <span class="nm">${gameTitleHtml(g.objectid, g.name)}</span>
+      <button class="item-act danger" title="Remove" onclick="removeYearGame(${i})">✕</button>
+    </div>`).join('');
+}
+
+function addYearGame(objectid, name) {
+  if (yrGames.some(g => g.objectid === objectid)) return false;
+  yrGames.push({ objectid, name });
+  renderYearList();
+  return true;
+}
+
+function removeYearGame(i) { yrGames.splice(i, 1); renderYearList(); }
+
+function clearYearGames() {
+  if (yrGames.length && !confirm(`Clear all ${yrGames.length} games from the working list?`)) return;
+  yrGames = []; yrNote = '';
+  renderYearList();
+}
+
+async function drawYearGames() {
+  const year = yrYear();
+  if (!(year >= 2020 && year <= 2100)) { alert('Enter a year first.'); return; }
+  const excluded = new Set(), onRecord = [];
+  try {
+    const snaps = await Promise.all(Array.from({ length: YEAR_COOLDOWN }, (_, k) =>
+      FS.getDoc(dbDoc(`challenge_years/${year - 1 - k}`))));
+    snaps.forEach((s, k) => {
+      if (!s.exists()) return;
+      onRecord.push(year - 1 - k);
+      (s.data().game_ids || []).forEach(id => excluded.add(id));
+    });
+  } catch(e) { dbFail(e); return; }
+  const inList = new Set(yrGames.map(g => g.objectid));
+  const pool = [...gameIndex().values()].filter(g => !excluded.has(g.objectid) && !inList.has(g.objectid));
+  for (let i = pool.length - 1; i > 0; i--) {   // Fisher–Yates
+    const j = Math.floor(Math.random() * (i + 1));
+    [pool[i], pool[j]] = [pool[j], pool[i]];
+  }
+  const need   = Math.max(0, YEAR_ROSTER_SIZE - yrGames.length);
+  const picked = pool.slice(0, need);
+  picked.forEach(g => yrGames.push({ objectid: g.objectid, name: g.name }));
+  yrNote = `Drew ${picked.length} of ${pool.length} eligible games. ` +
+    (onRecord.length
+      ? `Left out ${excluded.size} games from the ${onRecord.sort().join(', ')} roster${onRecord.length > 1 ? 's' : ''}.`
+      : `No rosters on record for ${year - YEAR_COOLDOWN}–${year - 1}, so nothing was left out.`) +
+    (picked.length < need ? ' Not enough eligible games for a full list.' : '');
+  renderYearList();
+}
+
+// Port of match_game() from scripts/setup_challenge.py
+function matchYearLine(line) {
+  const q = line.trim();
+  if (!q || q.startsWith('#')) return { skip: true };
+  if (/^\d+$/.test(q)) return { game: { objectid: q, name: collGame(q)?.name || `[Unknown — ID ${q}]` } };
+  const ql = q.toLowerCase();
+  const games = [...gameIndex().values()];
+  const exact = games.find(g => g.name.toLowerCase() === ql);
+  if (exact) return { game: exact };
+  const partial = games.filter(g => g.name.toLowerCase().includes(ql));
+  if (partial.length === 1) return { game: partial[0] };
+  return partial.length ? { ambiguous: q } : { unmatched: q };
+}
+
+function bulkAddYearGames() {
+  const lines = document.getElementById('yr-bulk').value.split('\n');
+  let added = 0, dupes = 0;
+  const ambiguous = [], unmatched = [];
+  lines.forEach(line => {
+    const r = matchYearLine(line);
+    if (r.game) addYearGame(r.game.objectid, r.game.name) ? added++ : dupes++;
+    else if (r.ambiguous) ambiguous.push(r.ambiguous);
+    else if (r.unmatched) unmatched.push(r.unmatched);
+  });
+  const parts = [`Added ${added}`];
+  if (dupes)            parts.push(`${dupes} already on the list`);
+  if (ambiguous.length) parts.push(`ambiguous (use the BGG ID): ${ambiguous.join(', ')}`);
+  if (unmatched.length) parts.push(`not found: ${unmatched.join(', ')}`);
+  document.getElementById('yr-bulk-result').textContent = parts.join(' · ');
+  // Keep only the lines that still need fixing
+  document.getElementById('yr-bulk').value = [...ambiguous, ...unmatched].join('\n');
+  renderYearList();
+}
+
+async function saveYearHistorical() {
+  const year = yrYear();
+  if (!(year >= 2020 && year <= 2100)) { alert('Enter a year first.'); return; }
+  if (!yrGames.length) { alert('The list is empty.'); return; }
+  if (yrExisting?.title) {
+    alert(`${year} was published as an active challenge. Its roster can only be changed with Publish.`);
+    return;
+  }
+  if (!confirm(`Save ${yrGames.length} games as the ${year} roster (historical, for the ${YEAR_COOLDOWN}-year rule)?`)) return;
+  try {
+    await FS.setDoc(dbDoc(`challenge_years/${year}`), { year, game_ids: yrGames.map(g => g.objectid) });
+    yrExisting = { year, game_ids: yrGames.map(g => g.objectid) };
+    yrNote = 'Saved.';
+    renderYearList();
+  } catch(e) { dbFail(e); }
+}
+
+async function publishYear() {
+  const year  = yrYear();
+  const title = val('yr-title').slice(0, 80) || `Satunnaishaaste ${year}`;
+  const tiers = {
+    bronze: parseInt(val('yr-bronze')) || 0,
+    silver: parseInt(val('yr-silver')) || 0,
+    gold:   parseInt(val('yr-gold'))   || 0,
+  };
+  if (!(year >= 2020 && year <= 2100)) { alert('Enter a year first.'); return; }
+  if (!yrGames.length) { alert('The list is empty.'); return; }
+  if (yrGames.length !== YEAR_ROSTER_SIZE &&
+      !confirm(`The list has ${yrGames.length} games, not ${YEAR_ROSTER_SIZE}. Publish anyway?`)) return;
+  const replacing = year === activeYear
+    ? 'Played dates of games that stay on the list are kept.'
+    : `This replaces "${challengeData?.title}" on the Haaste tab.`;
+  if (!confirm(`Publish "${title}" (${yrGames.length} games) as the active Haaste for everyone?\n\n${replacing}`)) return;
+
+  try {
+    const ids  = yrGames.map(g => g.objectid);
+    const prev = new Map((await FS.getDocs(dbCol(`challenge_years/${year}/games`))).docs.map(d => [d.id, d.data()]));
+    const ops  = [b => b.set(dbDoc(`challenge_years/${year}`), { year, title, target: ids.length, tiers, game_ids: ids })];
+    yrGames.forEach(g => ops.push(b => b.set(dbDoc(`challenge_years/${year}/games/${g.objectid}`), {
+      objectid: g.objectid,
+      name: prev.get(g.objectid)?.name || g.name,
+      played_date: prev.get(g.objectid)?.played_date || null,
+    })));
+    prev.forEach((_, id) => { if (!ids.includes(id)) ops.push(b => b.delete(dbDoc(`challenge_years/${year}/games/${id}`))); });
+    ops.push(b => b.set(dbDoc('challenge_meta/current'), { activeYear: year }));   // last: the switch-over
+    await commitOps(ops);
+    await loadChallengeData();
+    onChallengeChanged();
+    yrExisting = { year, title, target: ids.length, tiers, game_ids: ids };
+    yrNote = `Published — ${title} is now the active Haaste.`;
+    renderYearList();
+  } catch(e) { dbFail(e); }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
