@@ -1,6 +1,97 @@
 {
   "entries": [
     {
+      "id": "20261025091209-refresh",
+      "date": "2026-10-25T09:12:09.948492+00:00",
+      "label": "Weekly refresh — 25 Oct 2026",
+      "source": "refresh",
+      "stats": {
+        "collectors_changed": 3,
+        "games_added": 9,
+        "games_removed": 6
+      },
+      "changes": [
+        {
+          "collector": "Marttapa",
+          "added": [
+            {
+              "objectid": "460716",
+              "name": "Enchanted Ivy"
+            },
+            {
+              "objectid": "424981",
+              "name": "Eternal Decks"
+            },
+            {
+              "objectid": "455843",
+              "name": "Everdell Emerland"
+            },
+            {
+              "objectid": "345868",
+              "name": "Federation"
+            },
+            {
+              "objectid": "438442",
+              "name": "Feya's Swamp"
+            },
+            {
+              "objectid": "419260",
+              "name": "League of Six: Complete Edition"
+            },
+            {
+              "objectid": "444683",
+              "name": "Pilgrims: Curious Adventures"
+            },
+            {
+              "objectid": "427388",
+              "name": "Tend"
+            },
+            {
+              "objectid": "433891",
+              "name": "Urban Sketchers"
+            }
+          ],
+          "removed": []
+        },
+        {
+          "collector": "okram",
+          "added": [],
+          "removed": [
+            {
+              "objectid": "302578",
+              "name": "Deadly Dinner: Red Carpet in Ruins"
+            }
+          ]
+        },
+        {
+          "collector": "Stannum8",
+          "added": [],
+          "removed": [
+            {
+              "objectid": "214887",
+              "name": "CO₂: Second Chance"
+            },
+            {
+              "objectid": "317457",
+              "name": "Dinosaur World"
+            },
+            {
+              "objectid": "28143",
+              "name": "Race for the Galaxy"
+            },
+            {
+              "objectid": "319966",
+              "name": "The King Is Dead: Second Edition"
+            },
+            {
+              "objectid": "183394",
+              "name": "Viticulture Essential Edition"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "20261018084754-refresh",
       "date": "2026-10-18T08:47:54.251372+00:00",
       "label": "Weekly refresh — 18 Oct 2026",
