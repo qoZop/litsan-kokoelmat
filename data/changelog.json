@@ -1,6 +1,93 @@
 {
   "entries": [
     {
+      "id": "20261101111704-refresh",
+      "date": "2026-11-01T11:17:04.162107+00:00",
+      "label": "Weekly refresh — 01 Nov 2026",
+      "source": "refresh",
+      "stats": {
+        "collectors_changed": 4,
+        "games_added": 9,
+        "games_removed": 3
+      },
+      "changes": [
+        {
+          "collector": "asaarto",
+          "added": [
+            {
+              "objectid": "397005",
+              "name": "Yonder"
+            }
+          ],
+          "removed": [
+            {
+              "objectid": "400995",
+              "name": "Perspectives"
+            },
+            {
+              "objectid": "6617",
+              "name": "Rapidough"
+            }
+          ]
+        },
+        {
+          "collector": "okram",
+          "added": [
+            {
+              "objectid": "400995",
+              "name": "Perspectives"
+            }
+          ],
+          "removed": []
+        },
+        {
+          "collector": "StoneDog",
+          "added": [
+            {
+              "objectid": "463296",
+              "name": "Forest Shuffle: Smoky Mountains"
+            },
+            {
+              "objectid": "473508",
+              "name": "Wingspan Pocket"
+            }
+          ],
+          "removed": [
+            {
+              "objectid": "37111",
+              "name": "Battlestar Galactica: The Board Game"
+            }
+          ]
+        },
+        {
+          "collector": "Taateli",
+          "added": [
+            {
+              "objectid": "170318",
+              "name": "Among the Stars: Revival"
+            },
+            {
+              "objectid": "380916",
+              "name": "Cloudy Kingdom"
+            },
+            {
+              "objectid": "320527",
+              "name": "Dice Throne: Season One ReRolled – Treant v. Ninja"
+            },
+            {
+              "objectid": "360152",
+              "name": "Marvel Dice Throne: Black Widow v. Doctor Strange"
+            },
+            {
+              "objectid": "360061",
+              "name": "Marvel Dice Throne: Captain Marvel v. Black Panther"
+            }
+          ],
+          "removed": []
+        }
+      ]
+    },
+    {
       "id": "20261025091209-refresh",
       "date": "2026-10-25T09:12:09.948492+00:00",
       "label": "Weekly refresh — 25 Oct 2026",
