@@ -3150,8 +3150,6 @@ let _chalMetaUnsub     = null;
 const CHAL_OVERRIDE_KEY = 'lc_challenge_overrides';
 const CHAL_NAME_KEY     = 'lc_challenge_name_overrides';
 
-const STUB_NAME_RE = /^\[Unknown\b/;
-
 function todayStr() {
   const d = new Date();
   return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
@@ -3214,12 +3212,11 @@ function getChalPlayedDate(objectid) {
 }
 
 // Best available name for a challenge game, in priority order:
-// stored name (if not a stub) → current collection name → stored stub
+// current collection name (same as the Collection tab) → stored name → stub
 function getChalName(objectid) {
-  const g = challengeById.get(objectid);
-  if (g && g.name && !STUB_NAME_RE.test(g.name)) return g.name;
   const coll = allGames.find(ag => ag.objectid === objectid);
   if (coll && coll.name) return coll.name;
+  const g = challengeById.get(objectid);
   return g?.name || `[Unknown — ID ${objectid}]`;
 }
 
@@ -3381,7 +3378,7 @@ function toggleChalPlayed(objectid) {
 
 function editChalName(objectid) {
   if (!chalAdminMode) return;
-  const current = getChalName(objectid);
+  const current = challengeById.get(objectid)?.name || getChalName(objectid);
   const next = prompt(`Stored name for BGG ID ${objectid}\n(used when the game is no longer in anyone's collection):`, current);
   if (next === null) return;
   const trimmed = next.trim().slice(0, 200);
