@@ -1,6 +1,66 @@
 {
   "entries": [
     {
+      "id": "20261108111721-refresh",
+      "date": "2026-11-08T11:17:21.018599+00:00",
+      "label": "Weekly refresh — 08 Nov 2026",
+      "source": "refresh",
+      "stats": {
+        "collectors_changed": 3,
+        "games_added": 5,
+        "games_removed": 2
+      },
+      "changes": [
+        {
+          "collector": "asaarto",
+          "added": [],
+          "removed": [
+            {
+              "objectid": "308388",
+              "name": "Egizia: Shifting Sands – Kickstarter Edition"
+            }
+          ]
+        },
+        {
+          "collector": "Maradrus",
+          "added": [
+            {
+              "objectid": "251219",
+              "name": "Istanbul: Big Box"
+            },
+            {
+              "objectid": "469385",
+              "name": "Unlock!: New Game Adventures"
+            }
+          ],
+          "removed": []
+        },
+        {
+          "collector": "okram",
+          "added": [
+            {
+              "objectid": "155987",
+              "name": "Abyss"
+            },
+            {
+              "objectid": "70323",
+              "name": "King of Tokyo"
+            },
+            {
+              "objectid": "180020",
+              "name": "Virus!"
+            }
+          ],
+          "removed": [
+            {
+              "objectid": "226522",
+              "name": "EXIT: The Game – Dead Man on the Orient Express"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "20261101111704-refresh",
       "date": "2026-11-01T11:17:04.162107+00:00",
       "label": "Weekly refresh — 01 Nov 2026",
